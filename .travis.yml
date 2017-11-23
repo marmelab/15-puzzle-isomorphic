@@ -1,0 +1,21 @@
+# https://travis-ci.com/marmelab/15-puzzle-app
+
+language: node_js
+
+node_js:
+    - "node"
+
+cache:
+    directories:
+        - node_modules
+
+install:
+  - make install
+
+script:
+  - make lint
+  - make test
+
+branches:
+  only:
+    - master
