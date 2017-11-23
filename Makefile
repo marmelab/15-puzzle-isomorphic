@@ -7,13 +7,15 @@ help: ## Print all commands (default)
 
 ####### BUILD #######
 
-install: ## Install dependencies and build the project
+install: ## Install dependencies
 	npm i
+
+build: ## Build the project
 	npm run build
 
 ####### RUN #######
 
-run: ## Run the 15-puzzle isomorphic app
+run: build ## Run the 15-puzzle isomorphic app
 	PORT=$(PORT) npm run start
 
 start: ## Run the 15-puzzle isomorphic app (alias for `run`)

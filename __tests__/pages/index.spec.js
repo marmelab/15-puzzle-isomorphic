@@ -1,5 +1,5 @@
 import React from 'react';
-import Index from '../../pages/Index';
+import Index from '../../pages/index';
 import { shallow } from 'enzyme';
 
 import renderer from 'react-test-renderer';
