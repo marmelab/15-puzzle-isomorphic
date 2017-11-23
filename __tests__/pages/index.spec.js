@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
 describe('Index', () => {
-    it('should render Index correctly', () => {
+    it('it should render Index without error', () => {
         renderer.create(<Index />);
     });
 
@@ -14,7 +14,7 @@ describe('Index', () => {
         expect(app.find('h1').text()).toEqual('Welcome to the 15 puzzle game!');
     });
 
-    it('should match with snapshot', () => {
+    it('should render the Index correctly', () => {
         const component = renderer.create(<Index />);
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
