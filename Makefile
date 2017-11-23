@@ -5,7 +5,8 @@ help: ## Print all commands (default)
 
 ####### BUILD #######
 
-install: ## Install dependencies
+install: ## Install dependencies and build the project
+	npm i
 	npm run build
 
 ####### RUN #######
