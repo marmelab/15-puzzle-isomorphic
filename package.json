@@ -1,0 +1,34 @@
+{
+  "name": "15-puzzle-isomorphic",
+  "version": "1.0.0",
+  "description": "A react app to play the 15 puzzle game.",
+  "dependencies": {
+    "next": "4.1.4",
+    "react": "16.1.1",
+    "react-dom": "16.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "~8.0.2",
+    "babel-jest": "~21.2.0",
+    "eslint": "~4.11.0",
+    "eslint-config-prettier": "~2.8.0",
+    "eslint-plugin-import": "~2.8.0",
+    "eslint-plugin-jest": "~21.3.2",
+    "eslint-plugin-prettier": "~2.3.1",
+    "eslint-plugin-react": "~7.5.1",
+    "prettier": "~1.8.2"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marmelab/15-puzzle-isomorphic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marmelab/15-puzzle-isomorphic/issues"
+  },
+  "homepage": "https://github.com/marmelab/15-puzzle-isomorphic#readme"
+}
