@@ -1,9 +1,22 @@
 import React from 'react';
 import Index from '../../pages/Index';
+import { shallow } from 'enzyme';
 
-// Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('should render Index correctly', () => {
-    renderer.create(<Index />);
+describe('Index', () => {
+    it('should render Index correctly', () => {
+        renderer.create(<Index />);
+    });
+
+    it('should contain the main title', () => {
+        const app = shallow(<Index />);
+        expect(app.find('h1').text()).toEqual('Welcome to the 15 puzzle game!');
+    });
+
+    it('should match with snapshot', () => {
+        const component = renderer.create(<Index />);
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

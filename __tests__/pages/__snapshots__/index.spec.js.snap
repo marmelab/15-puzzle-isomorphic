@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index should match with snapshot 1`] = `
+<div>
+  <h1>
+    Welcome to the 15 puzzle game!
+  </h1>
+</div>
+`;

@@ -4,7 +4,7 @@ export default class Index extends Component {
     render() {
         return (
             <div>
-                <h1>Welcome to 15 puzzle app!</h1>
+                <h1>Welcome to the 15 puzzle game!</h1>
             </div>
         );
     }
