@@ -42,6 +42,12 @@ Run the 15-puzzle game on port 3000
 make run
 ```
 
+Note: you can change the default port by using the `PORT` env variable.
+
+``` bash
+PORT=3001 make run
+```
+
 You can use the `start` alias aswell.
 
 ``` bash

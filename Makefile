@@ -1,3 +1,5 @@
+PORT ?= 3000
+
 .PHONY: help install run start test lint format
 
 help: ## Print all commands (default)
@@ -12,7 +14,7 @@ install: ## Install dependencies and build the project
 ####### RUN #######
 
 run: ## Run the 15-puzzle isomorphic app
-	npm run start
+	PORT=$(PORT) npm run start
 
 start: ## Run the 15-puzzle isomorphic app (alias for `run`)
 	$(MAKE) run
