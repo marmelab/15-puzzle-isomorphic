@@ -1,5 +1,5 @@
 .bloc {
-    background-color: #E3F2FD;
+    background-color: #e3f2fd;
     border-radius: 2px;
     padding: 10px;
 }
@@ -15,47 +15,4 @@
     display: flex;
     height: 300px;
     justify-content: center;
-}
-
-
-.puzzle-row {
-    display: flex;
-}
-
-.puzzle-tile {
-    align-items: center;
-    display: flex;
-    background-color: '#d32f2f';
-    height: 60px;
-    justify-content: center;
-    margin: 4px;
-    width: 60px;
-}
-
-.puzzle-tile-empty {
-    height: 60px;
-    margin: 4px;
-    width: 60px;
-}
-
-.puzzle-tile-value {
-    color: white;
-    font-size: 20px;
-    text-align: center;
-}
-
-a.puzzle-tile-value:hover {
-    background-color: #f44336;
-}
-
-column {
-    align-items: 'center';
-    display: 'flex';
-    flex-direction: 'column';
-    padding: 10px;
-    width: '100%';
-}
-
-row {
-    flex-direction: 'row';
 }

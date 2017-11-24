@@ -1,0 +1,36 @@
+.puzzle-column {
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    width: 100%;
+}
+
+.puzzle-row {
+    flex-direction: row;
+}
+
+.puzzle-tile {
+    align-items: center;
+    display: flex;
+    background-color: #d32f2f;
+    height: 100px;
+    justify-content: center;
+    margin: 4px;
+    width: 100px;
+}
+
+.puzzle-tile-empty {
+    height: 100px;
+    margin: 4px;
+    width: 100px;
+}
+
+.puzzle-tile-value {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+a.puzzle-tile-value:hover {
+    background-color: #f44336;
+}

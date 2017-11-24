@@ -11,6 +11,7 @@ export default function CustomHead() {
             />
             <title>15 Puzzle Isomorphic!</title>
             <link href="/static/styles/main.css" rel="stylesheet" />
+            <link href="/static/styles/puzzle.css" rel="stylesheet" />
             <link
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
@@ -19,7 +20,6 @@ export default function CustomHead() {
                 rel="stylesheet"
                 href="https://fonts.googleapis.com/icon?family=Material+Icons"
             />
-            <link rel="stylesheet" href="/statics/styles.css" />
         </Head>
     );
 }

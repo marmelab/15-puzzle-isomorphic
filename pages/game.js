@@ -7,11 +7,8 @@ import Grid from '../src/components/grid';
 import ActivityIndicator from '../src/components/activityIndicator';
 
 import { buildGrid } from '../src/core/game';
-import { shuffle } from '../src/core/shuffler';
 
 export default class Index extends Component {
-    handleClickSingleGame = () => {};
-
     state = {
         isLoading: true,
         currentGrid: null,
@@ -19,6 +16,8 @@ export default class Index extends Component {
         turn: -1,
         isVictory: false,
     };
+
+    handleClick = () => {};
 
     renderWinnerMessage(isVictory, turn) {
         return isVictory
@@ -28,10 +27,9 @@ export default class Index extends Component {
 
     componentWillMount = async () => {
         let resolvedGrid = buildGrid(4);
-        // let shuffledGrid = await shuffle(resolvedGrid);
 
         this.setState({
-            // isLoading: false,
+            isLoading: false,
             currentGrid: resolvedGrid,
             resolvedGrid,
             turn: 0,
@@ -91,7 +89,7 @@ export default class Index extends Component {
                             </div>
                             <div className="col s12">
                                 <Grid
-                                    onPress={this.requestMove}
+                                    onClick={this.handleClick}
                                     grid={currentGrid}
                                     readOnly={isVictory}
                                 />

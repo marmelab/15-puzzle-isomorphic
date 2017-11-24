@@ -5,7 +5,7 @@ import Tile from './tile';
 
 export default class Grid extends Component {
     static propTypes = {
-        onPress: PropTypes.func.isRequired,
+        onClick: PropTypes.func.isRequired,
         grid: PropTypes.array.isRequired,
         readOnly: PropTypes.bool,
     };
@@ -15,13 +15,13 @@ export default class Grid extends Component {
     };
 
     render() {
-        const { grid, readOnly, onPress } = this.props;
+        const { grid, readOnly, onClick } = this.props;
 
         return (
-            <div className="column">
+            <div className="puzzle-column">
                 {grid.map((row, rowKey) => {
                     return (
-                        <div className="row" key={rowKey}>
+                        <div className="puzzle-row" key={rowKey}>
                             {row.map(tileValue => {
                                 if (tileValue === 0) {
                                     return (
@@ -34,9 +34,9 @@ export default class Grid extends Component {
                                 return (
                                     <Tile
                                         key={tileValue}
-                                        tileValue={tileValue}
                                         enabled={!readOnly}
-                                        onPress={onPress}
+                                        onClick={onClick}
+                                        tileValue={tileValue}
                                     />
                                 );
                             })}

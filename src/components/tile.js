@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 export default class Tile extends Component {
     static propTypes = {
+        enabled: PropTypes.bool,
         onClick: PropTypes.func.isRequired,
         tileValue: PropTypes.number.isRequired,
-        enabled: PropTypes.bool,
     };
 
     static defaultProps = {
