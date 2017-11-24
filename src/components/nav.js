@@ -8,6 +8,10 @@ export default class Nav extends Component {
         title: PropTypes.string.isRequired,
     };
 
+    static defaultProps = {
+        title: '15 Puzzle Isomorphic!',
+    };
+
     render() {
         const { title } = this.props;
         return (
