@@ -1,5 +1,3 @@
-import Coords from './coords';
-
 export const EMPTY_VALUE = 0;
 
 export const buildGrid = (size = 4) => {
@@ -38,11 +36,17 @@ export const areGridsEquals = (grid1, grid2) => {
     return true;
 };
 
+export const areCoordsEquals = (coords1, coords2) => {
+    return (
+        coords1 && coords2 && coords1.y === coords2.y && coords1.x === coords2.x
+    );
+};
+
 export const findTileByValue = (grid, valueToSearch) => {
     for (let y = 0; y < grid.length; y++) {
         let x = grid[y].findIndex(value => value === valueToSearch);
         if (x !== -1) {
-            return new Coords(y, x);
+            return { y, x };
         }
     }
     throw `The tile with value ${valueToSearch} doesn't exist.`;
@@ -57,23 +61,23 @@ export const listCoordsMovableTiles = grid => {
 
     let coordsMovableTiles = [];
     if (y > 0) {
-        coordsMovableTiles.push(new Coords(y - 1, x));
+        coordsMovableTiles.push({ y: y - 1, x });
     }
     if (x + 1 < grid.length) {
-        coordsMovableTiles.push(new Coords(y, x + 1));
+        coordsMovableTiles.push({ y, x: x + 1 });
     }
     if (y + 1 < grid.length) {
-        coordsMovableTiles.push(new Coords(y + 1, x));
+        coordsMovableTiles.push({ y: y + 1, x });
     }
     if (x > 0) {
-        coordsMovableTiles.push(new Coords(y, x - 1));
+        coordsMovableTiles.push({ y, x: x - 1 });
     }
     return coordsMovableTiles;
 };
 
 export const isTileInMovableTiles = (grid, coordsTileToMove) =>
     listCoordsMovableTiles(grid).some(coords =>
-        coords.equalsTo(coordsTileToMove),
+        areCoordsEquals(coords, coordsTileToMove),
     );
 
 export const move = (grid, coordsTileToMove) => {

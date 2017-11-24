@@ -1,5 +1,4 @@
 import * as Game from '../../../src/core/game';
-import Coords from '../../../src/core/coords';
 
 describe('Game', () => {
     describe('buildGrid', () => {
@@ -67,11 +66,29 @@ describe('Game', () => {
         });
     });
 
+    describe('areCoordsEquals', () => {
+        test('should return true if two coords are equals', () => {
+            const coords1 = { y: 3, x: 4 };
+            const coords2 = { y: 3, x: 4 };
+
+            const areEquals = Game.areCoordsEquals(coords1, coords2);
+            expect(areEquals).toBe(true);
+        });
+
+        test('should return false if two coords are not equals', () => {
+            const coords1 = { y: 3, x: 4 };
+            const coords2 = { y: 4, x: 6 };
+
+            const areEquals = Game.areCoordsEquals(coords1, coords2);
+            expect(areEquals).toBe(false);
+        });
+    });
+
     describe('findTileByValue', () => {
         test('should find a tile that is in the grid', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const value = 5;
-            const expectedCoords = new Coords(1, 1);
+            const expectedCoords = { y: 1, x: 1 };
 
             const coords = Game.findTileByValue(grid, value);
 
@@ -92,7 +109,7 @@ describe('Game', () => {
     describe('findEmptyTile', () => {
         test('should find the empty tile', () => {
             const grid = [[1, 2, 3], [4, 0, 5], [7, 8, 6]];
-            const expectedCoords = new Coords(1, 1);
+            const expectedCoords = { y: 1, x: 1 };
             const coords = Game.findEmptyTile(grid);
 
             expect(coords.y).toEqual(expectedCoords.y);
@@ -120,8 +137,8 @@ describe('Game', () => {
 
         test('should return the movable tiles', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
-            const expectedMovableTile1 = new Coords(1, 2);
-            const expectedMovableTile2 = new Coords(2, 1);
+            const expectedMovableTile1 = { y: 1, x: 2 };
+            const expectedMovableTile2 = { y: 2, x: 1 };
 
             const movableTiles = Game.listCoordsMovableTiles(grid);
 
@@ -146,7 +163,7 @@ describe('Game', () => {
     describe('isTileInMovableTiles', () => {
         test('should return true if a tile is in movable tiles', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
-            const coords = new Coords(1, 2);
+            const coords = { y: 1, x: 2 };
             const isInMovableTiles = Game.isTileInMovableTiles(grid, coords);
 
             expect(isInMovableTiles).toBe(true);
@@ -154,7 +171,7 @@ describe('Game', () => {
 
         test('should return false if a tile is in not movable tiles', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
-            const coords = new Coords(1, 0);
+            const coords = { y: 1, x: 0 };
             const isInMovableTiles = Game.isTileInMovableTiles(grid, coords);
 
             expect(isInMovableTiles).toBe(false);
@@ -166,7 +183,7 @@ describe('Game', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const expectedGrid = [[1, 2, 3], [4, 5, 0], [7, 8, 6]];
 
-            const tileToMove = new Coords(1, 2); // Move 6
+            const tileToMove = { y: 1, x: 2 }; // Move 6
             const newGrid = Game.move(grid, tileToMove);
 
             expect(newGrid).toEqual(expectedGrid);
@@ -176,7 +193,7 @@ describe('Game', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const expectedGrid = [[1, 2, 3], [4, 5, 6], [7, 8, 6]];
 
-            const tileToMove = new Coords(1, 2);
+            const tileToMove = { y: 1, x: 2 };
             Game.move(grid, tileToMove);
 
             expect(grid).not.toEqual(expectedGrid);
@@ -184,11 +201,11 @@ describe('Game', () => {
 
         test('should throw an error if the move is not possible', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
-            const tileToMove = new Coords(1, 1);
+            const tileToMove = { y: 0, x: 0 };
 
             expect(() => {
                 Game.move(grid, tileToMove);
-            }).toThrow();
+            }).toThrow(`The tile at coords (0, 0) is not movable.`);
         });
     });
 });

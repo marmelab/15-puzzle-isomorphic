@@ -1,4 +1,3 @@
-import Coords from '../../../src/core/coords';
 import * as Shuffler from '../../../src/core/shuffler';
 
 const mockMathRandom = val => {
@@ -13,16 +12,16 @@ describe('Game', () => {
             mockMathRandom(0.25);
 
             const coordsList = [
-                new Coords(1, 1),
-                new Coords(1, 2),
-                new Coords(2, 1),
-                new Coords(2, 2),
+                { y: 1, x: 1 },
+                { y: 1, x: 2 },
+                { y: 2, x: 1 },
+                { y: 2, x: 2 },
             ];
 
-            const expectedCoords = new Coords(1, 2);
+            const expectedCoords = { y: 1, x: 2 };
             const coords = Shuffler.chooseCoords(coordsList);
 
-            expect(expectedCoords.equalsTo(coords)).toBe(true);
+            expect(coords).toEqual(expectedCoords);
         });
     });
 });
