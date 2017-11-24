@@ -53,3 +53,9 @@ You can use the `start` alias aswell.
 ``` bash
 make start
 ```
+
+### Start the app in livereload mode
+
+``` bash
+make dev
+```
