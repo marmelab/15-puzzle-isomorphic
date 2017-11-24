@@ -13,7 +13,7 @@ const sleep = duration => {
 export const shuffle = async (grid, shuffleDuration = SHUFFLE_DURATION) => {
     let shuffledGrid = deepCopyGrid(grid);
 
-    const movePromise = new Promise(() => {
+    const startShuffling = new Promise(() => {
         // eslint-disable-next-line no-constant-condition
         while (true) {
             const coords = listCoordsMovableTiles(shuffledGrid);
@@ -22,7 +22,7 @@ export const shuffle = async (grid, shuffleDuration = SHUFFLE_DURATION) => {
             async () => await sleep(SLEEP_DURATION)();
         }
     });
-    await Promise.race(sleep(shuffleDuration), movePromise);
+    await Promise.race(sleep(shuffleDuration), startShuffling);
 
     return shuffledGrid;
 };

@@ -57,11 +57,11 @@ describe('Game', () => {
             expect(areEquals).toBe(false);
         });
 
-        test('should return false if the two grids do not have the same length', () => {
+        test('should return false if the two grids are not the same', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
-            const expectedGrid = [[3, 12], [5, 3], [7, 8]];
+            const grid2 = [[3, 12], [5, 3], [7, 8], [7, 8], [1]];
 
-            const areEquals = Game.areGridsEquals(grid, expectedGrid);
+            const areEquals = Game.areGridsEquals(grid, grid2);
             expect(areEquals).toBe(false);
         });
     });

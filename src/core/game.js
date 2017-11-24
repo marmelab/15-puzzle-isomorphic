@@ -1,18 +1,16 @@
 export const EMPTY_VALUE = 0;
 
 export const buildGrid = (size = 4) => {
-    let value = EMPTY_VALUE;
-    let grid = [];
-
-    for (let y = 0; y < size; y++) {
-        grid[y] = [];
-
-        for (let x = 0; x < size; x++) {
-            value++;
-            grid[y][x] = value === size * size ? EMPTY_VALUE : value;
-        }
-    }
-    return grid;
+    return Array(size)
+        .fill(1)
+        .map((val, y) =>
+            Array(size)
+                .fill(1)
+                .map((val, x) => {
+                    const value = y * size + x + 1;
+                    return value === size * size ? EMPTY_VALUE : value;
+                }),
+        );
 };
 
 export const deepCopyGrid = grid => grid.map(row => [...row]);
@@ -26,11 +24,16 @@ export const areGridsEquals = (grid1, grid2) => {
         return false;
     }
 
-    for (let i = 0; i < grid1.length; i++) {
-        if (!(grid1[i] instanceof Array) && !(grid2[i] instanceof Array)) {
-            return grid1[i] === grid2[i];
-        } else if (!areGridsEquals(grid1[i], grid2[i])) {
+    const sizeY = grid1.length;
+    for (let y = 0; y < sizeY; y++) {
+        if (grid1[y].length !== grid2[y].length) {
             return false;
+        }
+        const sizeX = grid1[y].length;
+        for (let x = 0; x < sizeX; x++) {
+            if (grid1[y][x] !== grid2[y][x]) {
+                return false;
+            }
         }
     }
     return true;
@@ -57,20 +60,12 @@ export const findEmptyTile = grid => findTileByValue(grid, EMPTY_VALUE);
 export const listCoordsMovableTiles = grid => {
     const { y, x } = findEmptyTile(grid);
 
-    let coordsMovableTiles = [];
-    if (y > 0) {
-        coordsMovableTiles.push({ y: y - 1, x });
-    }
-    if (x + 1 < grid.length) {
-        coordsMovableTiles.push({ y, x: x + 1 });
-    }
-    if (y + 1 < grid.length) {
-        coordsMovableTiles.push({ y: y + 1, x });
-    }
-    if (x > 0) {
-        coordsMovableTiles.push({ y, x: x - 1 });
-    }
-    return coordsMovableTiles;
+    return [
+        y > 0 && { y: y - 1, x },
+        x + 1 < grid.length && { y, x: x + 1 },
+        y + 1 < grid.length && { y: y + 1, x },
+        x > 0 && { y, x: x - 1 },
+    ].filter(x => x);
 };
 
 export const isTileInMovableTiles = (grid, coordsTileToMove) =>
