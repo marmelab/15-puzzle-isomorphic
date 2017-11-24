@@ -1,49 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Tile from './tile';
 
-export default class Grid extends Component {
-    static propTypes = {
-        onClick: PropTypes.func.isRequired,
-        grid: PropTypes.array.isRequired,
-        readOnly: PropTypes.bool,
-    };
+const Grid = ({ grid, readOnly, onClick }) => (
+    <div className="puzzle-column">
+        {grid.map((row, rowKey) => {
+            return (
+                <div className="puzzle-row" key={rowKey}>
+                    {row.map(
+                        tileValue =>
+                            tileValue === 0 ? (
+                                <div
+                                    key={tileValue}
+                                    className="puzzle-tile-empty"
+                                />
+                            ) : (
+                                <Tile
+                                    key={tileValue}
+                                    enabled={!readOnly}
+                                    onClick={onClick}
+                                    tileValue={tileValue}
+                                />
+                            ),
+                    )}
+                </div>
+            );
+        })}
+    </div>
+);
 
-    static defaultProps = {
-        readOnly: true,
-    };
+Grid.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    grid: PropTypes.array.isRequired,
+    readOnly: PropTypes.bool,
+};
 
-    render() {
-        const { grid, readOnly, onClick } = this.props;
+Grid.defaultProps = {
+    readOnly: true,
+};
 
-        return (
-            <div className="puzzle-column">
-                {grid.map((row, rowKey) => {
-                    return (
-                        <div className="puzzle-row" key={rowKey}>
-                            {row.map(tileValue => {
-                                if (tileValue === 0) {
-                                    return (
-                                        <div
-                                            key={tileValue}
-                                            className="puzzle-tile-empty"
-                                        />
-                                    );
-                                }
-                                return (
-                                    <Tile
-                                        key={tileValue}
-                                        enabled={!readOnly}
-                                        onClick={onClick}
-                                        tileValue={tileValue}
-                                    />
-                                );
-                            })}
-                        </div>
-                    );
-                })}
-            </div>
-        );
-    }
-}
+export default Grid;

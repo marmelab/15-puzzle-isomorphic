@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-export default class Button extends Component {
-    static propTypes = {
-        color: PropTypes.string,
-        icon: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
-        path: PropTypes.string.isRequired,
-    };
+const Button = ({ color, icon, label, path }) => (
+    <Link href={{ pathname: path }}>
+        <a className={`btn ${color ? color : ''}`}>
+            <i className="material-icons left">{icon}</i>
+            {label}
+        </a>
+    </Link>
+);
 
-    render() {
-        const { color, icon, label, path } = this.props;
+Button.propTypes = {
+    color: PropTypes.string,
+    icon: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
+};
 
-        return (
-            <Link href={{ pathname: path }}>
-                <a className={`btn ${color ? color : ''}`}>
-                    <i className="material-icons left">{icon}</i>
-                    {label}
-                </a>
-            </Link>
-        );
-    }
-}
+export default Button;

@@ -1,27 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Link from 'next/link';
 
-export default class Nav extends Component {
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-    };
+const Nav = ({ title }) => (
+    <nav className="blue lighten-1" role="navigation">
+        <div className="nav-wrapper container">
+            <Link href="/">
+                <a className="brand-logo">{title}</a>
+            </Link>
+        </div>
+    </nav>
+);
 
-    static defaultProps = {
-        title: '15 Puzzle Isomorphic!',
-    };
+Nav.propTypes = {
+    title: PropTypes.string.isRequired,
+};
 
-    render() {
-        const { title } = this.props;
-        return (
-            <nav className="blue lighten-1" role="navigation">
-                <div className="nav-wrapper container">
-                    <Link href="/">
-                        <a className="brand-logo">{title}</a>
-                    </Link>
-                </div>
-            </nav>
-        );
-    }
-}
+Nav.defaultProps = {
+    title: '15 Puzzle Isomorphic!',
+};
+
+export default Nav;
