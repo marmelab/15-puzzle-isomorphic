@@ -9,7 +9,7 @@ export default class Index extends Component {
         return (
             <div>
                 <CustomHead />
-                <Nav />
+                <Nav title="15 Puzzle Isomorphic!" />
                 <section className="container">
                     <div className="section">
                         <div className="bloc z-depth-2">
