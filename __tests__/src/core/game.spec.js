@@ -3,7 +3,7 @@ import Coords from '../../../src/core/coords';
 
 describe('Game', () => {
     describe('buildGrid', () => {
-        it('should build a grid of size 3', () => {
+        test('should build a grid of size 3', () => {
             const grid = Game.buildGrid(3);
             const expectedGrid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
 
@@ -11,7 +11,7 @@ describe('Game', () => {
             expect(grid).toEqual(expectedGrid);
         });
 
-        it('should build a grid of size 4 by default', () => {
+        test('should build a grid of size 4 by default', () => {
             const expectedGrid = [
                 [1, 2, 3, 4],
                 [5, 6, 7, 8],
@@ -27,7 +27,7 @@ describe('Game', () => {
     });
 
     describe('deepCopyGrid', () => {
-        it('should copy a grid', () => {
+        test('should copy a grid', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const expectedGrid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
 
@@ -38,7 +38,7 @@ describe('Game', () => {
     });
 
     describe('areGridsEquals', () => {
-        it('should return true if two grids are deep equals', () => {
+        test('should return true if two grids are deep equals', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const expectedGrid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
 
@@ -46,7 +46,7 @@ describe('Game', () => {
             expect(areEquals).toBe(true);
         });
 
-        it('should return false if two grids are not deep equals', () => {
+        test('should return false if two grids are not deep equals', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const expectedGrid = [[3, 12, 1], [5, 3, 6], [7, 8, 36]];
 
@@ -54,7 +54,7 @@ describe('Game', () => {
             expect(areEquals).toBe(false);
         });
 
-        it('should return false if the two grids do not have the same length', () => {
+        test('should return false if the two grids do not have the same length', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const expectedGrid = [[3, 12], [5, 3], [7, 8]];
 
@@ -64,7 +64,7 @@ describe('Game', () => {
     });
 
     describe('findTileByValue', () => {
-        it('should find a tile that is in the grid', () => {
+        test('should find a tile that is in the grid', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const value = 5;
             const expectedCoords = new Coords(1, 1);
@@ -76,7 +76,7 @@ describe('Game', () => {
             expect(grid[coords.y][coords.x]).toEqual(value);
         });
 
-        it('should throw an error if the tile is not in the grid', () => {
+        test('should throw an error if the tile is not in the grid', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
 
             expect(() => {
@@ -86,7 +86,7 @@ describe('Game', () => {
     });
 
     describe('findEmptyTile', () => {
-        it('should find the empty tile', () => {
+        test('should find the empty tile', () => {
             const grid = [[1, 2, 3], [4, 0, 5], [7, 8, 6]];
             const expectedCoords = new Coords(1, 1);
             const coords = Game.findEmptyTile(grid);
@@ -96,7 +96,7 @@ describe('Game', () => {
             expect(grid[coords.y][coords.x]).toEqual(Game.EMPTY_VALUE);
         });
 
-        it('should throw an error if there is not empty tile', () => {
+        test('should throw an error if there is not empty tile', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
             expect(() => {
@@ -106,7 +106,7 @@ describe('Game', () => {
     });
 
     describe('listCoordsMovableTiles', () => {
-        it('should throw an error if there is not empty tile', () => {
+        test('should throw an error if there is not empty tile', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
             expect(() => {
@@ -114,7 +114,7 @@ describe('Game', () => {
             }).toThrow();
         });
 
-        it('should return the movable tiles', () => {
+        test('should return the movable tiles', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const expectedMovableTile1 = new Coords(1, 2);
             const expectedMovableTile2 = new Coords(2, 1);
@@ -130,7 +130,7 @@ describe('Game', () => {
             expect(movableTiles[1].x).toEqual(expectedMovableTile2.x);
         });
 
-        it('should throw an error if there is not empty tile', () => {
+        test('should throw an error if there is not empty tile', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
             expect(() => {
@@ -140,7 +140,7 @@ describe('Game', () => {
     });
 
     describe('isTileInMovableTiles', () => {
-        it('should return true if a tile is in movable tiles', () => {
+        test('should return true if a tile is in movable tiles', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const coords = new Coords(1, 2);
             const isInMovableTiles = Game.isTileInMovableTiles(grid, coords);
@@ -148,7 +148,7 @@ describe('Game', () => {
             expect(isInMovableTiles).toBe(true);
         });
 
-        it('should return false if a tile is in not movable tiles', () => {
+        test('should return false if a tile is in not movable tiles', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const coords = new Coords(1, 0);
             const isInMovableTiles = Game.isTileInMovableTiles(grid, coords);
@@ -158,7 +158,7 @@ describe('Game', () => {
     });
 
     describe('move', () => {
-        it('should return the new grid after a move', () => {
+        test('should return the new grid after a move', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const expectedGrid = [[1, 2, 3], [4, 5, 0], [7, 8, 6]];
 
@@ -168,7 +168,7 @@ describe('Game', () => {
             expect(newGrid).toEqual(expectedGrid);
         });
 
-        it('should not change the original grid', () => {
+        test('should not change the original grid', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const expectedGrid = [[1, 2, 3], [4, 5, 6], [7, 8, 6]];
 
@@ -178,7 +178,7 @@ describe('Game', () => {
             expect(grid).not.toEqual(expectedGrid);
         });
 
-        it('should throw an error if the move is not possible', () => {
+        test('should throw an error if the move is not possible', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const tileToMove = new Coords(1, 1);
 
