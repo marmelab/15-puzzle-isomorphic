@@ -1,9 +1,15 @@
 import * as Shuffler from '../../../src/core/shuffler';
 
 describe('Game', () => {
+    let randomSpy;
+
+    beforeAll(() => {
+        randomSpy = jest.spyOn(global.Math, 'random');
+    });
+
     describe('chooseCoords', () => {
         test('should choice random coords from a list', () => {
-            jest.spyOn(global.Math, 'random').mockImplementation(() => 0.25);
+            randomSpy.mockImplementationOnce(() => 0.25);
 
             const coordsList = [
                 { y: 1, x: 1 },
@@ -17,5 +23,9 @@ describe('Game', () => {
 
             expect(coords).toEqual(expectedCoords);
         });
+    });
+
+    afterAll(() => {
+        randomSpy.restore();
     });
 });
