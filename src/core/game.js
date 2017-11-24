@@ -55,9 +55,7 @@ export const findTileByValue = (grid, valueToSearch) => {
 export const findEmptyTile = grid => findTileByValue(grid, EMPTY_VALUE);
 
 export const listCoordsMovableTiles = grid => {
-    let coordsEmptyTile = findEmptyTile(grid);
-
-    const { y, x } = coordsEmptyTile;
+    const { y, x } = findEmptyTile(grid);
 
     let coordsMovableTiles = [];
     if (y > 0) {
