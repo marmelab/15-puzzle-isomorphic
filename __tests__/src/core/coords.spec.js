@@ -2,7 +2,7 @@ import Coords from '../../../src/core/coords';
 
 describe('Game', () => {
     describe('Coords', () => {
-        test('should construct coords wtesth default value', () => {
+        test('should construct coords with default value', () => {
             const coords = new Coords();
 
             expect(coords.y).toEqual(0);

@@ -7,7 +7,6 @@ describe('Game', () => {
             const grid = Game.buildGrid(3);
             const expectedGrid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
 
-            expect(grid.length).toEqual(3);
             expect(grid).toEqual(expectedGrid);
         });
 
@@ -32,7 +31,12 @@ describe('Game', () => {
             const expectedGrid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
 
             const gridCopied = Game.deepCopyGrid(grid);
-            expect(gridCopied.length).toEqual(grid.length);
+
+            grid[0][0] = 18;
+
+            expect(gridCopied[0][0]).toEqual(1);
+
+            expect(gridCopied.length).toEqual(expectedGrid.length);
             expect(gridCopied).toEqual(expectedGrid);
         });
     });
@@ -81,7 +85,7 @@ describe('Game', () => {
 
             expect(() => {
                 Game.findTileByValue(grid, 18);
-            }).toThrow();
+            }).toThrow(`The tile with value 18 doesn't exist.`);
         });
     });
 

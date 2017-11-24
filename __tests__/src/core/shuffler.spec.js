@@ -8,7 +8,7 @@ const mockMathRandom = val => {
 };
 
 describe('Game', () => {
-    describe('choiceCoords', () => {
+    describe('chooseCoords', () => {
         test('should choice random coords from a list', () => {
             mockMathRandom(0.25);
 
@@ -20,7 +20,7 @@ describe('Game', () => {
             ];
 
             const expectedCoords = new Coords(1, 2);
-            const coords = Shuffler.choiceCoords(coordsList);
+            const coords = Shuffler.chooseCoords(coordsList);
 
             expect(expectedCoords.equalsTo(coords)).toBe(true);
         });
