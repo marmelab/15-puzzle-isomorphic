@@ -23,6 +23,9 @@ start: ## Run the 15-puzzle isomorphic app (alias for `run`)
 
 ####### DEV #######
 
+dev: ## Run with livereload
+	npm run dev
+
 test: ## Run all tests
 	node_modules/.bin/jest
 
