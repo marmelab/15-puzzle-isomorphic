@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
-import CustomHead from '../src/components/head';
-import Button from '../src/components/button';
-import Nav from '../src/components/nav';
-import Grid from '../src/components/grid';
 import ActivityIndicator from '../src/components/activityIndicator';
+import Bloc from '../src/components/bloc';
+import Button from '../src/components/button';
+import Grid from '../src/components/grid';
+import Page from '../src/components/page';
+import Row from '../src/components/row';
+import Section from '../src/components/section';
 
 import { buildGrid } from '../src/core/game';
 import { shuffle } from '../src/core/shuffler';
@@ -44,62 +46,39 @@ export default class Index extends Component {
 
         if (isLoading) {
             return (
-                <div>
-                    <CustomHead />
-                    <Nav />
-                    <section className="container">
-                        <div className="section">
-                            <div className="bloc z-depth-2">
-                                <div className="col s12">
-                                    <h5>Building a new game</h5>
-                                </div>
-                                <div className="col s12">
-                                    <div className="activity-indicator-wrapper">
-                                        <ActivityIndicator />
-                                    </div>
-                                </div>
+                <Page>
+                    <Section>
+                        <Bloc title="Building a new game">
+                            <div className="activity-indicator-wrapper">
+                                <ActivityIndicator />
                             </div>
-                        </div>
-
-                        <div className="section">
-                            <div className="row">
-                                <div className="col s12">
-                                    <Button
-                                        icon="keyboard_return"
-                                        label="Back to home"
-                                        path="/"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                        </Bloc>
+                    </Section>
+                    <Section>
+                        <Row>
+                            <Button
+                                icon="keyboard_return"
+                                label="Back to home"
+                                path="/"
+                            />
+                        </Row>
+                    </Section>
+                </Page>
             );
         }
 
         return (
-            <div>
-                <CustomHead />
-                <Nav />
-                <section className="container">
-                    <div className="section">
-                        <div className="bloc z-depth-2">
-                            <div className="col s12">
-                                <h5>
-                                    {this.renderWinnerMessage(isVictory, turn)}
-                                </h5>
-                            </div>
-                            <div className="col s12">
-                                <Grid
-                                    onClick={this.handleClick}
-                                    grid={currentGrid}
-                                    readOnly={isVictory}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
+            <Page>
+                <Section>
+                    <Bloc title={this.renderWinnerMessage(isVictory, turn)}>
+                        <Grid
+                            onClick={this.handleClick}
+                            grid={currentGrid}
+                            readOnly={isVictory}
+                        />
+                    </Bloc>
+                </Section>
+            </Page>
         );
     }
 }

@@ -1,6 +1,7 @@
 .puzzle-column {
     align-items: center;
     display: flex;
+    justify-content: center;
     padding: 10px;
     width: 100%;
 }
@@ -15,13 +16,13 @@
     background-color: #d32f2f;
     height: 100px;
     justify-content: center;
-    margin: 4px;
+    margin: 4px 4px 8px;
     width: 100px;
 }
 
 .puzzle-tile-empty {
     height: 100px;
-    margin: 4px;
+    margin: 4px 4px 8px;
     width: 100px;
 }
 
