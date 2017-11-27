@@ -8,8 +8,6 @@ import Row from '../src/components/row';
 import Section from '../src/components/section';
 
 export default class Index extends Component {
-    handleClickSingleGame = () => {};
-
     render() {
         return (
             <Page>

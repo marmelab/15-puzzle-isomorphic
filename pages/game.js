@@ -7,7 +7,12 @@ import Page from '../src/components/page';
 import Row from '../src/components/row';
 import Section from '../src/components/section';
 
-import { buildGrid } from '../src/core/game';
+import {
+    areGridsEquals,
+    buildGrid,
+    findTileByValue,
+    move,
+} from '../src/core/game';
 import { shuffle } from '../src/core/shuffler';
 
 export default class Index extends Component {
@@ -19,7 +24,26 @@ export default class Index extends Component {
         isVictory: false,
     };
 
-    handleClick = () => {};
+    handleClick = tile => {
+        const { currentGrid, resolvedGrid, turn } = this.state;
+
+        try {
+            const coordsTileToMove = findTileByValue(currentGrid, tile);
+            const newCurrentGrid = move(currentGrid, coordsTileToMove);
+            const isVictory = areGridsEquals(newCurrentGrid, resolvedGrid);
+
+            const newState = {
+                currentGrid: newCurrentGrid,
+                isVictory,
+                turn: turn + 1,
+            };
+
+            this.setState(newState);
+        } catch (error) {
+            console.error(error);
+            // TODO : catch the findTileByValue and the move errors in order to display them to the user.
+        }
+    };
 
     componentWillMount = async () => {
         let resolvedGrid = buildGrid(4);
@@ -63,6 +87,7 @@ export default class Index extends Component {
                     <Row>
                         <Button
                             icon="keyboard_return"
+                            color="red"
                             label="Back to home"
                             path="/"
                         />

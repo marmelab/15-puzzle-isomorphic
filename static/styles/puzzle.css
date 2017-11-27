@@ -1,13 +1,17 @@
 .puzzle-column {
     align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     padding: 10px;
     width: 100%;
 }
 
 .puzzle-row {
+    align-items: center;
+    display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .puzzle-tile {
@@ -16,13 +20,18 @@
     background-color: #d32f2f;
     height: 100px;
     justify-content: center;
-    margin: 4px 4px 8px;
+    margin: 4px;
     width: 100px;
+}
+
+.puzzle-tile-hover:hover {
+    background-color: #f44336;
+    cursor: pointer;
 }
 
 .puzzle-tile-empty {
     height: 100px;
-    margin: 4px 4px 8px;
+    margin: 4px;
     width: 100px;
 }
 
@@ -30,8 +39,4 @@
     color: white;
     font-size: 20px;
     text-align: center;
-}
-
-a.puzzle-tile-value:hover {
-    background-color: #f44336;
 }

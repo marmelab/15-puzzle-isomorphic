@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bloc should render the Bloc correctly 1`] = `
+<div
+  className="bloc z-depth-3"
+>
+  
+  <div
+    className="col s12"
+  >
+    <div>
+      Hello
+    </div>
+  </div>
+</div>
+`;
