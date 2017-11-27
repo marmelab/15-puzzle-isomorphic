@@ -41,20 +41,12 @@ export default class Index extends Component {
             this.setState(newState);
         } catch (error) {
             console.error(error);
-            return;
         }
     };
 
     componentWillMount = async () => {
         let resolvedGrid = buildGrid(4);
-        // let currentGrid = await shuffle(resolvedGrid);
-
-        let currentGrid = [
-            [1, 2, 3, 4],
-            [5, 6, 7, 8],
-            [9, 10, 11, 12],
-            [13, 14, 0, 15],
-        ];
+        let currentGrid = await shuffle(resolvedGrid);
 
         this.setState({
             isLoading: false,
