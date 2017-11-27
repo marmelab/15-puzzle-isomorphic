@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import ActivityIndicator from '../src/components/activityIndicator';
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
 import Grid from '../src/components/grid';
@@ -41,29 +40,24 @@ export default class Index extends Component {
         return (
             <Page>
                 <Section>
-                    {(isLoading && (
-                        <Bloc title="Building a new game">
-                            <div className="activity-indicator-wrapper">
-                                <ActivityIndicator />
-                            </div>
-                        </Bloc>
-                    )) || (
-                        <Bloc
-                            title={
-                                isVictory
-                                    ? `Congratulations, you have solved the puzzle in ${
-                                          turn
-                                      } turns!`
-                                    : `Turn ${turn}`
-                            }
-                        >
-                            <Grid
-                                onClick={this.handleClick}
-                                grid={currentGrid}
-                                readOnly={isVictory}
-                            />
-                        </Bloc>
-                    )}
+                    <Bloc
+                        title={
+                            isLoading
+                                ? 'Building a new game'
+                                : isVictory
+                                  ? `Congratulations, you have solved the puzzle in ${
+                                        turn
+                                    } turns!`
+                                  : `Turn ${turn}`
+                        }
+                        isLoading={isLoading}
+                    >
+                        <Grid
+                            onClick={this.handleClick}
+                            grid={currentGrid}
+                            readOnly={isVictory}
+                        />
+                    </Bloc>
                 </Section>
                 <Section>
                     <Row>
