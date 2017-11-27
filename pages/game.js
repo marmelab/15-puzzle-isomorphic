@@ -7,7 +7,7 @@ import Page from '../src/components/page';
 import Row from '../src/components/row';
 import Section from '../src/components/section';
 
-import { buildGrid } from '../src/core/game';
+import { buildGrid, findTileByValue, move } from '../src/core/game';
 import { shuffle } from '../src/core/shuffler';
 
 export default class Index extends Component {
@@ -19,7 +19,20 @@ export default class Index extends Component {
         isVictory: false,
     };
 
-    handleClick = () => {};
+    handleClick = tile => {
+        const { currentGrid, turn } = this.state;
+        try {
+            const coordsTileToMove = findTileByValue(currentGrid, tile);
+            const newCurrentGrid = move(currentGrid, coordsTileToMove);
+            this.setState({
+                currentGrid: newCurrentGrid,
+                turn: turn + 1,
+            });
+        } catch (error) {
+            console.error(error);
+            return;
+        }
+    };
 
     componentWillMount = async () => {
         let resolvedGrid = buildGrid(4);

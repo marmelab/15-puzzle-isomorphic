@@ -10,7 +10,9 @@ const Tile = ({ enabled, onClick, tileValue }) => {
 
     return (
         <div
-            className={`puzzle-tile ${enabled ? 'z-depth-3' : ''}`}
+            className={`puzzle-tile ${
+                enabled ? 'puzzle-tile-hover z-depth-3' : ''
+            }`}
             onClick={handleClick}
         >
             <span className="puzzle-tile-value">{tileValue}</span>

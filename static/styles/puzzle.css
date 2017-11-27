@@ -20,6 +20,11 @@
     width: 100px;
 }
 
+.puzzle-tile-hover:hover {
+    background-color: #f44336;
+    cursor: pointer;
+}
+
 .puzzle-tile-empty {
     height: 100px;
     margin: 4px 4px 8px;
@@ -30,8 +35,4 @@
     color: white;
     font-size: 20px;
     text-align: center;
-}
-
-a.puzzle-tile-value:hover {
-    background-color: #f44336;
 }
