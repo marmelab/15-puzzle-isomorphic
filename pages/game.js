@@ -86,6 +86,7 @@ export default class Index extends Component {
                     <Row>
                         <Button
                             icon="keyboard_return"
+                            color="red"
                             label="Back to home"
                             path="/"
                         />
