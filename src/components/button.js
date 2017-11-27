@@ -6,7 +6,7 @@ import ClassNames from 'classnames';
 const Button = ({ color, icon, label, path }) => {
     const buttonClass = ClassNames({
         btn: true,
-        [`${color}`]: color,
+        [color]: color,
     });
 
     return (
