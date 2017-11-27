@@ -7,7 +7,12 @@ import Page from '../src/components/page';
 import Row from '../src/components/row';
 import Section from '../src/components/section';
 
-import { buildGrid, findTileByValue, move } from '../src/core/game';
+import {
+    areGridsEquals,
+    buildGrid,
+    findTileByValue,
+    move,
+} from '../src/core/game';
 import { shuffle } from '../src/core/shuffler';
 
 export default class Index extends Component {
@@ -20,14 +25,20 @@ export default class Index extends Component {
     };
 
     handleClick = tile => {
-        const { currentGrid, turn } = this.state;
+        const { currentGrid, resolvedGrid, turn } = this.state;
+
         try {
             const coordsTileToMove = findTileByValue(currentGrid, tile);
             const newCurrentGrid = move(currentGrid, coordsTileToMove);
-            this.setState({
+            const isVictory = areGridsEquals(newCurrentGrid, resolvedGrid);
+
+            const newState = {
                 currentGrid: newCurrentGrid,
+                isVictory,
                 turn: turn + 1,
-            });
+            };
+
+            this.setState(newState);
         } catch (error) {
             console.error(error);
             return;
@@ -36,7 +47,14 @@ export default class Index extends Component {
 
     componentWillMount = async () => {
         let resolvedGrid = buildGrid(4);
-        let currentGrid = await shuffle(resolvedGrid);
+        // let currentGrid = await shuffle(resolvedGrid);
+
+        let currentGrid = [
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12],
+            [13, 14, 0, 15],
+        ];
 
         this.setState({
             isLoading: false,
