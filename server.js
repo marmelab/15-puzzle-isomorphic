@@ -3,7 +3,7 @@ const { parse } = require('url');
 const { createReadStream } = require('fs');
 const next = require('next');
 
-const port = process.argv.find(val => val === 'port') || 3000;
+const port = parseInt(process.argv.find(val => val === 'port') || 3000, 10);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();

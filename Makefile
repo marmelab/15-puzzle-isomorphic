@@ -1,4 +1,5 @@
 PORT ?= 3000
+CACHE ?= true
 
 .PHONY: help install run start test lint format
 
@@ -16,30 +17,30 @@ build: ## Build the project
 ####### RUN #######
 
 run: build ## Run the 15-puzzle isomorphic app
-	PORT=$(PORT) npm run start
-
-run-cache: build ## Run the 15-puzzle isomorphic app with cache
+ifeq ($(CACHE), true)
 	PORT=$(PORT) npm run start-cache
+else
+	PORT=$(PORT) npm run start
+endif
 
 start: ## Run the 15-puzzle isomorphic app (alias for `run`)
 	$(MAKE) run
 
-start-cache: ## Run the 15-puzzle isomorphic app with cache (alias for `run-cache`)
-	$(MAKE) run-cache
-
 ####### DEV #######
 
 dev: ## Run with livereload
+ifeq ($(CACHE), true)
+	PORT=$(PORT) npm run dev-cache
+else
 	npm run dev
-
-dev-cache: ## Run with livereload and cache
-	npm run dev-cache
+endif
 
 test: ## Run all tests
-	node_modules/.bin/jest
-
-test-update-snapshot: ## Update the jest snapshots
+ifeq ($(UPDATE), true)
 	node_modules/.bin/jest --updateSnapshot
+else
+	node_modules/.bin/jest
+endif
 
 lint: ## Run the linter
 	node_modules/.bin/eslint src/

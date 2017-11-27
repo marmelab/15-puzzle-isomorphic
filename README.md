@@ -24,6 +24,14 @@ Launch the unit and integration tests
 make test
 ```
 
+Note:
+
+- you can update the snapshots by using the `UPDATE` env variable.
+
+``` bash
+UPDATE=true make test
+```
+
 ### Linter
 
 Launch eslint
@@ -42,10 +50,13 @@ Run the 15-puzzle game on port 3000
 make run
 ```
 
-Note: you can change the default port by using the `PORT` env variable.
+Note:
+
+- change the default port by using the `PORT` env variable.
+- use the non cache version using the `CACHE` env variable.
 
 ``` bash
-PORT=3001 make run
+PORT=3001 CACHE=false make run
 ```
 
 You can use the `start` alias aswell.
