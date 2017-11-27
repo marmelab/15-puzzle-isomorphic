@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CustomHead from './head';
+import CustomHead from './customHead';
 import Nav from './nav';
 
 const Page = ({ children }) => (

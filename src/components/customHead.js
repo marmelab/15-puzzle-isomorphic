@@ -6,6 +6,11 @@ const CustomHead = () => (
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>15 Puzzle Isomorphic!</title>
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="/static/images/favicon.ico"
+        />
         <link href="/static/styles/main.css" rel="stylesheet" />
         <link href="/static/styles/puzzle.css" rel="stylesheet" />
         <link
