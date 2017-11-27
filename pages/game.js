@@ -22,12 +22,6 @@ export default class Index extends Component {
 
     handleClick = () => {};
 
-    renderWinnerMessage(isVictory, turn) {
-        return isVictory
-            ? `Congratulations, you have solved the puzzle in ${turn} turns!`
-            : `Turn ${turn}`;
-    }
-
     componentWillMount = async () => {
         let resolvedGrid = buildGrid(4);
         let currentGrid = await shuffle(resolvedGrid);
@@ -70,7 +64,15 @@ export default class Index extends Component {
         return (
             <Page>
                 <Section>
-                    <Bloc title={this.renderWinnerMessage(isVictory, turn)}>
+                    <Bloc
+                        title={
+                            isVictory
+                                ? `Congratulations, you have solved the puzzle in ${
+                                      turn
+                                  } turns!`
+                                : `Turn ${turn}`
+                        }
+                    >
                         <Grid
                             onClick={this.handleClick}
                             grid={currentGrid}
