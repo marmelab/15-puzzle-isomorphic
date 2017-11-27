@@ -26,8 +26,10 @@
   },
   "scripts": {
     "dev": "next",
+    "dev-cache": "node server.js --port=$PORT",
     "build": "next build",
-    "start": "next start --port=$PORT"
+    "start": "next start --port=$PORT",
+    "start-cache": "NODE_ENV=production node server.js --port=$PORT"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/jest.js"
