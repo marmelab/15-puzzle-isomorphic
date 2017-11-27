@@ -29,6 +29,9 @@ dev: ## Run with livereload
 test: ## Run all tests
 	node_modules/.bin/jest
 
+test-update-snapshot: ## Update the jest snapshots
+	node_modules/.bin/jest --updateSnapshot
+
 lint: ## Run the linter
 	node_modules/.bin/eslint src/
 
