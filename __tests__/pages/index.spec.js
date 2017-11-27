@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import Index from '../../pages/index';
 
 describe('Index', () => {
-    it('it should render Index without error', () => {
+    it('should render Index without error', () => {
         renderer.create(<Index />);
     });
 

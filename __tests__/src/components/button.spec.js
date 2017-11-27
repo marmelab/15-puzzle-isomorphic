@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import Button from '../../../src/components/button';
 
 describe('Button', () => {
-    it('it should render the Button without error', () => {
+    it('should render the Button without error', () => {
         renderer.create(<Button icon="" label="" path="" />);
     });
 
