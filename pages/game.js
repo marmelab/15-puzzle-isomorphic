@@ -41,6 +41,7 @@ export default class Index extends Component {
             this.setState(newState);
         } catch (error) {
             console.error(error);
+            // TODO : catch the findTileByValue and the move errors in order to display them to the user.
         }
     };
 
