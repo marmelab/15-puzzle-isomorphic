@@ -16,4 +16,14 @@ Page.propTypes = {
     children: PropTypes.element.isRequired,
 };
 
+Page.componentDidMount = () => {
+    if (!('serviceWorker' in navigator)) {
+        console.warn('Service worker not supported');
+        return;
+    }
+    navigator.serviceWorker
+        .register('/sw.js')
+        .catch(err => console.error('Service worker registration failed', err));
+};
+
 export default Page;

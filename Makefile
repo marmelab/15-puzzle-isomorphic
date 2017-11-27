@@ -18,13 +18,22 @@ build: ## Build the project
 run: build ## Run the 15-puzzle isomorphic app
 	PORT=$(PORT) npm run start
 
+run-cache: build ## Run the 15-puzzle isomorphic app with cache
+	PORT=$(PORT) npm run start-cache
+
 start: ## Run the 15-puzzle isomorphic app (alias for `run`)
 	$(MAKE) run
+
+start-cache: ## Run the 15-puzzle isomorphic app with cache (alias for `run-cache`)
+	$(MAKE) run-cache
 
 ####### DEV #######
 
 dev: ## Run with livereload
 	npm run dev
+
+dev-cache: ## Run with livereload and cache
+	npm run dev-cache
 
 test: ## Run all tests
 	node_modules/.bin/jest
