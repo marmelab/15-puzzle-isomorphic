@@ -38,47 +38,41 @@ export default class Index extends Component {
     render() {
         const { isLoading, currentGrid, turn, isVictory } = this.state;
 
-        if (isLoading) {
-            return (
-                <Page>
-                    <Section>
+        return (
+            <Page>
+                <Section>
+                    {(isLoading && (
                         <Bloc title="Building a new game">
                             <div className="activity-indicator-wrapper">
                                 <ActivityIndicator />
                             </div>
                         </Bloc>
-                    </Section>
-                    <Section>
-                        <Row>
-                            <Button
-                                icon="keyboard_return"
-                                label="Back to home"
-                                path="/"
+                    )) || (
+                        <Bloc
+                            title={
+                                isVictory
+                                    ? `Congratulations, you have solved the puzzle in ${
+                                          turn
+                                      } turns!`
+                                    : `Turn ${turn}`
+                            }
+                        >
+                            <Grid
+                                onClick={this.handleClick}
+                                grid={currentGrid}
+                                readOnly={isVictory}
                             />
-                        </Row>
-                    </Section>
-                </Page>
-            );
-        }
-
-        return (
-            <Page>
+                        </Bloc>
+                    )}
+                </Section>
                 <Section>
-                    <Bloc
-                        title={
-                            isVictory
-                                ? `Congratulations, you have solved the puzzle in ${
-                                      turn
-                                  } turns!`
-                                : `Turn ${turn}`
-                        }
-                    >
-                        <Grid
-                            onClick={this.handleClick}
-                            grid={currentGrid}
-                            readOnly={isVictory}
+                    <Row>
+                        <Button
+                            icon="keyboard_return"
+                            label="Back to home"
+                            path="/"
                         />
-                    </Bloc>
+                    </Row>
                 </Section>
             </Page>
         );
