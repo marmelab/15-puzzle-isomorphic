@@ -1,0 +1,18 @@
+.bloc {
+    background-color: #e3f2fd;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.image-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.activity-indicator-wrapper {
+    align-items: center;
+    display: flex;
+    height: 300px;
+    justify-content: center;
+}

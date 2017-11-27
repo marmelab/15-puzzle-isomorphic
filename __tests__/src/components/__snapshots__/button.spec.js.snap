@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render the Button correctly 1`] = `
+<a
+  className="btn "
+  href=""
+  onClick={[Function]}
+>
+  <i
+    className="material-icons left"
+  >
+    
+  </i>
+  
+</a>
+`;
