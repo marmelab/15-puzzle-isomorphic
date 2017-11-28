@@ -90,7 +90,6 @@ export default class Index extends Component {
                                 readOnly={isVictory}
                             />
                         )}
-                        {!currentGrid && <div />}
                     </Bloc>
                 </Section>
                 <Section>
