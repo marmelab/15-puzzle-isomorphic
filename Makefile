@@ -9,7 +9,7 @@ help: ## Print all commands (default)
 ####### BUILD #######
 
 copy-config: ## Create the config file based on the config example
-	cp -n ./config.dist.js ./config.js
+	cp -n ./src/config.dist.js ./src/config.js
 
 install: copy-config ## Install dependencies
 	npm i
