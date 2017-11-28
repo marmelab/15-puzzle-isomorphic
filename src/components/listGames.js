@@ -4,17 +4,11 @@ import PropTypes from 'prop-types';
 import List from './list';
 import ItemGames from './itemGames';
 
-const ListGames = ({ games, onItemSelected }) => {
-    const handleClick = value => {
-        onItemSelected(value);
-    };
-
-    return (
-        <List items={games} title="Open multiplayer games">
-            <ItemGames onClick={handleClick} />
-        </List>
-    );
-};
+const ListGames = ({ games, onItemSelected }) => (
+    <List items={games} title="Open multiplayer games">
+        <ItemGames onClick={onItemSelected} />
+    </List>
+);
 
 ListGames.propTypes = {
     games: PropTypes.array.isRequired,
