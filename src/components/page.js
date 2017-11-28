@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import CustomHead from './head';
+import CustomHead from './customHead';
 import Nav from './nav';
 
 export default class Page extends PureComponent {
