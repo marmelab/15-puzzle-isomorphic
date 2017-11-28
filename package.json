@@ -4,6 +4,7 @@
   "description": "A react app to play the 15 puzzle game.",
   "dependencies": {
     "classnames": "2.2.5",
+    "isomorphic-fetch": "2.2.1",
     "next": "4.1.4",
     "next-routes": "1.1.0",
     "react": "16.1.1",
