@@ -20,11 +20,7 @@ build: ## Build the project
 ####### RUN #######
 
 run: build ## Run the 15-puzzle isomorphic app
-ifeq ($(CACHE), true)
-	PORT=$(PORT) npm run start-cache
-else
 	PORT=$(PORT) npm run start
-endif
 
 start: ## Run the 15-puzzle isomorphic app (alias for `run`)
 	$(MAKE) run
@@ -32,11 +28,7 @@ start: ## Run the 15-puzzle isomorphic app (alias for `run`)
 ####### DEV #######
 
 dev: ## Run with livereload
-ifeq ($(CACHE), true)
-	PORT=$(PORT) npm run dev-cache
-else
 	npm run dev
-endif
 
 test: ## Run all tests
 ifeq ($(UPDATE), true)

@@ -53,10 +53,9 @@ make run
 Note:
 
 - change the default port by using the `PORT` env variable.
-- use the non cache version using the `CACHE` env variable.
 
 ``` bash
-PORT=3001 CACHE=false make run
+PORT=3001 make run
 ```
 
 You can use the `start` alias aswell.
