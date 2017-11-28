@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import config from '../src/config';
+
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
 import Grid from '../src/components/grid';
@@ -24,6 +26,10 @@ export default class Index extends Component {
         isVictory: false,
     };
 
+    static getInitialProps = ({ query }) => {
+        return query.size || config.defaultPuzzleSize;
+    };
+
     handleClick = tile => {
         const { currentGrid, resolvedGrid, turn } = this.state;
 
@@ -45,8 +51,10 @@ export default class Index extends Component {
         }
     };
 
-    componentWillMount = async () => {
-        let resolvedGrid = buildGrid(4);
+    componentWillUpdate = async () => {
+        const { size } = this.props;
+
+        let resolvedGrid = buildGrid(size);
         let currentGrid = await shuffle(resolvedGrid);
 
         this.setState({
