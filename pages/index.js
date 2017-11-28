@@ -25,7 +25,7 @@ export default class Index extends Component {
                             color="blue"
                             icon="play_circle_outline"
                             label="Single game"
-                            path="/game"
+                            route="game"
                         />
                     </Row>
                 </Section>
