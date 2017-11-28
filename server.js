@@ -1,6 +1,5 @@
 const { createServer } = require('http');
 const { parse } = require('url');
-const { createReadStream } = require('fs');
 const { join } = require('path');
 const next = require('next');
 
