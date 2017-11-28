@@ -1,5 +1,11 @@
-const CACHE_NAME = 'puzzle15';
-const urlsToCache = ['/'];
+const CACHE_NAME = 'puzzle15V1';
+const urlsToCache = [
+    '/',
+    '/game',
+    '/static/images/banner.jpg',
+    '/static/styles/main.css',
+    '/static/styles/puzzle.css',
+];
 
 self.addEventListener('install', event => {
     const preLoaded = caches
