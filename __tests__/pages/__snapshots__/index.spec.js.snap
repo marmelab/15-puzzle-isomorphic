@@ -48,28 +48,40 @@ exports[`Index should render the Index correctly 1`] = `
           </div>
         </div>
       </div>
-    </div>
-    <div
-      className="section"
-    >
       <div
         className="row"
       >
         <div
           className="col s12"
         >
-          <a
-            className="btn blue"
-            href="/game"
-            onClick={[Function]}
+          <div
+            className="buttons-wrapper"
           >
-            <i
-              className="material-icons left"
+            <a
+              className="btn blue"
+              href="/game"
+              onClick={[Function]}
             >
-              play_circle_outline
-            </i>
-            Single game
-          </a>
+              <i
+                className="material-icons left"
+              >
+                play_circle_outline
+              </i>
+              Single game
+            </a>
+            <a
+              className="btn blue"
+              href="/multiplayer"
+              onClick={[Function]}
+            >
+              <i
+                className="material-icons left"
+              >
+                play_circle_outline
+              </i>
+              Multiplayer game
+            </a>
+          </div>
         </div>
       </div>
     </div>
