@@ -18,15 +18,21 @@ export default class Index extends Component {
                             alt="15 puzzle picture"
                         />
                     </Bloc>
-                </Section>
-                <Section>
                     <Row>
-                        <Button
-                            color="blue"
-                            icon="play_circle_outline"
-                            label="Single game"
-                            route="game"
-                        />
+                        <div className="buttons-wrapper">
+                            <Button
+                                color="blue"
+                                icon="play_circle_outline"
+                                label="Single game"
+                                route="game"
+                            />
+                            <Button
+                                color="blue"
+                                icon="play_circle_outline"
+                                label="Multiplayer game"
+                                route="multiplayer_games"
+                            />
+                        </div>
                     </Row>
                 </Section>
             </Page>

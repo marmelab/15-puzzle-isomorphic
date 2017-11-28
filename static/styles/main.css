@@ -1,7 +1,12 @@
 .bloc {
     background-color: #e3f2fd;
     border-radius: 2px;
+    margin-bottom: 20px;
     padding: 10px;
+}
+
+.buttons-wrapper a {
+    margin: 0 5px;
 }
 
 .image-wrapper {

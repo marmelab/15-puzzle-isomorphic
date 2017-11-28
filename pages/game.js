@@ -94,12 +94,14 @@ export default class Index extends Component {
                 </Section>
                 <Section>
                     <Row>
-                        <Button
-                            icon="keyboard_return"
-                            color="red"
-                            label="Back to home"
-                            route="/"
-                        />
+                        <div className="buttons-wrapper">
+                            <Button
+                                icon="keyboard_return"
+                                color="red"
+                                label="Back to home"
+                                route="/"
+                            />
+                        </div>
                     </Row>
                 </Section>
             </Page>
