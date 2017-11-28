@@ -5,8 +5,10 @@ import Tile from './tile';
 
 import { associateTileToBackground } from '../core/helper';
 
+// TODO Put the url in the config
+const url = '/static/images/panda.jpg';
+
 const Grid = ({ grid, onClick, resolvedGrid, readOnly }) => {
-    const url = '/static/images/sea.jpg';
     const tileToBg = associateTileToBackground(resolvedGrid);
 
     return (
