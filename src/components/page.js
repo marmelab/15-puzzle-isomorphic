@@ -8,7 +8,10 @@ import config from '../config';
 
 export default class Page extends PureComponent {
     static propTypes = {
-        children: PropTypes.element.isRequired,
+        children: PropTypes.oneOfType([
+            PropTypes.element,
+            PropTypes.arrayOf(PropTypes.element),
+        ]).isRequired,
     };
 
     componentDidMount() {
