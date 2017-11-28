@@ -11,30 +11,28 @@ const Grid = ({ grid, onClick, resolvedGrid, readOnly }) => {
 
     return (
         <div className="puzzle-column">
-            {grid.map((row, rowKey) => {
-                return (
-                    <div className="puzzle-row" key={rowKey}>
-                        {row.map(
-                            tileValue =>
-                                tileValue === 0 ? (
-                                    <div
-                                        key={tileValue}
-                                        className="puzzle-tile-empty"
-                                    />
-                                ) : (
-                                    <Tile
-                                        key={tileValue}
-                                        enabled={!readOnly}
-                                        tileImage={url}
-                                        tileImageCoords={tileToBg[tileValue]}
-                                        onClick={onClick}
-                                        tileValue={tileValue}
-                                    />
-                                ),
-                        )}
-                    </div>
-                );
-            })}
+            {grid.map((row, rowKey) => (
+                <div className="puzzle-row" key={rowKey}>
+                    {row.map(
+                        tileValue =>
+                            tileValue === 0 ? (
+                                <div
+                                    key={tileValue}
+                                    className="puzzle-tile-empty"
+                                />
+                            ) : (
+                                <Tile
+                                    key={tileValue}
+                                    enabled={!readOnly}
+                                    tileImage={url}
+                                    tileImageCoords={tileToBg[tileValue]}
+                                    onClick={onClick}
+                                    tileValue={tileValue}
+                                />
+                            ),
+                    )}
+                </div>
+            ))}
         </div>
     );
 };
