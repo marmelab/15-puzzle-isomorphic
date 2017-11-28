@@ -14,14 +14,6 @@ export default class Page extends PureComponent {
             console.warn('Service worker not supported');
             return;
         }
-        navigator.serviceWorker
-            .register('/sw.js')
-            .catch(err =>
-                console.warn(
-                    'Cache service worker registration failed',
-                    err.message,
-                ),
-            );
         navigator.serviceWorker.register('/service-worker.js').catch(err => {
             console.warn(
                 'Preload service worker registration failed',

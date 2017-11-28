@@ -15,10 +15,6 @@ app.prepare().then(() => {
         const { pathname } = parsedUrl;
 
         switch (pathname) {
-            case '/sw.js':
-                res.setHeader('content-type', 'text/javascript');
-                createReadStream('./offline/sw.js').pipe(res);
-                break;
             case '/service-worker.js':
                 app.serveStatic(req, res, join(__dirname, '.next', pathname));
                 break;
