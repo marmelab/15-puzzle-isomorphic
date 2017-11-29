@@ -9,7 +9,9 @@ import { associateTileToBackground } from '../core/helper';
 const url = '/static/images/panda.jpg';
 
 const Grid = ({ grid, onClick, resolvedGrid, readOnly }) => {
-    const tileToBg = associateTileToBackground(resolvedGrid);
+    const tileToBg = resolvedGrid
+        ? associateTileToBackground(resolvedGrid)
+        : null;
 
     return (
         <div className="puzzle-column">
@@ -22,12 +24,19 @@ const Grid = ({ grid, onClick, resolvedGrid, readOnly }) => {
                                     key={tileValue}
                                     className="puzzle-tile-empty"
                                 />
-                            ) : (
+                            ) : tileToBg ? (
                                 <Tile
                                     key={tileValue}
                                     enabled={!readOnly}
                                     tileImage={url}
                                     tileImageCoords={tileToBg[tileValue]}
+                                    onClick={onClick}
+                                    tileValue={tileValue}
+                                />
+                            ) : (
+                                <Tile
+                                    key={tileValue}
+                                    enabled={!readOnly}
                                     onClick={onClick}
                                     tileValue={tileValue}
                                 />
@@ -41,7 +50,7 @@ const Grid = ({ grid, onClick, resolvedGrid, readOnly }) => {
 
 Grid.propTypes = {
     grid: PropTypes.array.isRequired,
-    resolvedGrid: PropTypes.array.isRequired,
+    resolvedGrid: PropTypes.array,
     onClick: PropTypes.func.isRequired,
     readOnly: PropTypes.bool,
 };
