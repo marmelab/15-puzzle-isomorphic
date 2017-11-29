@@ -58,7 +58,7 @@ exports[`Index should render the Index correctly 1`] = `
             className="buttons-wrapper"
           >
             <a
-              className="btn blue"
+              className="btn green"
               href="/game"
               onClick={[Function]}
             >
@@ -79,7 +79,7 @@ exports[`Index should render the Index correctly 1`] = `
               >
                 play_circle_outline
               </i>
-              Multiplayer game
+              Multiplayer mode
             </a>
           </div>
         </div>
