@@ -18,6 +18,16 @@ import {
 } from '../src/core/game';
 import { shuffle } from '../src/core/shuffler';
 
+export const title = (isLoading, isVictory, turn) => {
+    if (isLoading) {
+        return 'Building a new game';
+    }
+    if (isVictory) {
+        return `Congratulations, you have solved the puzzle in ${turn} turns!`;
+    }
+    return `Turn ${turn}`;
+};
+
 export default class Index extends Component {
     state = {
         isLoading: true,
@@ -88,15 +98,7 @@ export default class Index extends Component {
             <Page>
                 <Section>
                     <Bloc
-                        title={
-                            isLoading
-                                ? 'Building a new game'
-                                : isVictory
-                                  ? `Congratulations, you have solved the puzzle in ${
-                                        turn
-                                    } turns!`
-                                  : `Turn ${turn}`
-                        }
+                        title={title(isLoading, isVictory, turn)}
                         isLoading={isLoading}
                     >
                         {currentGrid && (
@@ -116,7 +118,7 @@ export default class Index extends Component {
                                 icon="keyboard_return"
                                 color="red"
                                 label="Back to home"
-                                route="/"
+                                route="index"
                             />
                         </div>
                     </Row>

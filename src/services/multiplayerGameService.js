@@ -24,7 +24,6 @@ export const newGame = (baseUrl = DEFAULT_BASE_URL) => (mode = 'multi') => {
     return fetch(url, {
         method,
         headers,
-        mode: 'no-cors',
         body: JSON.stringify({
             mode,
         }),
