@@ -4,8 +4,9 @@ import Router from '../src/routes';
 
 import Bloc from '../src/components/bloc';
 import ListGames from '../src/components/listGames';
-
+import Button from '../src/components/button';
 import Page from '../src/components/page';
+import Row from '../src/components/row';
 import Section from '../src/components/section';
 
 import { games } from '../src/services/multiplayerGameService';
@@ -54,6 +55,16 @@ export default class MultiplayerGames extends Component {
                             onGameSelected={this.handleOnGameSelected}
                         />
                     </Bloc>
+                    <Row>
+                        <div className="buttons-wrapper">
+                            <Button
+                                icon="keyboard_return"
+                                color="red"
+                                label="Back to home"
+                                route="/"
+                            />
+                        </div>
+                    </Row>
                 </Section>
             </Page>
         );
