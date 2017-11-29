@@ -51,7 +51,7 @@ export default class Index extends Component {
         }
     };
 
-    componentWillUpdate = async () => {
+    buildGame = async () => {
         const { size } = this.props;
 
         let resolvedGrid = buildGrid(size);
@@ -65,6 +65,10 @@ export default class Index extends Component {
             isVictory: false,
         });
     };
+
+    componentWillMount() {
+        this.buildGame();
+    }
 
     render() {
         const {

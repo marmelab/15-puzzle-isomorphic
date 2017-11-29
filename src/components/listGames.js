@@ -4,15 +4,19 @@ import PropTypes from 'prop-types';
 import List from './list';
 import ItemGames from './itemGames';
 
-const ListGames = ({ games, onItemSelected }) => (
-    <List items={games} title="Open multiplayer games">
-        <ItemGames onClick={onItemSelected} />
-    </List>
-);
+const ListGames = ({ games, onGameSelected }) => {
+    return games && games.length > 0 ? (
+        <List items={games} onClickItem={onGameSelected}>
+            <ItemGames />
+        </List>
+    ) : (
+        <p>There is no open multiplayer games.</p>
+    );
+};
 
 ListGames.propTypes = {
     games: PropTypes.array.isRequired,
-    onItemSelected: PropTypes.func.isRequired,
+    onGameSelected: PropTypes.func.isRequired,
 };
 
-export default List;
+export default ListGames;

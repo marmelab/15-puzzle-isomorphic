@@ -19,9 +19,7 @@ function handleErrors(res) {
 export const newGame = (baseUrl = DEFAULT_BASE_URL) => (mode = 'multi') => {
     const url = `${baseUrl}/game`;
     const method = 'POST';
-    const headers = Object.assign({}, DEFAULT_HEADER_JSON, {
-        'Access-Control-Allow-Origin': baseUrl,
-    });
+    const headers = Object.assign({}, DEFAULT_HEADER_JSON);
 
     return fetch(url, {
         method,
@@ -39,7 +37,6 @@ export const game = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
     const url = `${baseUrl}/game/${id}`;
     const method = 'GET';
     const headers = Object.assign({}, DEFAULT_HEADER_JSON, {
-        'Access-Control-Allow-Origin': baseUrl,
         Authorization: `Bearer ${token}`,
     });
 
@@ -70,7 +67,6 @@ export const cancel = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
     const url = `${baseUrl}/game/${id}`;
     const method = 'DELETE';
     const headers = Object.assign({}, DEFAULT_HEADER_JSON, {
-        'Access-Control-Allow-Origin': baseUrl,
         Authorization: `Bearer ${token}`,
     });
 
@@ -85,9 +81,7 @@ export const cancel = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
 export const join = (baseUrl = DEFAULT_BASE_URL) => id => {
     const url = `${baseUrl}/game/${id}/join`;
     const method = 'POST';
-    const headers = Object.assign({}, DEFAULT_HEADER_JSON, {
-        'Access-Control-Allow-Origin': baseUrl,
-    });
+    const headers = Object.assign({}, DEFAULT_HEADER_JSON);
 
     return fetch(url, {
         method,

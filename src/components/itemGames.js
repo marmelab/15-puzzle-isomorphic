@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-const ItemGames = ({ onClick, value }) => {
-    <div>
-        Game #{value}
-        <button onClick={onClick} className="secondary-content">
-            <i className="material-icons">add_circle_outline</i>
-        </button>
-    </div>;
-};
+export default class ItemGames extends PureComponent {
+    static propTypes = {
+        onClick: PropTypes.func,
+        value: PropTypes.number,
+    };
 
-ItemGames.PropTypes = {
-    onClick: PropTypes.func.isRequired,
-    value: PropTypes.number.isRequired,
-};
+    handleClick = () => {
+        const { onClick, value } = this.props;
+        onClick(value);
+    };
 
-export default ItemGames;
+    render() {
+        const { value } = this.props;
+
+        return (
+            <div>
+                Game #{value}
+                <span
+                    onClick={this.handleClick}
+                    className="secondary-content clickable"
+                >
+                    <i className="material-icons">add_circle_outline</i>
+                </span>
+            </div>
+        );
+    }
+}

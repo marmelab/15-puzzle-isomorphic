@@ -98,10 +98,10 @@ export default class MultiplayerGame extends Component {
         this.requestMove(tile);
     };
 
-    componentWillUpdate = async () => {
+    componentWillMount() {
         const { id, token } = this.props;
         this.requestGame(id, token);
-    };
+    }
 
     render() {
         const { playerId, winnerId, currentGrid, turn, isLoading } = this.state;

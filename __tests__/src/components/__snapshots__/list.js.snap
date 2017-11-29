@@ -15,7 +15,8 @@ exports[`List should render the List correctly with a title and items 1`] = `
     className="collection-item"
   >
     <div
-      item={1}
+      onClick={undefined}
+      value={1}
     >
       Children
     </div>
@@ -24,7 +25,8 @@ exports[`List should render the List correctly with a title and items 1`] = `
     className="collection-item"
   >
     <div
-      item={2}
+      onClick={undefined}
+      value={2}
     >
       Children
     </div>
@@ -33,7 +35,8 @@ exports[`List should render the List correctly with a title and items 1`] = `
     className="collection-item"
   >
     <div
-      item={3}
+      onClick={undefined}
+      value={3}
     >
       Children
     </div>
