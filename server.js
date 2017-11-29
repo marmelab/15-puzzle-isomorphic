@@ -1,6 +1,7 @@
 const { createServer } = require('http');
 const { parse } = require('url');
 const { createReadStream } = require('fs');
+const { join } = require('path');
 const next = require('next');
 
 const port = parseInt(process.argv.find(val => val === 'port') || 3000, 10);
@@ -13,11 +14,13 @@ app.prepare().then(() => {
         const parsedUrl = parse(req.url, true);
         const { pathname } = parsedUrl;
 
-        if (pathname === '/sw.js') {
-            res.setHeader('content-type', 'text/javascript');
-            createReadStream('./offline/sw.js').pipe(res);
-        } else {
-            handle(req, res, parsedUrl);
+        switch (pathname) {
+            case '/service-worker.js':
+                app.serveStatic(req, res, join(__dirname, '.next', pathname));
+                break;
+            default:
+                handle(req, res, parsedUrl);
+                break;
         }
     }).listen(port, err => {
         if (err) throw err;
