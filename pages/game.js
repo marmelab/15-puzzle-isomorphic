@@ -27,9 +27,9 @@ export default class Index extends Component {
         isVictory: false,
     };
 
-    static getInitialProps = ({ query }) => {
-        return { size: query.size || config.defaultPuzzleSize };
-    };
+    static getInitialProps = ({ query }) => ({
+        size: query.size || config.defaultPuzzleSize,
+    });
 
     static propTypes = {
         size: PropTypes.number.isRequired,
