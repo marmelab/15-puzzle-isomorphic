@@ -18,8 +18,8 @@ import { shuffle } from '../src/core/shuffler';
 export default class Index extends Component {
     state = {
         isLoading: true,
-        currentGrid: null,
-        initialGrid: null,
+        currentGrid: [],
+        resolvedGrid: [],
         turn: -1,
         isVictory: false,
     };
@@ -59,7 +59,13 @@ export default class Index extends Component {
     };
 
     render() {
-        const { isLoading, currentGrid, turn, isVictory } = this.state;
+        const {
+            isLoading,
+            currentGrid,
+            resolvedGrid,
+            turn,
+            isVictory,
+        } = this.state;
 
         return (
             <Page>
@@ -76,11 +82,14 @@ export default class Index extends Component {
                         }
                         isLoading={isLoading}
                     >
-                        <Grid
-                            onClick={this.handleClick}
-                            grid={currentGrid}
-                            readOnly={isVictory}
-                        />
+                        {currentGrid && (
+                            <Grid
+                                onClick={this.handleClick}
+                                grid={currentGrid}
+                                resolvedGrid={resolvedGrid}
+                                readOnly={isVictory}
+                            />
+                        )}
                     </Bloc>
                 </Section>
                 <Section>

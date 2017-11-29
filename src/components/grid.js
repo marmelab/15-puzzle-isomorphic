@@ -3,10 +3,17 @@ import PropTypes from 'prop-types';
 
 import Tile from './tile';
 
-const Grid = ({ grid, readOnly, onClick }) => (
-    <div className="puzzle-column">
-        {grid.map((row, rowKey) => {
-            return (
+import { associateTileToBackground } from '../core/helper';
+
+// TODO Put the url in the config
+const url = '/static/images/panda.jpg';
+
+const Grid = ({ grid, onClick, resolvedGrid, readOnly }) => {
+    const tileToBg = associateTileToBackground(resolvedGrid);
+
+    return (
+        <div className="puzzle-column">
+            {grid.map((row, rowKey) => (
                 <div className="puzzle-row" key={rowKey}>
                     {row.map(
                         tileValue =>
@@ -19,20 +26,23 @@ const Grid = ({ grid, readOnly, onClick }) => (
                                 <Tile
                                     key={tileValue}
                                     enabled={!readOnly}
+                                    tileImage={url}
+                                    tileImageCoords={tileToBg[tileValue]}
                                     onClick={onClick}
                                     tileValue={tileValue}
                                 />
                             ),
                     )}
                 </div>
-            );
-        })}
-    </div>
-);
+            ))}
+        </div>
+    );
+};
 
 Grid.propTypes = {
-    onClick: PropTypes.func.isRequired,
     grid: PropTypes.array.isRequired,
+    resolvedGrid: PropTypes.array.isRequired,
+    onClick: PropTypes.func.isRequired,
     readOnly: PropTypes.bool,
 };
 
