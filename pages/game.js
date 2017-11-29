@@ -28,11 +28,11 @@ export default class Index extends Component {
     };
 
     static getInitialProps = ({ query }) => {
-        return query.size || config.defaultPuzzleSize;
+        return { size: query.size || config.defaultPuzzleSize };
     };
 
     static propTypes = {
-        size: PropTypes.number,
+        size: PropTypes.number.isRequired,
     };
 
     handleClick = tile => {
