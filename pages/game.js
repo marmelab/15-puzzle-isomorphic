@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import config from '../src/config';
 
@@ -28,6 +29,10 @@ export default class Index extends Component {
 
     static getInitialProps = ({ query }) => {
         return query.size || config.defaultPuzzleSize;
+    };
+
+    static propTypes = {
+        size: PropTypes.number,
     };
 
     handleClick = tile => {

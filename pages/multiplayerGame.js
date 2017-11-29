@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import config from '../src/config';
-import Router from '../src/routes';
+import { Router } from '../src/routes';
 
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
@@ -24,12 +25,15 @@ export default class MultiplayerGame extends Component {
         winnerId: -1,
     };
 
-    static getInitialProps = async ({ query }) => {
-        return {
-            id: query.id,
-            token: query.token,
-        };
+    static propTypes = {
+        id: PropTypes.number.isRequired,
+        token: PropTypes.string.isRequired,
     };
+
+    static getInitialProps = async ({ query }) => ({
+        id: query.id,
+        token: query.token,
+    });
 
     waitForOtherPlayer = async (id, token) => {
         const { otherPlayer } = await game()(id, token);
@@ -142,7 +146,7 @@ export default class MultiplayerGame extends Component {
                                 icon="keyboard_return"
                                 color="red"
                                 label="Back to home"
-                                route="/"
+                                route="multiplayer_games"
                             />
                         </div>
                     </Row>
