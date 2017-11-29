@@ -103,6 +103,8 @@ export default class MultiplayerGame extends Component {
     };
 
     componentWillMount() {
+        Router.pushRoute('multiplayer_game', {}, { shallow: true });
+
         const { id, token } = this.props;
         this.requestGame(id, token);
     }
