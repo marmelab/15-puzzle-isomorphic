@@ -6,6 +6,8 @@ import { Router } from '../src/routes';
 
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
+import DynamicOnline from '../src/components/dynamicOnline';
+import DynamicOffline from '../src/components/dynamicOffline';
 import Grid from '../src/components/grid';
 import Page from '../src/components/page';
 import Row from '../src/components/row';
@@ -178,37 +180,58 @@ export default class MultiplayerGame extends Component {
 
         return (
             <Page>
-                <Section>
-                    <Bloc
-                        title={title(
-                            id,
-                            isLoading,
-                            isVictory,
-                            isWaitingPlayer,
-                            isWinner,
-                            turn,
-                        )}
-                        isLoading={isLoading}
-                    >
-                        <Grid
-                            onClick={this.handleClick}
-                            grid={currentGrid}
-                            readOnly={isVictory}
-                        />
-                    </Bloc>
-                </Section>
-                <Section>
-                    <Row>
-                        <div className="buttons-wrapper">
-                            <Button
-                                icon="keyboard_return"
-                                color="red"
-                                label="Back to home"
-                                route="multiplayer_games"
+                <DynamicOffline>
+                    <Section>
+                        <Bloc title="Waiting for connection" isLoading="true">
+                            <p>This page is only accessile online.</p>
+                        </Bloc>
+                    </Section>
+                    <Section>
+                        <Row>
+                            <div className="buttons-wrapper">
+                                <Button
+                                    icon="keyboard_return"
+                                    color="red"
+                                    label="Back to home"
+                                    route="index"
+                                />
+                            </div>
+                        </Row>
+                    </Section>
+                </DynamicOffline>
+                <DynamicOnline>
+                    <Section>
+                        <Bloc
+                            title={title(
+                                id,
+                                isLoading,
+                                isVictory,
+                                isWaitingPlayer,
+                                isWinner,
+                                turn,
+                            )}
+                            isLoading={isLoading}
+                        >
+                            <Grid
+                                onClick={this.handleClick}
+                                grid={currentGrid}
+                                readOnly={isVictory}
                             />
-                        </div>
-                    </Row>
-                </Section>
+                        </Bloc>
+                    </Section>
+                    <Section>
+                        <Row>
+                            <div className="buttons-wrapper">
+                                <Button
+                                    icon="keyboard_return"
+                                    color="red"
+                                    label="Back to home"
+                                    route="multiplayer_games"
+                                />
+                            </div>
+                        </Row>
+                    </Section>
+                </DynamicOnline>
             </Page>
         );
     }
