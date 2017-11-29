@@ -26,7 +26,7 @@ export default class MultiplayerGame extends Component {
     };
 
     static propTypes = {
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         token: PropTypes.string.isRequired,
     };
 

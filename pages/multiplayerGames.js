@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Router from '../src/routes';
+import { Router } from '../src/routes';
 
 import Bloc from '../src/components/bloc';
 import ListGames from '../src/components/listGames';
@@ -9,7 +9,7 @@ import Page from '../src/components/page';
 import Row from '../src/components/row';
 import Section from '../src/components/section';
 
-import { games } from '../src/services/multiplayerGameService';
+import { games, join } from '../src/services/multiplayerGameService';
 
 export default class MultiplayerGames extends Component {
     state = {
@@ -33,7 +33,15 @@ export default class MultiplayerGames extends Component {
         }
     };
 
-    requestJoin = async () => {};
+    requestJoin = async ids => {
+        try {
+            const { id, token } = await join()(ids);
+            Router.pushRoute('multiplayer_game', { id, token });
+        } catch (error) {
+            console.error(error);
+            // TODO: catch the server error in order to display it to the user.
+        }
+    };
 
     handleOnGameSelected = async id => {
         this.requestJoin(id);
