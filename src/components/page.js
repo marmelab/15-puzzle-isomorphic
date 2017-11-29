@@ -4,12 +4,21 @@ import PropTypes from 'prop-types';
 import CustomHead from './customHead';
 import Nav from './nav';
 
+import config from '../config';
+
 export default class Page extends PureComponent {
     static propTypes = {
-        children: PropTypes.element.isRequired,
+        children: PropTypes.oneOfType([
+            PropTypes.element,
+            PropTypes.arrayOf(PropTypes.element),
+        ]).isRequired,
     };
 
     componentDidMount() {
+        if (!config.useCache) {
+            console.warn('The client cache is disabled');
+            return;
+        }
         if (!('serviceWorker' in navigator)) {
             console.warn('Service worker not supported');
             return;

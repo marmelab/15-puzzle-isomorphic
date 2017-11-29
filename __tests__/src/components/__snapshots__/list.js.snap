@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List should render the List correctly with a title and items 1`] = `
+<ul
+  className="collection with-header"
+>
+  <li
+    className="collection-header"
+  >
+    <h4>
+      Title
+    </h4>
+  </li>
+  <li
+    className="collection-item"
+  >
+    <div
+      onClick={undefined}
+      value={1}
+    >
+      Children
+    </div>
+  </li>
+  <li
+    className="collection-item"
+  >
+    <div
+      onClick={undefined}
+      value={2}
+    >
+      Children
+    </div>
+  </li>
+  <li
+    className="collection-item"
+  >
+    <div
+      onClick={undefined}
+      value={3}
+    >
+      Children
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`List should render the List correctly without a title 1`] = `
+<ul
+  className="collection with-header"
+/>
+`;

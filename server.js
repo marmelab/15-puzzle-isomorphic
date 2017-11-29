@@ -1,13 +1,14 @@
 const { createServer } = require('http');
 const { parse } = require('url');
-const { createReadStream } = require('fs');
 const { join } = require('path');
 const next = require('next');
 
 const port = parseInt(process.argv.find(val => val === 'port') || 3000, 10);
 const dev = process.env.NODE_ENV !== 'production';
+
+const routes = require('./src/routes');
 const app = next({ dev });
-const handle = app.getRequestHandler();
+const handle = routes.getRequestHandler(app);
 
 app.prepare().then(() => {
     createServer((req, res) => {

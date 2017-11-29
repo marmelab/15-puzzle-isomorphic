@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import config from '../src/config';
 
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
@@ -24,6 +27,14 @@ export default class Index extends Component {
         isVictory: false,
     };
 
+    static getInitialProps = ({ query }) => ({
+        size: query.size || config.defaultPuzzleSize,
+    });
+
+    static propTypes = {
+        size: PropTypes.number.isRequired,
+    };
+
     handleClick = tile => {
         const { currentGrid, resolvedGrid, turn } = this.state;
 
@@ -45,8 +56,10 @@ export default class Index extends Component {
         }
     };
 
-    componentWillMount = async () => {
-        let resolvedGrid = buildGrid(4);
+    buildGame = async () => {
+        const { size } = this.props;
+
+        let resolvedGrid = buildGrid(size);
         let currentGrid = await shuffle(resolvedGrid);
 
         this.setState({
@@ -57,6 +70,10 @@ export default class Index extends Component {
             isVictory: false,
         });
     };
+
+    componentWillMount() {
+        this.buildGame();
+    }
 
     render() {
         const {
@@ -94,12 +111,14 @@ export default class Index extends Component {
                 </Section>
                 <Section>
                     <Row>
-                        <Button
-                            icon="keyboard_return"
-                            color="red"
-                            label="Back to home"
-                            path="/"
-                        />
+                        <div className="buttons-wrapper">
+                            <Button
+                                icon="keyboard_return"
+                                color="red"
+                                label="Back to home"
+                                route="/"
+                            />
+                        </div>
                     </Row>
                 </Section>
             </Page>
