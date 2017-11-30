@@ -22,7 +22,10 @@ const Bloc = ({ children, isLoading, title }) => (
 );
 
 Bloc.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.arrayOf(PropTypes.element),
+    ]).isRequired,
     isLoading: PropTypes.bool,
     title: PropTypes.string,
 };
