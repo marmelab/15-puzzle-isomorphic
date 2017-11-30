@@ -75,9 +75,9 @@ export default class Game extends Component {
         const { currentGrid, resolvedGrid } = this.state;
 
         try {
-            const suggestedTile = await suggest()(currentGrid, resolvedGrid);
+            const { Tile } = await suggest()(currentGrid, resolvedGrid);
             this.setState({
-                suggestedTile,
+                suggestedTile: Tile,
             });
         } catch (error) {
             console.error(error);
@@ -133,8 +133,10 @@ export default class Game extends Component {
                                 readOnly={isVictory}
                             />
                         )}
-                        {suggestedTile !== -1 && (
-                            <p>You should move the tile {suggestedTile}</p>
+                        {suggestedTile !== 0 && (
+                            <p>
+                                Advice : you could move the tile {suggestedTile}
+                            </p>
                         )}
                     </Bloc>
                 </Section>
