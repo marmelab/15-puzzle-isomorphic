@@ -1,4 +1,21 @@
-import { title } from '../../pages/multiplayerGame';
+import React from 'react';
+import renderer from 'react-test-renderer';
+
+import MultiplayerGame, { title } from '../../pages/multiplayerGame';
+
+// FIXME: this page is using a component dynamically loaded using the next/dynamic module. This bug will make the tests fail.
+// You can find the related issue here : https://github.com/zeit/next.js/issues/3345
+xdescribe('MultiplayerGames', () => {
+    test('should render MultiplayerGame without error', () => {
+        renderer.create(<MultiplayerGame />);
+    });
+
+    test('should render the MultiplayerGame correctly', () => {
+        const component = renderer.create(<MultiplayerGame />);
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+});
 
 describe('title', () => {
     test('should render a turn', () => {

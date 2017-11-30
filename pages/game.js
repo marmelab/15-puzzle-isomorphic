@@ -28,7 +28,7 @@ export const title = (isLoading, isVictory, turn) => {
     return `Turn ${turn}`;
 };
 
-export default class Index extends Component {
+export default class Game extends Component {
     state = {
         isLoading: true,
         currentGrid: [],

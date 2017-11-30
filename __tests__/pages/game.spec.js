@@ -1,4 +1,19 @@
-import { title } from '../../pages/game';
+import React from 'react';
+import renderer from 'react-test-renderer';
+
+import Game, { title } from '../../pages/game';
+
+describe('Game', () => {
+    test('should render Game without error', () => {
+        renderer.create(<Game />);
+    });
+
+    test('should render the Game correctly', () => {
+        const component = renderer.create(<Game />);
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+});
 
 describe('title', () => {
     test('should render a turn', () => {
