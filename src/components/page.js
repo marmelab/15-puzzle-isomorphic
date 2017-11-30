@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import CustomHead from './customHead';
+import DynamicOffline from './dynamicOffline';
+import DynamicOnline from './dynamicOnline';
 import Nav from './nav';
 
 import config from '../config';
@@ -37,7 +39,15 @@ export default class Page extends PureComponent {
         return (
             <div>
                 <CustomHead />
-                <Nav />
+                <DynamicOnline>
+                    <Nav />
+                </DynamicOnline>
+                <DynamicOffline>
+                    <Nav
+                        title="15 Puzzle Isomorphic - Offline mode"
+                        colors={['grey', 'lighten-1']}
+                    />
+                </DynamicOffline>
                 <section className="container">{children}</section>
             </div>
         );
