@@ -78,6 +78,7 @@ export default class Game extends Component {
         try {
             const { Tile } = await suggestFactory()(currentGrid, resolvedGrid);
             this.setState({
+                loadingAdvice: false,
                 suggestedTile: Tile,
             });
         } catch (error) {
@@ -140,11 +141,10 @@ export default class Game extends Component {
                             />
                         )}
                         {loadingAdvice && <p>Looking for an advice...</p>}
-                        {suggestedTile !== 0 && (
-                            <p>
-                                Advice: you could move the tile {suggestedTile}
-                            </p>
-                        )}
+                        {!loadingAdvice &&
+                            suggestedTile !== 0 && (
+                                <p>You could move the tile {suggestedTile}</p>
+                            )}
                     </Bloc>
                 </Section>
                 <Section>
@@ -156,13 +156,16 @@ export default class Game extends Component {
                                 label="Back to home"
                                 route="index"
                             />
-                            <DynamicOnline>
-                                <Button
-                                    icon="help_outline"
-                                    label="Ask for help"
-                                    onClick={this.handleClickSuggest}
-                                />
-                            </DynamicOnline>
+                            {!isLoading &&
+                                !isVictory && (
+                                    <DynamicOnline>
+                                        <Button
+                                            icon="help_outline"
+                                            label="Ask for help"
+                                            onClick={this.handleClickSuggest}
+                                        />
+                                    </DynamicOnline>
+                                )}
                         </div>
                     </Row>
                 </Section>

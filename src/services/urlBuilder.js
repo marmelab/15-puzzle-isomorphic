@@ -1,5 +1,5 @@
 function addParam(index, key, value) {
-    return (index === 0 ? '&' : '') + `${key}=${value}`;
+    return (index !== 0 ? '&' : '') + `${key}=${value}`;
 }
 
 export function addGetParams(url, params = {}) {
