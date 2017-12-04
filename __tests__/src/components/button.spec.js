@@ -19,7 +19,7 @@ describe('Button', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    test('should contain a link with', () => {
+    test('should contain a link', () => {
         const app = shallow(<Button icon="icon" label="label" route="path" />);
         expect(app.find('a').length).toEqual(1);
     });
