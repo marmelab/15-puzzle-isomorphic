@@ -36,6 +36,7 @@ export default class Game extends Component {
         currentGrid: [],
         isLoading: true,
         isVictory: false,
+        loadingAdvice: false,
         resolvedGrid: [],
         suggestedTile: 0,
         turn: -1,
@@ -73,7 +74,7 @@ export default class Game extends Component {
 
     requestSuggest = async () => {
         const { currentGrid, resolvedGrid } = this.state;
-
+        this.setState({ loadingAdvice: true });
         try {
             const { Tile } = await suggest()(currentGrid, resolvedGrid);
             this.setState({
@@ -86,6 +87,10 @@ export default class Game extends Component {
     };
 
     handleClickSuggest = () => {
+        const { loadingAdvice } = this.state;
+        if (loadingAdvice) {
+            return;
+        }
         this.requestSuggest();
     };
 
@@ -113,6 +118,7 @@ export default class Game extends Component {
             currentGrid,
             isLoading,
             isVictory,
+            loadingAdvice,
             resolvedGrid,
             suggestedTile,
             turn,
@@ -133,9 +139,10 @@ export default class Game extends Component {
                                 readOnly={isVictory}
                             />
                         )}
+                        {loadingAdvice && <p>Looking for an advice...</p>}
                         {suggestedTile !== 0 && (
                             <p>
-                                Advice : you could move the tile {suggestedTile}
+                                Advice: you could move the tile {suggestedTile}
                             </p>
                         )}
                     </Bloc>
