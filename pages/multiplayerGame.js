@@ -11,7 +11,11 @@ import Page from '../src/components/page';
 import Row from '../src/components/row';
 import Section from '../src/components/section';
 
-import { game, join, move } from '../src/services/multiplayerGameService';
+import {
+    gameFactory,
+    joinFactory,
+    moveFactory,
+} from '../src/services/multiplayerGameService';
 
 export const title = (
     id,
@@ -64,7 +68,7 @@ export default class MultiplayerGame extends Component {
     };
 
     waitForOtherPlayer = async (id, token) => {
-        const { otherPlayer } = await game()(id, token);
+        const { otherPlayer } = await gameFactory()(id, token);
         if (otherPlayer) {
             return Promise.resolve(otherPlayer);
         }
@@ -83,7 +87,7 @@ export default class MultiplayerGame extends Component {
                 currentPlayer,
                 otherPlayer,
                 winner,
-            } = await game()(id, token);
+            } = await gameFactory()(id, token);
 
             if (isMultiplayer && !otherPlayer) {
                 this.setState({ id, isWaitingPlayer: true });
@@ -116,7 +120,11 @@ export default class MultiplayerGame extends Component {
     requestMove = async tile => {
         try {
             const { id, token } = this.state;
-            const { currentPlayer, winner } = await move()(id, token, tile);
+            const { currentPlayer, winner } = await moveFactory()(
+                id,
+                token,
+                tile,
+            );
             this.setState({
                 currentGrid: currentPlayer.currentGrid,
                 turn: currentPlayer.turn,
@@ -130,7 +138,7 @@ export default class MultiplayerGame extends Component {
 
     requestJoin = async id => {
         try {
-            const { token } = await join()(id);
+            const { token } = await joinFactory()(id);
             Router.pushRoute('multiplayer_game', { id, token });
         } catch (error) {
             console.error(error);

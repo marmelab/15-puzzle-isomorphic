@@ -10,7 +10,11 @@ import Page from '../src/components/page';
 import Row from '../src/components/row';
 import Section from '../src/components/section';
 
-import { games, join, newGame } from '../src/services/multiplayerGameService';
+import {
+    gamesFactory,
+    joinFactory,
+    newGameFactory,
+} from '../src/services/multiplayerGameService';
 
 export default class MultiplayerGames extends Component {
     state = {
@@ -23,7 +27,7 @@ export default class MultiplayerGames extends Component {
             this.setState({
                 isLoading: true,
             });
-            const { gameIds } = await games()();
+            const { gameIds } = await gamesFactory()();
             this.setState({
                 isLoading: false,
                 openMultiplayerGames: Object.values(gameIds).map(
@@ -39,7 +43,7 @@ export default class MultiplayerGames extends Component {
 
     requestJoin = async id => {
         try {
-            const { token } = await join()(id);
+            const { token } = await joinFactory()(id);
             Router.pushRoute('multiplayer_game', { id, token });
         } catch (error) {
             console.error(error);
@@ -49,7 +53,7 @@ export default class MultiplayerGames extends Component {
 
     requestNewGame = async () => {
         try {
-            const { id, token } = await newGame()();
+            const { id, token } = await newGameFactory()();
             Router.pushRoute('multiplayer_game', { id, token });
         } catch (error) {
             console.error(error);
