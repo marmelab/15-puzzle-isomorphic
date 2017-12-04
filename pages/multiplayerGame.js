@@ -59,7 +59,7 @@ export default class MultiplayerGame extends Component {
     static getInitialProps = async ({ query }) => {
         return {
             id: query.id,
-            token: query.token || '',
+            token: query.token || null,
         };
     };
 
@@ -149,7 +149,7 @@ export default class MultiplayerGame extends Component {
             Router.pushRoute('multiplayer_games');
             return;
         }
-        if (token === '') {
+        if (!token) {
             this.requestJoin(id);
         }
         this.requestGame(id, token);

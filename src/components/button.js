@@ -10,14 +10,17 @@ const Button = ({ color, icon, label, onClick, route }) => {
         [color]: color,
     });
 
-    return route ? (
-        <Link href="" route={route}>
-            <a className={buttonClass}>
-                <i className="material-icons left">{icon}</i>
-                {label}
-            </a>
-        </Link>
-    ) : (
+    if (route) {
+        return (
+            <Link href="" route={route}>
+                <a className={buttonClass}>
+                    <i className="material-icons left">{icon}</i>
+                    {label}
+                </a>
+            </Link>
+        );
+    }
+    return (
         <a onClick={onClick} className={buttonClass}>
             <i className="material-icons left">{icon}</i>
             {label}
