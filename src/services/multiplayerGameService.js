@@ -16,7 +16,9 @@ function handleErrors(res) {
     return res;
 }
 
-export const newGame = (baseUrl = DEFAULT_BASE_URL) => (mode = 'multi') => {
+export const newGameFactory = (baseUrl = DEFAULT_BASE_URL) => (
+    mode = 'multi',
+) => {
     const url = `${baseUrl}/game`;
     const method = 'POST';
     const headers = Object.assign({}, DEFAULT_HEADER_JSON);
@@ -24,7 +26,6 @@ export const newGame = (baseUrl = DEFAULT_BASE_URL) => (mode = 'multi') => {
     return fetch(url, {
         method,
         headers,
-        mode: 'no-cors',
         body: JSON.stringify({
             mode,
         }),
@@ -33,7 +34,7 @@ export const newGame = (baseUrl = DEFAULT_BASE_URL) => (mode = 'multi') => {
         .then(res => res.json());
 };
 
-export const game = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
+export const gameFactory = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
     const url = `${baseUrl}/game/${id}`;
     const method = 'GET';
     const headers = Object.assign({}, DEFAULT_HEADER_JSON, {
@@ -48,7 +49,11 @@ export const game = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
         .then(res => res.json());
 };
 
-export const move = (baseUrl = DEFAULT_BASE_URL) => (id, token, tile) => {
+export const moveFactory = (baseUrl = DEFAULT_BASE_URL) => (
+    id,
+    token,
+    tile,
+) => {
     const url = `${baseUrl}/game/${id}/move/${tile}`;
     const method = 'PUT';
     const headers = Object.assign({}, DEFAULT_HEADER_JSON, {
@@ -63,7 +68,7 @@ export const move = (baseUrl = DEFAULT_BASE_URL) => (id, token, tile) => {
         .then(res => res.json());
 };
 
-export const cancel = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
+export const cancelFactory = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
     const url = `${baseUrl}/game/${id}`;
     const method = 'DELETE';
     const headers = Object.assign({}, DEFAULT_HEADER_JSON, {
@@ -78,7 +83,7 @@ export const cancel = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
         .then(res => res.json());
 };
 
-export const join = (baseUrl = DEFAULT_BASE_URL) => id => {
+export const joinFactory = (baseUrl = DEFAULT_BASE_URL) => id => {
     const url = `${baseUrl}/game/${id}/join`;
     const method = 'POST';
     const headers = Object.assign({}, DEFAULT_HEADER_JSON);
@@ -91,7 +96,7 @@ export const join = (baseUrl = DEFAULT_BASE_URL) => id => {
         .then(res => res.json());
 };
 
-export const games = (baseUrl = DEFAULT_BASE_URL) => () => {
+export const gamesFactory = (baseUrl = DEFAULT_BASE_URL) => () => {
     const url = `${baseUrl}/games/open`;
     const method = 'GET';
     const headers = Object.assign({}, DEFAULT_HEADER_JSON);

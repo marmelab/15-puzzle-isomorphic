@@ -21,7 +21,7 @@ export default class Index extends Component {
                     <Row>
                         <div className="buttons-wrapper">
                             <Button
-                                color="blue"
+                                color="green"
                                 icon="play_circle_outline"
                                 label="Single game"
                                 route="game"
@@ -29,7 +29,7 @@ export default class Index extends Component {
                             <Button
                                 color="blue"
                                 icon="play_circle_outline"
-                                label="Multiplayer game"
+                                label="Multiplayer mode"
                                 route="multiplayer_games"
                             />
                         </div>

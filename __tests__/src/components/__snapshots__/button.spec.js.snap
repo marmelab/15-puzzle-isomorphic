@@ -3,7 +3,6 @@
 exports[`Button should render the Button correctly 1`] = `
 <a
   className="btn"
-  href=""
   onClick={[Function]}
 >
   <i
