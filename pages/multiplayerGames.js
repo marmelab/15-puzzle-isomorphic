@@ -4,6 +4,10 @@ import { Router } from '../src/routes';
 
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
+import {
+    ShowWhenOnline,
+    ShowWhenOffline,
+} from '../src/components/detectOffline';
 import ListGames from '../src/components/listGames';
 import Image from '../src/components/image';
 import Page from '../src/components/page';
@@ -82,42 +86,63 @@ export default class MultiplayerGames extends Component {
 
         return (
             <Page>
-                <Section>
-                    <Bloc title="Welcome to the multiplayer 15 puzzle game!">
-                        <Image
-                            src="/static/images/banner.jpg"
-                            alt="15 puzzle picture"
-                        />
-                    </Bloc>
-                    <Row>
-                        <div className="buttons-wrapper">
-                            <Button
-                                color="red"
-                                icon="keyboard_return"
-                                label="Back to home"
-                                route="index"
+                <ShowWhenOffline>
+                    <Section>
+                        <Bloc title="Waiting for connection" isLoading="true">
+                            <p>This page is only accessile online.</p>
+                        </Bloc>
+                    </Section>
+                    <Section>
+                        <Row>
+                            <div className="buttons-wrapper">
+                                <Button
+                                    icon="keyboard_return"
+                                    color="red"
+                                    label="Back to home"
+                                    route="index"
+                                />
+                            </div>
+                        </Row>
+                    </Section>
+                </ShowWhenOffline>
+                <ShowWhenOnline>
+                    <Section>
+                        <Bloc title="Welcome to the multiplayer 15 puzzle game!">
+                            <Image
+                                src="/static/images/banner.jpg"
+                                alt="15 puzzle picture"
                             />
-                            <Button
-                                color="blue"
-                                icon="refresh"
-                                label="Refresh"
-                                onClick={this.handleRefreshGames}
+                        </Bloc>
+                        <Row>
+                            <div className="buttons-wrapper">
+                                <Button
+                                    color="red"
+                                    icon="keyboard_return"
+                                    label="Back to home"
+                                    route="index"
+                                />
+                                <Button
+                                    color="blue"
+                                    icon="refresh"
+                                    label="Refresh"
+                                    onClick={this.handleRefreshGames}
+                                />
+                                <Button
+                                    color="green"
+                                    icon="play_circle_outline"
+                                    label="New multiplayer game"
+                                    onClick={this.handleClickMultiplayerGame}
+                                />
+                            </div>
+                        </Row>
+                        <Bloc title="Join an open game" isLoading={isLoading}>
+                            <ListGames
+                                games={openMultiplayerGames}
+                                onGameSelected={this.handleOnGameSelected}
                             />
-                            <Button
-                                color="green"
-                                icon="play_circle_outline"
-                                label="New multiplayer game"
-                                onClick={this.handleClickMultiplayerGame}
-                            />
-                        </div>
-                    </Row>
-                    <Bloc title="Join an open game" isLoading={isLoading}>
-                        <ListGames
-                            games={openMultiplayerGames}
-                            onGameSelected={this.handleOnGameSelected}
-                        />
-                    </Bloc>
-                </Section>
+                        </Bloc>
+                    </Section>
+                </ShowWhenOnline>
             </Page>
         );
     }

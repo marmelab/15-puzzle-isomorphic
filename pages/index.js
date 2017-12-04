@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
+import { ShowWhenOnline } from '../src/components/detectOffline';
 import Image from '../src/components/image';
 import Page from '../src/components/page';
 import Row from '../src/components/row';
@@ -26,12 +27,14 @@ export default class Index extends Component {
                                 label="Single game"
                                 route="game"
                             />
-                            <Button
-                                color="blue"
-                                icon="play_circle_outline"
-                                label="Multiplayer mode"
-                                route="multiplayer_games"
-                            />
+                            <ShowWhenOnline>
+                                <Button
+                                    color="blue"
+                                    icon="play_circle_outline"
+                                    label="Multiplayer mode"
+                                    route="multiplayer_games"
+                                />
+                            </ShowWhenOnline>
                         </div>
                     </Row>
                 </Section>

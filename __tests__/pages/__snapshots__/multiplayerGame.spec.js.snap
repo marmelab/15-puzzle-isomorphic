@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiplayerGames should render the MultiplayerGame correctly 1`] = `
+<div>
+  <nav
+    className="blue lighten-1"
+    role="navigation"
+  >
+    <div
+      className="nav-wrapper container"
+    >
+      <a
+        className="brand-logo"
+        href="/"
+        onClick={[Function]}
+      >
+        15 Puzzle Isomorphic!
+      </a>
+    </div>
+  </nav>
+  <section
+    className="container"
+  >
+    <p>
+      loading...
+    </p>
+    <p>
+      loading...
+    </p>
+  </section>
+</div>
+`;

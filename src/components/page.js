@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import CustomHead from './customHead';
+import { ShowWhenOnline, ShowWhenOffline } from './detectOffline';
 import Nav from './nav';
 
 import config from '../config';
@@ -37,7 +38,15 @@ export default class Page extends PureComponent {
         return (
             <div>
                 <CustomHead />
-                <Nav />
+                <ShowWhenOnline>
+                    <Nav />
+                </ShowWhenOnline>
+                <ShowWhenOffline>
+                    <Nav
+                        title="15 Puzzle Isomorphic - Offline mode"
+                        colors={['grey', 'lighten-1']}
+                    />
+                </ShowWhenOffline>
                 <section className="container">{children}</section>
             </div>
         );
