@@ -1,20 +1,13 @@
 import fetch from 'isomorphic-fetch';
-
+import fetchErrorsHandler from './fetchErrorsHandler';
 import config from '../config';
 
-const DEFAULT_BASE_URL = config.apiUrl;
+const DEFAULT_BASE_URL = config.apiUrl.multiplayer;
 
 const DEFAULT_HEADER_JSON = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
 };
-
-function handleErrors(res) {
-    if (!res.ok) {
-        return Promise.reject(res.statusText);
-    }
-    return res;
-}
 
 export const newGameFactory = (baseUrl = DEFAULT_BASE_URL) => (
     mode = 'multi',
@@ -30,7 +23,7 @@ export const newGameFactory = (baseUrl = DEFAULT_BASE_URL) => (
             mode,
         }),
     })
-        .then(handleErrors)
+        .then(fetchErrorsHandler)
         .then(res => res.json());
 };
 
@@ -45,7 +38,7 @@ export const gameFactory = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
         method,
         headers,
     })
-        .then(handleErrors)
+        .then(fetchErrorsHandler)
         .then(res => res.json());
 };
 
@@ -64,7 +57,7 @@ export const moveFactory = (baseUrl = DEFAULT_BASE_URL) => (
         method,
         headers,
     })
-        .then(handleErrors)
+        .then(fetchErrorsHandler)
         .then(res => res.json());
 };
 
@@ -79,7 +72,7 @@ export const cancelFactory = (baseUrl = DEFAULT_BASE_URL) => (id, token) => {
         method,
         headers,
     })
-        .then(handleErrors)
+        .then(fetchErrorsHandler)
         .then(res => res.json());
 };
 
@@ -92,7 +85,7 @@ export const joinFactory = (baseUrl = DEFAULT_BASE_URL) => id => {
         method,
         headers,
     })
-        .then(handleErrors)
+        .then(fetchErrorsHandler)
         .then(res => res.json());
 };
 
@@ -105,6 +98,6 @@ export const gamesFactory = (baseUrl = DEFAULT_BASE_URL) => () => {
         method,
         headers,
     })
-        .then(handleErrors)
+        .then(fetchErrorsHandler)
         .then(res => res.json());
 };
