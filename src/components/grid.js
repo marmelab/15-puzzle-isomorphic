@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { defaultImageUrl } from '../config';
+
 import Tile from './tile';
 
 import { associateTileToBackground } from '../core/helper';
-
-// TODO Put the url in the config
-const url = '/static/images/panda.jpg';
 
 const Grid = ({ grid, onClick, resolvedGrid, readOnly }) => {
     const tileToBg = resolvedGrid
@@ -28,7 +27,7 @@ const Grid = ({ grid, onClick, resolvedGrid, readOnly }) => {
                                 <Tile
                                     key={tileValue}
                                     enabled={!readOnly}
-                                    tileImage={url}
+                                    tileImage={defaultImageUrl}
                                     tileImageCoords={tileToBg[tileValue]}
                                     onClick={onClick}
                                     tileValue={tileValue}
