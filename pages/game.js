@@ -19,7 +19,7 @@ import {
 } from '../src/core/game';
 import { shuffle } from '../src/core/shuffler';
 
-import { suggest } from '../src/services/suggestMoveService';
+import { suggestFactory } from '../src/services/suggestMoveService';
 
 export const title = (isLoading, isVictory, turn) => {
     if (isLoading) {
@@ -76,7 +76,7 @@ export default class Game extends Component {
         const { currentGrid, resolvedGrid } = this.state;
         this.setState({ loadingAdvice: true });
         try {
-            const { Tile } = await suggest()(currentGrid, resolvedGrid);
+            const { Tile } = await suggestFactory()(currentGrid, resolvedGrid);
             this.setState({
                 suggestedTile: Tile,
             });

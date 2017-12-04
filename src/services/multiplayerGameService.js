@@ -89,26 +89,6 @@ export const joinFactory = (baseUrl = DEFAULT_BASE_URL) => id => {
         .then(res => res.json());
 };
 
-export const suggestFactory = (baseUrl = DEFAULT_BASE_URL) => (
-    grid,
-    resolvedGrid,
-) => {
-    const url = `${baseUrl}/suggest`;
-    const method = 'POST';
-    const headers = Object.assign({}, DEFAULT_HEADER_JSON);
-
-    return fetch(url, {
-        method,
-        headers,
-        body: JSON.stringify({
-            grid,
-            resolvedGrid,
-        }),
-    })
-        .then(fetchErrorsHandler)
-        .then(res => res.json());
-};
-
 export const gamesFactory = (baseUrl = DEFAULT_BASE_URL) => () => {
     const url = `${baseUrl}/games/open`;
     const method = 'GET';
