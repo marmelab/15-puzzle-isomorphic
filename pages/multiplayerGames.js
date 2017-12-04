@@ -4,8 +4,10 @@ import { Router } from '../src/routes';
 
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
-import DynamicOnline from '../src/components/dynamicOnline';
-import DynamicOffline from '../src/components/dynamicOffline';
+import {
+    ShowWhenOnline,
+    ShowWhenOffline,
+} from '../src/components/detectOffline';
 import ListGames from '../src/components/listGames';
 import Image from '../src/components/image';
 import Page from '../src/components/page';
@@ -84,7 +86,7 @@ export default class MultiplayerGames extends Component {
 
         return (
             <Page>
-                <DynamicOffline>
+                <ShowWhenOffline>
                     <Section>
                         <Bloc title="Waiting for connection" isLoading="true">
                             <p>This page is only accessile online.</p>
@@ -102,8 +104,8 @@ export default class MultiplayerGames extends Component {
                             </div>
                         </Row>
                     </Section>
-                </DynamicOffline>
-                <DynamicOnline>
+                </ShowWhenOffline>
+                <ShowWhenOnline>
                     <Section>
                         <Bloc title="Welcome to the multiplayer 15 puzzle game!">
                             <Image
@@ -140,7 +142,7 @@ export default class MultiplayerGames extends Component {
                             />
                         </Bloc>
                     </Section>
-                </DynamicOnline>
+                </ShowWhenOnline>
             </Page>
         );
     }
