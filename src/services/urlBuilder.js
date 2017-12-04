@@ -1,3 +1,7 @@
+function addParam(index, key, value) {
+    return (index === 0 ? '&' : '') + `${key}=${value}`;
+}
+
 export function addGetParams(url, params = {}) {
     if (typeof url !== 'string') {
         throw 'The url param should be a string';
@@ -7,7 +11,7 @@ export function addGetParams(url, params = {}) {
         ? url
         : keys.reduce(
               (acc, cur, index) =>
-                  acc + (index ? '&' : '') + `${cur}=${String(params[cur])}`,
+                  acc + addParam(index, cur, String(params[cur])),
               `${url}?`,
           );
 }

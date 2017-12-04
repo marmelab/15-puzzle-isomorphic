@@ -61,7 +61,7 @@ export default class Game extends Component {
             const newState = {
                 currentGrid: newCurrentGrid,
                 isVictory,
-                suggest: 0,
+                suggestedTile: 0,
                 turn: turn + 1,
             };
 
