@@ -5,7 +5,7 @@ import config from '../src/config';
 
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
-import DynamicOnline from '../src/components/dynamicOnline';
+import { ShowWhenOnline } from '../src/components/detectOffline';
 import Grid from '../src/components/grid';
 import Page from '../src/components/page';
 import Row from '../src/components/row';
@@ -158,13 +158,13 @@ export default class Game extends Component {
                             />
                             {!isLoading &&
                                 !isVictory && (
-                                    <DynamicOnline>
+                                    <ShowWhenOnline>
                                         <Button
                                             icon="help_outline"
                                             label="Ask for help"
                                             onClick={this.handleClickSuggest}
                                         />
-                                    </DynamicOnline>
+                                    </ShowWhenOnline>
                                 )}
                         </div>
                     </Row>
