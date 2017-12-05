@@ -2,22 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ActivityIndicator from './activityIndicator';
+import Col from './col';
 
 const Bloc = ({ children, isLoading, title }) => (
     <div className="bloc z-depth-3 flow-text">
         {title && (
-            <div className="col s12">
+            <Col>
                 <h5 className="truncate">{title}</h5>
-            </div>
+            </Col>
         )}
-        <div className="col s12">
+        <Col>
             {isLoading && (
                 <div className="activity-indicator-wrapper">
                     <ActivityIndicator />
                 </div>
             )}
             {!isLoading && children}
-        </div>
+        </Col>
     </div>
 );
 
