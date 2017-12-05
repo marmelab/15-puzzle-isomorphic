@@ -13,7 +13,6 @@ const CustomHead = () => (
         />
         <link href="/static/styles/main.css" rel="stylesheet" />
         <link href="/static/styles/puzzle.css" rel="stylesheet" />
-        <link href="/static/styles/responsive.css" rel="stylesheet" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"

@@ -11,14 +11,17 @@ const Bloc = ({ children, isLoading, title }) => (
                 <h5 className="truncate">{title}</h5>
             </Col>
         )}
-        <Col>
-            {isLoading && (
+        {isLoading && (
+            <Col>
                 <div className="activity-indicator-wrapper">
                     <ActivityIndicator />
                 </div>
-            )}
-            {!isLoading && children}
-        </Col>
+            </Col>
+        )}
+        {!isLoading &&
+            !React.isValidElement(children) &&
+            children.map((child, key) => child && <Col key={key}>{child}</Col>)}
+        {!isLoading && React.isValidElement(children) && <Col>{children}</Col>}
     </div>
 );
 

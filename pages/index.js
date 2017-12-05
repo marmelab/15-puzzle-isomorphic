@@ -5,7 +5,6 @@ import Button from '../src/components/button';
 import { ShowWhenOnline } from '../src/components/detectOffline';
 import Image from '../src/components/image';
 import Page from '../src/components/page';
-import Row from '../src/components/row';
 import Section from '../src/components/section';
 
 export default class Index extends Component {
@@ -18,9 +17,7 @@ export default class Index extends Component {
                             src="/static/images/banner.jpg"
                             alt="15 puzzle picture"
                         />
-                    </Bloc>
-                    <Row>
-                        <div className="buttons-wrapper">
+                        <div>
                             <Button
                                 color="green"
                                 icon="play_circle_outline"
@@ -36,7 +33,7 @@ export default class Index extends Component {
                                 />
                             </ShowWhenOnline>
                         </div>
-                    </Row>
+                    </Bloc>
                 </Section>
             </Page>
         );

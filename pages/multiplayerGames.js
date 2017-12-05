@@ -4,6 +4,7 @@ import { Router } from '../src/routes';
 
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
+import Col from '../src/components/col';
 import {
     ShowWhenOnline,
     ShowWhenOffline,
@@ -11,7 +12,6 @@ import {
 import ListGames from '../src/components/listGames';
 import Image from '../src/components/image';
 import Page from '../src/components/page';
-import Row from '../src/components/row';
 import Section from '../src/components/section';
 
 import {
@@ -91,9 +91,7 @@ export default class MultiplayerGames extends Component {
                         <Bloc title="Waiting for connection" isLoading="true">
                             <p>This page is only accessile online.</p>
                         </Bloc>
-                    </Section>
-                    <Section>
-                        <Row>
+                        <Col>
                             <div className="buttons-wrapper">
                                 <Button
                                     icon="keyboard_return"
@@ -102,7 +100,7 @@ export default class MultiplayerGames extends Component {
                                     route="index"
                                 />
                             </div>
-                        </Row>
+                        </Col>
                     </Section>
                 </ShowWhenOffline>
                 <ShowWhenOnline>
@@ -112,9 +110,7 @@ export default class MultiplayerGames extends Component {
                                 src="/static/images/banner.jpg"
                                 alt="15 puzzle picture"
                             />
-                        </Bloc>
-                        <Row>
-                            <div className="buttons-wrapper">
+                            <Col>
                                 <Button
                                     color="red"
                                     icon="keyboard_return"
@@ -133,8 +129,8 @@ export default class MultiplayerGames extends Component {
                                     label="New multiplayer game"
                                     onClick={this.handleClickMultiplayerGame}
                                 />
-                            </div>
-                        </Row>
+                            </Col>
+                        </Bloc>
                         <Bloc title="Join an open game" isLoading={isLoading}>
                             <ListGames
                                 games={openMultiplayerGames}

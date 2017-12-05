@@ -6,13 +6,13 @@ import { Router } from '../src/routes';
 
 import Bloc from '../src/components/bloc';
 import Button from '../src/components/button';
+import Col from '../src/components/col';
 import {
     ShowWhenOnline,
     ShowWhenOffline,
 } from '../src/components/detectOffline';
 import Grid from '../src/components/grid';
 import Page from '../src/components/page';
-import Row from '../src/components/row';
 import Section from '../src/components/section';
 
 import {
@@ -186,19 +186,15 @@ export default class MultiplayerGame extends Component {
                     <Section>
                         <Bloc title="Waiting for connection" isLoading="true">
                             <p>This page is only accessile online.</p>
-                        </Bloc>
-                    </Section>
-                    <Section>
-                        <Row>
-                            <div className="buttons-wrapper">
+                            <Col>
                                 <Button
                                     icon="keyboard_return"
                                     color="red"
                                     label="Back to home"
                                     route="index"
                                 />
-                            </div>
-                        </Row>
+                            </Col>
+                        </Bloc>
                     </Section>
                 </ShowWhenOffline>
                 <ShowWhenOnline>
@@ -219,19 +215,15 @@ export default class MultiplayerGame extends Component {
                                 grid={currentGrid}
                                 readOnly={isVictory}
                             />
-                        </Bloc>
-                    </Section>
-                    <Section>
-                        <Row>
-                            <div className="buttons-wrapper">
+                            <Col>
                                 <Button
                                     icon="keyboard_return"
                                     color="red"
                                     label="Back to home"
                                     route="multiplayer_games"
                                 />
-                            </div>
-                        </Row>
+                            </Col>
+                        </Bloc>
                     </Section>
                 </ShowWhenOnline>
             </Page>

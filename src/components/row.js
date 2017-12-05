@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Row = ({ children }) => (
-    <div className="row">
-        <div className="col s12">{children}</div>
-    </div>
-);
+const Row = ({ children }) => <div className="row">{children}</div>;
 
 Row.propTypes = {
     children: PropTypes.element.isRequired,

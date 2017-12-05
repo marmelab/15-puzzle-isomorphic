@@ -8,7 +8,6 @@ import Button from '../src/components/button';
 import { ShowWhenOnline } from '../src/components/detectOffline';
 import Grid from '../src/components/grid';
 import Page from '../src/components/page';
-import Row from '../src/components/row';
 import Section from '../src/components/section';
 
 import {
@@ -145,11 +144,7 @@ export default class Game extends Component {
                             suggestedTile !== 0 && (
                                 <p>You could move the tile {suggestedTile}</p>
                             )}
-                    </Bloc>
-                </Section>
-                <Section>
-                    <Row>
-                        <div className="buttons-wrapper">
+                        <div>
                             <Button
                                 icon="keyboard_return"
                                 color="red"
@@ -167,7 +162,7 @@ export default class Game extends Component {
                                     </ShowWhenOnline>
                                 )}
                         </div>
-                    </Row>
+                    </Bloc>
                 </Section>
             </Page>
         );
