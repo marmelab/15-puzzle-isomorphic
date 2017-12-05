@@ -13,7 +13,7 @@ const Grid = ({ grid, onClick, resolvedGrid, readOnly }) => {
         : null;
 
     return (
-        <div className="puzzle-column">
+        <div className="puzzle-column flow-text">
             {grid.map((row, rowKey) => (
                 <div className="puzzle-row" key={rowKey}>
                     {row.map(
