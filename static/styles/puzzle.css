@@ -40,3 +40,20 @@
     font-size: 20px;
     text-align: center;
 }
+
+.puzzle-tile-pulse {
+    position: relative;
+    border: none;
+    box-shadow: 0 0 0 0 #d32f2f;
+    background-size:cover;
+    background-repeat: no-repeat;
+    -webkit-animation: pulse-tile 1.5s infinite cubic-bezier(.17,.67,.83,.67);
+    -moz-animation: pulse-tile 1.5s infinite cubic-bezier(.17,.67,.83,.67);
+    -ms-animation: pulse-tile 1.5s infinite cubic-bezier(.17,.67,.83,.67);
+    animation: pulse-tile 1.5s infinite cubic-bezier(.17,.67,.83,.67);
+}
+
+@-webkit-keyframes pulse-tile {to {box-shadow: 0 0 0 35px #42a5f59e}}
+@-moz-keyframes pulse-tile {to {box-shadow: 0 0 0 35px #42a5f59e}}
+@-ms-keyframes pulse-tile {to {box-shadow: 0 0 0 35px #42a5f59e}}
+@keyframes pulse-tile {to {box-shadow: 0 0 0 35px #42a5f59e}}
