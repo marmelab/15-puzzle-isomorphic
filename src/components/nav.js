@@ -11,16 +11,14 @@ const Nav = ({ colors, title }) => {
             return acc;
         }, {}),
     );
-    const titleClass = ClassNames({
-        'brand-logo': true,
-        'nav-brand-responsive': true,
-        truncate: true,
-    });
+
     return (
         <nav className={navClass} role="navigation">
             <div className="nav-wrapper container">
                 <Link route="index">
-                    <a className={titleClass}>{title}</a>
+                    <a className="brand-logo nav-brand-responsive truncate">
+                        {title}
+                    </a>
                 </Link>
             </div>
         </nav>
