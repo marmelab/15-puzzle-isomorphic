@@ -1,8 +1,8 @@
 .bloc {
     background-color: #e3f2fd;
     border-radius: 2px;
-    margin-bottom: 20px;
-    padding: 10px;
+    margin-bottom: 1em;
+    padding: 1em;
 }
 
 .buttons-wrapper a {
@@ -18,8 +18,8 @@
 .activity-indicator-wrapper {
     align-items: center;
     display: flex;
-    height: 300px;
     justify-content: center;
+    padding: 1em;
 }
 
 .clickable {

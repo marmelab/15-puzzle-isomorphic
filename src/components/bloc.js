@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import ActivityIndicator from './activityIndicator';
 
 const Bloc = ({ children, isLoading, title }) => (
-    <div className="bloc z-depth-3">
+    <div className="bloc z-depth-3 flow-text">
         {title && (
             <div className="col s12">
-                <h5>{title}</h5>
+                <h5 className="truncate">{title}</h5>
             </div>
         )}
         <div className="col s12">
