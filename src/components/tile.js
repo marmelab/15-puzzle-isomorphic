@@ -6,6 +6,7 @@ export default class Tile extends PureComponent {
     static propTypes = {
         enabled: PropTypes.bool,
         onClick: PropTypes.func.isRequired,
+        showNumbers: PropTypes.bool,
         tileImage: PropTypes.string,
         tileImageCoords: PropTypes.string,
         tileValue: PropTypes.number.isRequired,
@@ -13,6 +14,7 @@ export default class Tile extends PureComponent {
 
     static defaultProps = {
         enabled: true,
+        showNumbers: true,
     };
 
     handleClick = () => {
@@ -24,7 +26,14 @@ export default class Tile extends PureComponent {
     };
 
     render() {
-        const { enabled, tileImage, tileImageCoords, tileValue } = this.props;
+        const {
+            enabled,
+            showNumbers,
+            tileImage,
+            tileImageCoords,
+            tileValue,
+        } = this.props;
+
         const tileClass = ClassNames({
             'puzzle-tile': true,
             'puzzle-tile-hover': enabled,
@@ -41,7 +50,9 @@ export default class Tile extends PureComponent {
 
         return (
             <div className={tileClass} style={style} onClick={this.handleClick}>
-                <span className="puzzle-tile-value">{tileValue}</span>
+                {showNumbers && (
+                    <span className="puzzle-tile-value">{tileValue}</span>
+                )}
             </div>
         );
     }
