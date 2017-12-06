@@ -4,8 +4,8 @@ import { Link } from '../routes';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
-const Button = ({ color, icon, label, onClick, route }) => {
-    const buttonClass = ClassNames({
+const Button = ({ className, color, icon, label, onClick, route }) => {
+    const buttonClass = ClassNames(className, {
         btn: true,
         [color]: color,
     });
@@ -29,6 +29,7 @@ const Button = ({ color, icon, label, onClick, route }) => {
 };
 
 Button.propTypes = {
+    className: PropTypes.string,
     color: PropTypes.string,
     icon: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
