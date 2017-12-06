@@ -144,15 +144,9 @@ export default class Game extends Component {
                             suggestedTile !== 0 && (
                                 <p>You could move the tile {suggestedTile}</p>
                             )}
-                        <div className="center">
-                            <Button
-                                icon="keyboard_return"
-                                color="red"
-                                label="Back to home"
-                                route="index"
-                            />
-                            {!isLoading &&
-                                !isVictory && (
+                        {!isLoading &&
+                            !isVictory && (
+                                <div className="center">
                                     <ShowWhenOnline>
                                         <Button
                                             icon="help_outline"
@@ -160,8 +154,8 @@ export default class Game extends Component {
                                             onClick={this.handleClickSuggest}
                                         />
                                     </ShowWhenOnline>
-                                )}
-                        </div>
+                                </div>
+                            )}
                     </Block>
                 </Section>
             </Page>

@@ -1,41 +1,48 @@
 import React, { Component } from 'react';
 
-import Block from '../src/components/block';
 import Button from '../src/components/button';
-import { ShowWhenOnline } from '../src/components/detectOffline';
+import FloatingButton from '../src/components/floatingButton';
 import Image from '../src/components/image';
 import Page from '../src/components/page';
+import Row from '../src/components/row';
 import Section from '../src/components/section';
+import { ShowWhenOnline } from '../src/components/detectOffline';
 
 export default class Index extends Component {
     render() {
         return (
             <Page>
                 <Section>
-                    <Block>
+                    <Row>
                         <Image
                             className="center"
                             src="/static/images/banner.jpg"
                             alt="15 puzzle picture"
                         />
-                        <div className="center">
-                            <Button
-                                color="green"
-                                icon="play_circle_outline"
-                                label="Single game"
-                                route="game"
-                            />
-                            <ShowWhenOnline>
-                                <Button
-                                    color="blue"
-                                    icon="play_circle_outline"
-                                    label="Multiplayer mode"
-                                    route="multiplayer_games"
-                                />
-                            </ShowWhenOnline>
-                        </div>
-                    </Block>
+                    </Row>
                 </Section>
+                <FloatingButton className="pulse" icon="play_circle_outline">
+                    <li>
+                        <Button
+                            className="btn-floating"
+                            color="green"
+                            icon="person"
+                            label="Single game"
+                            route="game"
+                        />
+                    </li>
+                    <ShowWhenOnline>
+                        <li>
+                            <Button
+                                className="btn-floating"
+                                color="blue"
+                                icon="people"
+                                label="Multiplayer mode"
+                                route="multiplayer_games"
+                            />
+                        </li>
+                    </ShowWhenOnline>
+                </FloatingButton>
             </Page>
         );
     }

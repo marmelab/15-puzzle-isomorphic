@@ -4,15 +4,14 @@ import { Router } from '../src/routes';
 
 import Block from '../src/components/block';
 import Button from '../src/components/button';
-import Col from '../src/components/col';
+import FloatingButton from '../src/components/floatingButton';
+import ListGames from '../src/components/listGames';
+import Page from '../src/components/page';
+import Section from '../src/components/section';
 import {
     ShowWhenOnline,
     ShowWhenOffline,
 } from '../src/components/detectOffline';
-import ListGames from '../src/components/listGames';
-import Image from '../src/components/image';
-import Page from '../src/components/page';
-import Section from '../src/components/section';
 
 import {
     gamesFactory,
@@ -91,46 +90,10 @@ export default class MultiplayerGames extends Component {
                         <Block title="Waiting for connection" isLoading="true">
                             <p>This page is only accessile online.</p>
                         </Block>
-                        <Col>
-                            <div className="buttons-wrapper">
-                                <Button
-                                    icon="keyboard_return"
-                                    color="red"
-                                    label="Back to home"
-                                    route="index"
-                                />
-                            </div>
-                        </Col>
                     </Section>
                 </ShowWhenOffline>
                 <ShowWhenOnline>
                     <Section>
-                        <Block title="Welcome to the multiplayer 15 puzzle game!">
-                            <Image
-                                src="/static/images/banner.jpg"
-                                alt="15 puzzle picture"
-                            />
-                            <Col>
-                                <Button
-                                    color="red"
-                                    icon="keyboard_return"
-                                    label="Back to home"
-                                    route="index"
-                                />
-                                <Button
-                                    color="blue"
-                                    icon="refresh"
-                                    label="Refresh"
-                                    onClick={this.handleRefreshGames}
-                                />
-                                <Button
-                                    color="green"
-                                    icon="play_circle_outline"
-                                    label="New multiplayer game"
-                                    onClick={this.handleClickMultiplayerGame}
-                                />
-                            </Col>
-                        </Block>
                         <Block title="Join an open game" isLoading={isLoading}>
                             <ListGames
                                 games={openMultiplayerGames}
@@ -138,6 +101,26 @@ export default class MultiplayerGames extends Component {
                             />
                         </Block>
                     </Section>
+                    <FloatingButton className="pulse" icon="add">
+                        <li>
+                            <Button
+                                className="btn-floating"
+                                color="green"
+                                icon="play_circle_outline"
+                                label="New multiplayer game"
+                                onClick={this.handleClickMultiplayerGame}
+                            />
+                        </li>
+                        <li>
+                            <Button
+                                className="btn-floating"
+                                color="blue"
+                                icon="refresh"
+                                label="Refresh"
+                                onClick={this.handleRefreshGames}
+                            />
+                        </li>
+                    </FloatingButton>
                 </ShowWhenOnline>
             </Page>
         );

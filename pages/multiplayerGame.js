@@ -5,15 +5,13 @@ import config from '../src/config';
 import { Router } from '../src/routes';
 
 import Block from '../src/components/block';
-import Button from '../src/components/button';
-import Col from '../src/components/col';
+import Grid from '../src/components/grid';
+import Page from '../src/components/page';
+import Section from '../src/components/section';
 import {
     ShowWhenOnline,
     ShowWhenOffline,
 } from '../src/components/detectOffline';
-import Grid from '../src/components/grid';
-import Page from '../src/components/page';
-import Section from '../src/components/section';
 
 import {
     gameFactory,
@@ -186,14 +184,6 @@ export default class MultiplayerGame extends Component {
                     <Section>
                         <Block title="Waiting for connection" isLoading="true">
                             <p>This page is only accessile online.</p>
-                            <Col>
-                                <Button
-                                    icon="keyboard_return"
-                                    color="red"
-                                    label="Back to home"
-                                    route="index"
-                                />
-                            </Col>
                         </Block>
                     </Section>
                 </ShowWhenOffline>
@@ -215,14 +205,6 @@ export default class MultiplayerGame extends Component {
                                 grid={currentGrid}
                                 readOnly={isVictory}
                             />
-                            <Col>
-                                <Button
-                                    icon="keyboard_return"
-                                    color="red"
-                                    label="Back to home"
-                                    route="multiplayer_games"
-                                />
-                            </Col>
                         </Block>
                     </Section>
                 </ShowWhenOnline>
