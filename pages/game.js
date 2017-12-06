@@ -27,7 +27,10 @@ export const title = (isLoading, isVictory, turn) => {
     if (isVictory) {
         return `Congratulations, you have solved the puzzle in ${turn} turns!`;
     }
-    return `Turn ${turn}`;
+    if (turn === 0) {
+        return 'Start the game by moving a tile';
+    }
+    return `${turn} moves`;
 };
 
 export default class Game extends Component {
@@ -128,8 +131,8 @@ export default class Game extends Component {
             <Page>
                 <Section>
                     <Block
-                        title={title(isLoading, isVictory, turn)}
                         isLoading={isLoading}
+                        title={title(isLoading, isVictory, turn)}
                     >
                         {currentGrid && (
                             <Grid

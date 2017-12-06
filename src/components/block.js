@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 
 import ActivityIndicator from './activityIndicator';
 import Col from './col';
+import Row from './row';
 
 const Block = ({ children, isLoading, title }) => (
-    <div className="block">
-        {title && (
-            <Col>
-                <h5 className="center truncate">{title}</h5>
-            </Col>
-        )}
+    <Row className="block">
         {isLoading && (
             <Col>
                 <div className="center  activity-indicator-wrapper">
@@ -22,7 +18,12 @@ const Block = ({ children, isLoading, title }) => (
             !React.isValidElement(children) &&
             children.map((child, key) => child && <Col key={key}>{child}</Col>)}
         {!isLoading && React.isValidElement(children) && <Col>{children}</Col>}
-    </div>
+        {title && (
+            <Col>
+                <h5 className="center truncate">{title}</h5>
+            </Col>
+        )}
+    </Row>
 );
 
 Block.propTypes = {

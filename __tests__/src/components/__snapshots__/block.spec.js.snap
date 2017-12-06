@@ -2,9 +2,8 @@
 
 exports[`Bloc should render the Bloc correctly 1`] = `
 <div
-  className="bloc z-depth-3"
+  className="row"
 >
-  
   <div
     className="col s12"
   >
@@ -12,5 +11,6 @@ exports[`Bloc should render the Bloc correctly 1`] = `
       Hello
     </div>
   </div>
+  
 </div>
 `;

@@ -42,4 +42,9 @@ describe('Button', () => {
         );
         expect(app.find('i').text()).toEqual('icon');
     });
+
+    test('should set a title', () => {
+        const app = shallow(<Button icon="icon" label="label" route="path" />);
+        expect(app.find('a').prop('title')).toEqual('label');
+    });
 });

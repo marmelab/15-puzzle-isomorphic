@@ -41,7 +41,10 @@ export const title = (
         }
         return `Sorry, you opponent solved the puzzle in ${turn} turns!`;
     }
-    return `Turn ${turn}`;
+    if (turn === 0) {
+        return 'Start the game by moving a tile';
+    }
+    return `${turn} moves`;
 };
 
 export default class MultiplayerGame extends Component {
