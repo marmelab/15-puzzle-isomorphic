@@ -13,7 +13,7 @@ const Button = ({ className, color, icon, label, onClick, route }) => {
     if (route) {
         return (
             <Link href="" route={route}>
-                <a className={buttonClass}>
+                <a className={buttonClass} title={label}>
                     <i className="material-icons left">{icon}</i>
                     {label}
                 </a>
@@ -21,7 +21,7 @@ const Button = ({ className, color, icon, label, onClick, route }) => {
         );
     }
     return (
-        <a onClick={onClick} className={buttonClass}>
+        <a onClick={onClick} className={buttonClass} title={label}>
             <i className="material-icons left">{icon}</i>
             {label}
         </a>
