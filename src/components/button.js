@@ -8,6 +8,8 @@ const Button = ({ className, color, icon, label, onClick, route }) => {
     const buttonClass = ClassNames(className, {
         btn: true,
         [color]: color,
+        'waves-effect': true,
+        'waves-light': true,
     });
 
     if (route) {
