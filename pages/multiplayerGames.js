@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Router } from '../src/routes';
 
-import Bloc from '../src/components/bloc';
+import Block from '../src/components/block';
 import Button from '../src/components/button';
 import Col from '../src/components/col';
 import {
@@ -88,9 +88,9 @@ export default class MultiplayerGames extends Component {
             <Page>
                 <ShowWhenOffline>
                     <Section>
-                        <Bloc title="Waiting for connection" isLoading="true">
+                        <Block title="Waiting for connection" isLoading="true">
                             <p>This page is only accessile online.</p>
-                        </Bloc>
+                        </Block>
                         <Col>
                             <div className="buttons-wrapper">
                                 <Button
@@ -105,7 +105,7 @@ export default class MultiplayerGames extends Component {
                 </ShowWhenOffline>
                 <ShowWhenOnline>
                     <Section>
-                        <Bloc title="Welcome to the multiplayer 15 puzzle game!">
+                        <Block title="Welcome to the multiplayer 15 puzzle game!">
                             <Image
                                 src="/static/images/banner.jpg"
                                 alt="15 puzzle picture"
@@ -130,13 +130,13 @@ export default class MultiplayerGames extends Component {
                                     onClick={this.handleClickMultiplayerGame}
                                 />
                             </Col>
-                        </Bloc>
-                        <Bloc title="Join an open game" isLoading={isLoading}>
+                        </Block>
+                        <Block title="Join an open game" isLoading={isLoading}>
                             <ListGames
                                 games={openMultiplayerGames}
                                 onGameSelected={this.handleOnGameSelected}
                             />
-                        </Bloc>
+                        </Block>
                     </Section>
                 </ShowWhenOnline>
             </Page>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Bloc from '../src/components/bloc';
+import Block from '../src/components/block';
 import Button from '../src/components/button';
 import { ShowWhenOnline } from '../src/components/detectOffline';
 import Image from '../src/components/image';
@@ -12,12 +12,13 @@ export default class Index extends Component {
         return (
             <Page>
                 <Section>
-                    <Bloc title="Welcome to the 15 puzzle game!">
+                    <Block>
                         <Image
+                            className="center"
                             src="/static/images/banner.jpg"
                             alt="15 puzzle picture"
                         />
-                        <div>
+                        <div className="center">
                             <Button
                                 color="green"
                                 icon="play_circle_outline"
@@ -33,7 +34,7 @@ export default class Index extends Component {
                                 />
                             </ShowWhenOnline>
                         </div>
-                    </Bloc>
+                    </Block>
                 </Section>
             </Page>
         );

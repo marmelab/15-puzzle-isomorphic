@@ -17,10 +17,10 @@
     align-items: center;
     display: flex;
     background-color: #d32f2f;
-    height: 4em;
+    height: 5em;
     justify-content: center;
     margin: 0.25em;
-    width: 4em;
+    width: 5em;
 }
 
 .puzzle-tile-hover:hover {
@@ -29,9 +29,9 @@
 }
 
 .puzzle-tile-empty {
-    height: 4em;
+    height: 5em;
     margin: 0.25em;
-    width: 4em;
+    width: 5em;
 }
 
 .puzzle-tile-value {

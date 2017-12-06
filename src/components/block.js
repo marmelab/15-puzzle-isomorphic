@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 import ActivityIndicator from './activityIndicator';
 import Col from './col';
 
-const Bloc = ({ children, isLoading, title }) => (
-    <div className="bloc z-depth-3 flow-text">
+const Block = ({ children, isLoading, title }) => (
+    <div className="block">
         {title && (
             <Col>
-                <h5 className="truncate">{title}</h5>
+                <h5 className="center truncate">{title}</h5>
             </Col>
         )}
         {isLoading && (
             <Col>
-                <div className="activity-indicator-wrapper">
+                <div className="center  activity-indicator-wrapper">
                     <ActivityIndicator />
                 </div>
             </Col>
@@ -25,7 +25,7 @@ const Bloc = ({ children, isLoading, title }) => (
     </div>
 );
 
-Bloc.propTypes = {
+Block.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.element,
         PropTypes.arrayOf(PropTypes.element),
@@ -34,9 +34,9 @@ Bloc.propTypes = {
     title: PropTypes.string,
 };
 
-Bloc.defaultProps = {
+Block.defaultProps = {
     isLoading: false,
     title: '',
 };
 
-export default Bloc;
+export default Block;

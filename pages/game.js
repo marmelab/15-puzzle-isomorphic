@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import config from '../src/config';
 
-import Bloc from '../src/components/bloc';
+import Block from '../src/components/block';
 import Button from '../src/components/button';
 import { ShowWhenOnline } from '../src/components/detectOffline';
 import Grid from '../src/components/grid';
@@ -127,7 +127,7 @@ export default class Game extends Component {
         return (
             <Page>
                 <Section>
-                    <Bloc
+                    <Block
                         title={title(isLoading, isVictory, turn)}
                         isLoading={isLoading}
                     >
@@ -144,7 +144,7 @@ export default class Game extends Component {
                             suggestedTile !== 0 && (
                                 <p>You could move the tile {suggestedTile}</p>
                             )}
-                        <div>
+                        <div className="center">
                             <Button
                                 icon="keyboard_return"
                                 color="red"
@@ -162,7 +162,7 @@ export default class Game extends Component {
                                     </ShowWhenOnline>
                                 )}
                         </div>
-                    </Bloc>
+                    </Block>
                 </Section>
             </Page>
         );

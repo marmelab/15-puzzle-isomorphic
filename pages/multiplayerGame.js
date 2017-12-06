@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import config from '../src/config';
 import { Router } from '../src/routes';
 
-import Bloc from '../src/components/bloc';
+import Block from '../src/components/block';
 import Button from '../src/components/button';
 import Col from '../src/components/col';
 import {
@@ -184,7 +184,7 @@ export default class MultiplayerGame extends Component {
             <Page>
                 <ShowWhenOffline>
                     <Section>
-                        <Bloc title="Waiting for connection" isLoading="true">
+                        <Block title="Waiting for connection" isLoading="true">
                             <p>This page is only accessile online.</p>
                             <Col>
                                 <Button
@@ -194,12 +194,12 @@ export default class MultiplayerGame extends Component {
                                     route="index"
                                 />
                             </Col>
-                        </Bloc>
+                        </Block>
                     </Section>
                 </ShowWhenOffline>
                 <ShowWhenOnline>
                     <Section>
-                        <Bloc
+                        <Block
                             title={title(
                                 id,
                                 isLoading,
@@ -223,7 +223,7 @@ export default class MultiplayerGame extends Component {
                                     route="multiplayer_games"
                                 />
                             </Col>
-                        </Bloc>
+                        </Block>
                     </Section>
                 </ShowWhenOnline>
             </Page>

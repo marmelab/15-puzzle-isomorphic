@@ -1,12 +1,10 @@
-.bloc {
-    background-color: #e3f2fd;
+.block {
     border-radius: 2px;
-    margin-bottom: 1em;
-    padding: 1em;
+    margin-bottom: 1rem;
 }
 
 a.btn {
-    margin: 5px;
+    margin: 0 5px;
 }
 
 .image-wrapper {
@@ -14,14 +12,13 @@ a.btn {
     background-color: #000;
     display: flex;
     justify-content: center;
-    margin: .25em;
 }
 
 .activity-indicator-wrapper {
     align-items: center;
     display: flex;
     justify-content: center;
-    padding: 1em;
+    padding: 1rem;
 }
 
 .clickable {
@@ -30,4 +27,11 @@ a.btn {
 
 .nav-brand-responsive {
     width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+    a.btn {
+        margin: 5px 0;
+        width: 100%;
+    }
 }
