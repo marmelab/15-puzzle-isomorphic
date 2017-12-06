@@ -13,6 +13,11 @@ export default class Page extends PureComponent {
             PropTypes.element,
             PropTypes.arrayOf(PropTypes.element),
         ]).isRequired,
+        title: PropTypes.string,
+    };
+
+    static defaultProps = {
+        title: '15 Puzzle',
     };
 
     componentDidMount() {
@@ -33,19 +38,16 @@ export default class Page extends PureComponent {
     }
 
     render() {
-        const { children } = this.props;
+        const { children, title } = this.props;
 
         return (
             <div>
-                <CustomHead />
+                <CustomHead title={title} />
                 <ShowWhenOnline>
-                    <Nav />
+                    <Nav title={title} />
                 </ShowWhenOnline>
                 <ShowWhenOffline>
-                    <Nav
-                        title="15 Puzzle Isomorphic - Offline mode"
-                        colors={['grey', 'lighten-1']}
-                    />
+                    <Nav title={title} colors={['grey', 'lighten-1']} />
                 </ShowWhenOffline>
                 <section className="container">{children}</section>
             </div>

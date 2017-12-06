@@ -1,11 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
+import PropTypes from 'prop-types';
 
-const CustomHead = () => (
+const CustomHead = ({ title }) => (
     <Head>
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>15 Puzzle Isomorphic!</title>
+        <title>{title}</title>
         <link
             rel="icon"
             type="image/x-icon"
@@ -24,5 +25,13 @@ const CustomHead = () => (
         <meta name="theme-color" content="#42a5f5" />
     </Head>
 );
+
+CustomHead.propTypes = {
+    title: PropTypes.string,
+};
+
+CustomHead.defaultProps = {
+    title: '15 Puzzle',
+};
 
 export default CustomHead;
