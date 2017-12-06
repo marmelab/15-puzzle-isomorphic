@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import config from '../src/config';
 
+import ActivityIndicator from '../src/components/activityIndicator';
 import Block from '../src/components/block';
 import Button from '../src/components/button';
 import { ShowWhenOnline } from '../src/components/detectOffline';
@@ -142,20 +143,22 @@ export default class Game extends Component {
                                 readOnly={isVictory}
                             />
                         )}
-                        {loadingAdvice && <p>Looking for an advice...</p>}
-                        {!loadingAdvice &&
-                            suggestedTile !== 0 && (
-                                <p>You could move the tile {suggestedTile}</p>
-                            )}
                         {!isLoading &&
                             !isVictory && (
                                 <div className="center">
                                     <ShowWhenOnline>
-                                        <Button
-                                            icon="help_outline"
-                                            label="Ask for help"
-                                            onClick={this.handleClickSuggest}
-                                        />
+                                        {loadingAdvice && (
+                                            <ActivityIndicator size="small" />
+                                        )}
+                                        {!loadingAdvice && (
+                                            <Button
+                                                icon="help_outline"
+                                                label="Ask for help"
+                                                onClick={
+                                                    this.handleClickSuggest
+                                                }
+                                            />
+                                        )}
                                     </ShowWhenOnline>
                                 </div>
                             )}
