@@ -21,6 +21,7 @@ const CustomHead = () => (
         />
         <link href="/static/styles/main.css" rel="stylesheet" />
         <link href="/static/styles/puzzle.css" rel="stylesheet" />
+        <meta name="theme-color" content="#42a5f5" />
     </Head>
 );
 
