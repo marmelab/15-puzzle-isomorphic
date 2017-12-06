@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
-import { Link } from '../routes';
+import { Link, Router } from '../routes';
 
 const Nav = ({ colors, title }) => {
     const navClass = ClassNames(
@@ -15,11 +15,22 @@ const Nav = ({ colors, title }) => {
     return (
         <nav className={navClass} role="navigation">
             <div className="nav-wrapper container">
-                <Link route="index">
-                    <a className="brand-logo nav-brand-responsive truncate">
+                {Router.route === '/' && (
+                    <Link route="index">
+                        <a className="brand-logo nav-brand-responsive truncate">
+                            {title}
+                        </a>
+                    </Link>
+                )}
+                {Router.route !== '/' && (
+                    <a
+                        onClick={Router.back}
+                        className="brand-logo nav-brand-responsive truncate"
+                    >
+                        <i className="material-icons">arrow_back</i>
                         {title}
                     </a>
-                </Link>
+                )}
             </div>
         </nav>
     );

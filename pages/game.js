@@ -128,7 +128,7 @@ export default class Game extends Component {
         } = this.state;
 
         return (
-            <Page>
+            <Page navTitle="Singleplayer" title="Singleplayer | 15 puzzle">
                 <Section>
                     <Block
                         isLoading={isLoading}

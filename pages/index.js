@@ -21,7 +21,7 @@ export default class Index extends Component {
                         />
                     </Row>
                 </Section>
-                <FloatingButton className="pulse" icon="play_circle_outline">
+                <FloatingButton icon="play_circle_outline">
                     <li>
                         <Button
                             className="btn-floating"

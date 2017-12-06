@@ -182,10 +182,10 @@ export default class MultiplayerGame extends Component {
         const isVictory = isWinner && winnerId === playerId;
 
         return (
-            <Page>
+            <Page navTitle="" title="Multiplayer | 15 puzzle">
                 <ShowWhenOffline>
                     <Section>
-                        <Block title="Waiting for connection" isLoading="true">
+                        <Block title="Waiting for connection" isLoading={true}>
                             <p>This page is only accessile online.</p>
                         </Block>
                     </Section>

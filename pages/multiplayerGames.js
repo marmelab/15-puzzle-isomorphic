@@ -84,7 +84,7 @@ export default class MultiplayerGames extends Component {
         const { isLoading, openMultiplayerGames } = this.state;
 
         return (
-            <Page>
+            <Page navTitle="Open games" title="Multiplayer games | 15 puzzle">
                 <ShowWhenOffline>
                     <Section>
                         <Block title="Waiting for connection" isLoading="true">
@@ -101,7 +101,7 @@ export default class MultiplayerGames extends Component {
                             />
                         </Block>
                     </Section>
-                    <FloatingButton className="pulse" icon="add">
+                    <FloatingButton icon="add">
                         <li>
                             <Button
                                 className="btn-floating"

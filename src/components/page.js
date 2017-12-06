@@ -13,10 +13,12 @@ export default class Page extends PureComponent {
             PropTypes.element,
             PropTypes.arrayOf(PropTypes.element),
         ]).isRequired,
+        navTitle: PropTypes.string,
         title: PropTypes.string,
     };
 
     static defaultProps = {
+        navTitle: '15 Puzzle',
         title: '15 Puzzle',
     };
 
@@ -38,13 +40,13 @@ export default class Page extends PureComponent {
     }
 
     render() {
-        const { children, title } = this.props;
+        const { children, navTitle, title } = this.props;
 
         return (
             <div>
                 <CustomHead title={title} />
                 <ShowWhenOnline>
-                    <Nav title={title} />
+                    <Nav title={navTitle} />
                 </ShowWhenOnline>
                 <ShowWhenOffline>
                     <Nav title={title} colors={['grey', 'lighten-1']} />
