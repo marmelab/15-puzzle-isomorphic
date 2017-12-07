@@ -4,8 +4,8 @@ import renderer from 'react-test-renderer';
 
 import Block from '../../../src/components/Block';
 
-describe('Bloc', () => {
-    test('should render Bloc without error', () => {
+describe('Block', () => {
+    test('should render Block without error', () => {
         renderer.create(
             <Block>
                 <div>Hello</div>
@@ -13,7 +13,7 @@ describe('Bloc', () => {
         );
     });
 
-    test('should render the Bloc correctly', () => {
+    test('should render the Block correctly', () => {
         const component = renderer.create(
             <Block>
                 <div>Hello</div>
@@ -39,6 +39,6 @@ describe('Bloc', () => {
             </Block>,
         );
 
-        expect(app.find('.activity-indicator-wrapper').length).toEqual(1);
+        expect(app.find('.preloader-wrapper').length).toEqual(1);
     });
 });

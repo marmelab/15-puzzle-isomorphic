@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Bloc should render the Bloc correctly 1`] = `
+exports[`Block should render the Block correctly 1`] = `
 <div
   className="row"
 >
