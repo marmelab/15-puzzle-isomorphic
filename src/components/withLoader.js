@@ -6,13 +6,14 @@ import ActivityIndicator from './ActivityIndicator';
 export default function withLoader(WrappedComponent) {
     return class Loader extends PureComponent {
         static propTypes = {
-            isLoading: PropTypes.bool.isRequired,
+            isLoading: PropTypes.bool,
             size: PropTypes.string,
             ...WrappedComponent.propTypes,
         };
 
         static defaultProps = {
-            isLoading: true,
+            isLoading: false,
+            size: 'small',
             ...WrappedComponent.defaultProps,
         };
 
