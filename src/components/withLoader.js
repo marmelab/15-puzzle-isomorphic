@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ActivityIndicator from './ActivityIndicator';
 
 export default function withLoader(WrappedComponent) {
-    return class Loader extends PureComponent {
+    return class LoaderHOC extends PureComponent {
         static propTypes = {
             isLoading: PropTypes.bool,
             size: PropTypes.string,
