@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import config from '../src/config';
 
-import ActivityIndicator from '../src/components/activityIndicator';
 import Block from '../src/components/block';
 import Button from '../src/components/button';
 import { ShowWhenOnline } from '../src/components/detectOffline';
 import Grid from '../src/components/grid';
 import Page from '../src/components/page';
 import Section from '../src/components/section';
+import withLoader from '../src/components/withLoader';
 
 import {
     areGridsEquals,
@@ -20,6 +20,8 @@ import {
 import { shuffle } from '../src/core/shuffler';
 
 import { suggestFactory } from '../src/services/suggestMoveService';
+
+const LoaderButton = withLoader(Button);
 
 export const title = (isLoading, isVictory, turn) => {
     if (isLoading) {
@@ -141,27 +143,22 @@ export default class Game extends Component {
                                 grid={currentGrid}
                                 resolvedGrid={resolvedGrid}
                                 readOnly={isVictory}
+                                tileToHighlight={suggestedTile}
                             />
                         )}
-                        {!isLoading &&
-                            !isVictory && (
-                                <div className="center">
-                                    <ShowWhenOnline>
-                                        {loadingAdvice && (
-                                            <ActivityIndicator size="small" />
-                                        )}
-                                        {!loadingAdvice && (
-                                            <Button
-                                                icon="help_outline"
-                                                label="Ask for help"
-                                                onClick={
-                                                    this.handleClickSuggest
-                                                }
-                                            />
-                                        )}
-                                    </ShowWhenOnline>
-                                </div>
-                            )}
+                        {!isVictory && (
+                            <div className="center">
+                                <ShowWhenOnline>
+                                    <LoaderButton
+                                        isLoading={loadingAdvice}
+                                        size="small"
+                                        icon="help_outline"
+                                        label="Ask for help"
+                                        onClick={this.handleClickSuggest}
+                                    />
+                                </ShowWhenOnline>
+                            </div>
+                        )}
                     </Block>
                 </Section>
             </Page>

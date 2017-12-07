@@ -6,6 +6,7 @@ export default class Tile extends PureComponent {
     static propTypes = {
         enabled: PropTypes.bool,
         onClick: PropTypes.func.isRequired,
+        pulse: PropTypes.bool,
         showNumbers: PropTypes.bool,
         tileImage: PropTypes.string,
         tileImageCoords: PropTypes.string,
@@ -14,6 +15,7 @@ export default class Tile extends PureComponent {
 
     static defaultProps = {
         enabled: true,
+        pulse: false,
         showNumbers: true,
     };
 
@@ -28,6 +30,7 @@ export default class Tile extends PureComponent {
     render() {
         const {
             enabled,
+            pulse,
             showNumbers,
             tileImage,
             tileImageCoords,
@@ -35,6 +38,7 @@ export default class Tile extends PureComponent {
         } = this.props;
 
         const tileClass = ClassNames({
+            pulse: pulse,
             'puzzle-tile': true,
             'puzzle-tile-hover': enabled,
             'z-depth-3': enabled,

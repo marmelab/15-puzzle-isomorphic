@@ -7,7 +7,14 @@ import Tile from './tile';
 
 import { associateTileToBackground } from '../core/helper';
 
-const Grid = ({ grid, onClick, resolvedGrid, readOnly, showNumbers }) => {
+const Grid = ({
+    grid,
+    onClick,
+    resolvedGrid,
+    readOnly,
+    showNumbers,
+    tileToHighlight,
+}) => {
     const tileToBg = resolvedGrid
         ? associateTileToBackground(resolvedGrid)
         : null;
@@ -16,33 +23,36 @@ const Grid = ({ grid, onClick, resolvedGrid, readOnly, showNumbers }) => {
         <div className="puzzle-column flow-text">
             {grid.map((row, rowKey) => (
                 <div className="puzzle-row" key={rowKey}>
-                    {row.map(
-                        tileValue =>
-                            tileValue === 0 ? (
-                                <div
-                                    key={tileValue}
-                                    className="puzzle-tile-empty"
-                                />
-                            ) : tileToBg ? (
-                                <Tile
-                                    key={tileValue}
-                                    enabled={!readOnly}
-                                    tileImage={defaultImageUrl}
-                                    tileImageCoords={tileToBg[tileValue]}
-                                    onClick={onClick}
-                                    showNumbers={showNumbers}
-                                    tileValue={tileValue}
-                                />
-                            ) : (
-                                <Tile
-                                    key={tileValue}
-                                    enabled={!readOnly}
-                                    onClick={onClick}
-                                    showNumbers={showNumbers}
-                                    tileValue={tileValue}
-                                />
-                            ),
-                    )}
+                    {row.map(tileValue => {
+                        const pulse = tileValue === tileToHighlight;
+
+                        return tileValue === 0 ? (
+                            <div
+                                key={tileValue}
+                                className="puzzle-tile-empty"
+                            />
+                        ) : tileToBg ? (
+                            <Tile
+                                key={tileValue}
+                                enabled={!readOnly}
+                                tileImage={defaultImageUrl}
+                                tileImageCoords={tileToBg[tileValue]}
+                                onClick={onClick}
+                                showNumbers={showNumbers}
+                                tileValue={tileValue}
+                                pulse={pulse}
+                            />
+                        ) : (
+                            <Tile
+                                key={tileValue}
+                                enabled={!readOnly}
+                                onClick={onClick}
+                                showNumbers={showNumbers}
+                                tileValue={tileValue}
+                                pulse={pulse}
+                            />
+                        );
+                    })}
                 </div>
             ))}
         </div>
@@ -51,10 +61,11 @@ const Grid = ({ grid, onClick, resolvedGrid, readOnly, showNumbers }) => {
 
 Grid.propTypes = {
     grid: PropTypes.array.isRequired,
-    resolvedGrid: PropTypes.array,
     onClick: PropTypes.func.isRequired,
     readOnly: PropTypes.bool,
+    resolvedGrid: PropTypes.array,
     showNumbers: PropTypes.bool,
+    tileToHighlight: PropTypes.number,
 };
 
 Grid.defaultProps = {
