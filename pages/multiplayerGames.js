@@ -94,7 +94,7 @@ export default class MultiplayerGames extends Component {
                 </ShowWhenOffline>
                 <ShowWhenOnline>
                     <Section>
-                        <Block title="Join an open game" isLoading={isLoading}>
+                        <Block isLoading={isLoading}>
                             <ListGames
                                 games={openMultiplayerGames}
                                 onGameSelected={this.handleOnGameSelected}
