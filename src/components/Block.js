@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Col from './col';
-import Row from './row';
+import Col from './Col';
+import Row from './Row';
 
 import withLoader from './withLoader';
 

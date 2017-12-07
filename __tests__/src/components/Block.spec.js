@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Block from '../../../src/components/block';
+import Block from '../../../src/components/Block';
 
 describe('Bloc', () => {
     test('should render Bloc without error', () => {

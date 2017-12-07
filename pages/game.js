@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import config from '../src/config';
 
-import Block from '../src/components/block';
-import Button from '../src/components/button';
+import Block from '../src/components/Block';
+import Button from '../src/components/Button';
 import { ShowWhenOnline } from '../src/components/detectOffline';
-import Grid from '../src/components/grid';
-import Page from '../src/components/page';
-import Section from '../src/components/section';
+import Grid from '../src/components/Grid';
+import Page from '../src/components/Page';
+import Section from '../src/components/Section';
 import withLoader from '../src/components/withLoader';
 
 import {

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Button from '../../../src/components/button';
+import Button from '../../../src/components/Button';
 
 describe('Button', () => {
     test('should render the Button without error', () => {

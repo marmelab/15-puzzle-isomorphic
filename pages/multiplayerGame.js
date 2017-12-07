@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import config from '../src/config';
 import { Router } from '../src/routes';
 
-import Block from '../src/components/block';
-import Grid from '../src/components/grid';
-import Page from '../src/components/page';
-import Section from '../src/components/section';
+import Block from '../src/components/Block';
+import Grid from '../src/components/Grid';
+import Page from '../src/components/Page';
+import Section from '../src/components/Section';
 import {
     ShowWhenOnline,
     ShowWhenOffline,

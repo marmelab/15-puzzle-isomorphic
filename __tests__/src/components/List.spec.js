@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import List from '../../../src/components/list';
+import List from '../../../src/components/List';
 
 describe('List', () => {
     test('should render List without error', () => {

@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 import { Router } from '../src/routes';
 
-import Block from '../src/components/block';
-import Button from '../src/components/button';
-import FloatingButton from '../src/components/floatingButton';
-import ListGames from '../src/components/listGames';
-import Page from '../src/components/page';
-import Section from '../src/components/section';
+import Block from '../src/components/Block';
+import Button from '../src/components/Button';
+import FloatingButton from '../src/components/FloatingButton';
+import ListGames from '../src/components/ListGames';
+import Page from '../src/components/Page';
+import Section from '../src/components/Section';
 import {
     ShowWhenOnline,
     ShowWhenOffline,

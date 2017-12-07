@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { defaultImageUrl } from '../config';
 
-import Tile from './tile';
+import Tile from './Tile';
 
 import { associateTileToBackground } from '../core/helper';
 

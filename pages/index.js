@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import Button from '../src/components/button';
-import FloatingButton from '../src/components/floatingButton';
-import Image from '../src/components/image';
-import Page from '../src/components/page';
-import Row from '../src/components/row';
-import Section from '../src/components/section';
+import Button from '../src/components/Button';
+import FloatingButton from '../src/components/FloatingButton';
+import Image from '../src/components/Image';
+import Page from '../src/components/Page';
+import Row from '../src/components/Row';
+import Section from '../src/components/Section';
 import { ShowWhenOnline } from '../src/components/detectOffline';
 
 export default class Index extends Component {

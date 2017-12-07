@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import CustomHead from './customHead';
+import CustomHead from './CustomHead';
 import { ShowWhenOnline, ShowWhenOffline } from './detectOffline';
-import Nav from './nav';
+import Nav from './Nav';
 
 import config from '../config';
 

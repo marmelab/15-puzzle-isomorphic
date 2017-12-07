@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import ActivityIndicator from '../../../src/components/activityIndicator';
+import ActivityIndicator from '../../../src/components/ActivityIndicator';
 
 describe('ActivityIndicator', () => {
     test('should render ActivityIndicator without error', () => {
