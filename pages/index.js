@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 import Button from '../src/components/Button';
 import FloatingButton from '../src/components/FloatingButton';
+import FloatingButtonFab from '../src/components/FloatingButtonFab';
 import Image from '../src/components/Image';
 import Page from '../src/components/Page';
 import Row from '../src/components/Row';
 import Section from '../src/components/Section';
-import { ShowWhenOnline } from '../src/components/detectOffline';
 
 export default class Index extends Component {
     render() {
@@ -22,7 +22,7 @@ export default class Index extends Component {
                     </Row>
                 </Section>
                 <FloatingButton icon="play_circle_outline">
-                    <li>
+                    <FloatingButtonFab>
                         <Button
                             className="btn-floating"
                             color="green"
@@ -30,18 +30,16 @@ export default class Index extends Component {
                             label="Single game"
                             route="game"
                         />
-                    </li>
-                    <ShowWhenOnline>
-                        <li>
-                            <Button
-                                className="btn-floating"
-                                color="blue"
-                                icon="people"
-                                label="Multiplayer mode"
-                                route="multiplayer_games"
-                            />
-                        </li>
-                    </ShowWhenOnline>
+                    </FloatingButtonFab>
+                    <FloatingButtonFab showOnlyIfOnline={true}>
+                        <Button
+                            className="btn-floating"
+                            color="blue"
+                            icon="people"
+                            label="Multiplayer mode"
+                            route="multiplayer_games"
+                        />
+                    </FloatingButtonFab>
                 </FloatingButton>
             </Page>
         );

@@ -5,6 +5,7 @@ import { Router } from '../src/routes';
 import Block from '../src/components/Block';
 import Button from '../src/components/Button';
 import FloatingButton from '../src/components/FloatingButton';
+import FloatingButtonFab from '../src/components/FloatingButtonFab';
 import ListGames from '../src/components/ListGames';
 import Page from '../src/components/Page';
 import Section from '../src/components/Section';
@@ -87,7 +88,7 @@ export default class MultiplayerGames extends Component {
             <Page navTitle="Open games" title="Multiplayer games | 15 puzzle">
                 <ShowWhenOffline>
                     <Section>
-                        <Block title="Waiting for connection" isLoading="true">
+                        <Block title="Waiting for connection" isLoading={true}>
                             <p>This page is only accessile online.</p>
                         </Block>
                     </Section>
@@ -102,7 +103,7 @@ export default class MultiplayerGames extends Component {
                         </Block>
                     </Section>
                     <FloatingButton icon="add">
-                        <li>
+                        <FloatingButtonFab>
                             <Button
                                 className="btn-floating"
                                 color="green"
@@ -110,8 +111,8 @@ export default class MultiplayerGames extends Component {
                                 label="New multiplayer game"
                                 onClick={this.handleClickMultiplayerGame}
                             />
-                        </li>
-                        <li>
+                        </FloatingButtonFab>
+                        <FloatingButtonFab>
                             <Button
                                 className="btn-floating"
                                 color="blue"
@@ -119,7 +120,7 @@ export default class MultiplayerGames extends Component {
                                 label="Refresh"
                                 onClick={this.handleRefreshGames}
                             />
-                        </li>
+                        </FloatingButtonFab>
                     </FloatingButton>
                 </ShowWhenOnline>
             </Page>

@@ -1,26 +1,55 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import ClassNames from 'classnames';
 
-const FloatingButton = ({ children, color, icon }) => {
-    return (
-        <div className="fixed-action-btn">
-            <a className={`btn-floating btn-large ${color} pulse`}>
-                <i className="large material-icons">{icon}</i>
-            </a>
-            <ul>{children}</ul>
-        </div>
-    );
-};
+import withHover from './withHover';
 
-FloatingButton.propTypes = {
-    children: PropTypes.arrayOf(PropTypes.element).isRequired,
-    color: PropTypes.string,
-    icon: PropTypes.string,
-};
+class FloatingButton extends PureComponent {
+    static propTypes = {
+        children: PropTypes.arrayOf(PropTypes.element).isRequired,
+        color: PropTypes.string,
+        hover: PropTypes.bool,
+        icon: PropTypes.string,
+        pulse: PropTypes.bool,
+    };
 
-FloatingButton.defaultProps = {
-    color: 'red',
-    icon: 'add',
-};
+    static defaultProps = {
+        color: 'red',
+        icon: 'add',
+        pulse: false,
+    };
 
-export default FloatingButton;
+    render() {
+        const { children, color, hover, icon, pulse } = this.props;
+
+        const mainBtnClass = ClassNames({
+            'btn-floating': true,
+            'btn-large': true,
+            [color]: true,
+            pulse,
+        });
+
+        const floatingBtnClass = ClassNames({
+            show: hover,
+            hide: !hover,
+        });
+
+        return (
+            <div className="fixed-action-btn">
+                <a className={mainBtnClass}>
+                    <i className="large material-icons">{icon}</i>
+                </a>
+                <ul className={floatingBtnClass}>
+                    {children.map((child, key) =>
+                        React.cloneElement(child, {
+                            key,
+                            className: `${floatingBtnClass}`,
+                        }),
+                    )}
+                </ul>
+            </div>
+        );
+    }
+}
+
+export default withHover(FloatingButton);
