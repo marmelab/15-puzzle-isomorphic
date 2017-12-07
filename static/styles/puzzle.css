@@ -28,6 +28,11 @@
     cursor: pointer;
 }
 
+.pulse, .pulse:hover {
+    background-color: #42a5f580;
+    z-index: 1;
+}
+
 .puzzle-tile-empty {
     height: 5em;
     margin: 0.25em;
@@ -37,18 +42,6 @@
 .puzzle-tile-value {
     color: white;
     text-align: center;
-}
-
-.puzzle-tile-pulse {
-    -webkit-animation: pulse-tile 1.5s infinite cubic-bezier(.17,.67,.83,.67);
-    -moz-animation: pulse-tile 1.5s infinite cubic-bezier(.17,.67,.83,.67);
-    -ms-animation: pulse-tile 1.5s infinite cubic-bezier(.17,.67,.83,.67);
-    animation: pulse-tile 1.5s infinite cubic-bezier(.17,.67,.83,.67);
-    background-size: cover;
-    background-repeat: no-repeat;
-    border: none;
-    box-shadow: 0 0 0 0 #d32f2f;
-    position: relative;
 }
 
 @-webkit-keyframes pulse-tile {to {box-shadow: 0 0 0 35px #42a5f59e}}
