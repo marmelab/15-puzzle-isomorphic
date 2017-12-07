@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Col from './Col';
+
 const Row = ({ children }) => (
     <div className="row">
-        {!React.isValidElement(children) && children.map(child => child)}
-        {React.isValidElement(children) && children}
+        {React.Children.count(children) > 1 &&
+            children.map((child, key) => child && <Col key={key}>{child}</Col>)}
+        {React.Children.count(children) === 1 && <Col>{children}</Col>}
     </div>
 );
 
