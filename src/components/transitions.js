@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
 const DURATION = 375;
-const BASE_TRANSITION = `${DURATION}ms cubic-bezier(0.4, 0.0, 0.2, 1)`;
+const BASE_TRANSITION = `${DURATION}ms ease-in-out`;
 
 const fadeDefaultStyle = {
     opacity: 0,
@@ -14,6 +14,8 @@ const fadeDefaultStyle = {
 const fadeTransitionStyles = {
     entering: { opacity: 0, visibility: 'hidden' },
     entered: { opacity: 1, visibility: 'visible' },
+    exiting: { opacity: 1, visibility: 'visible' },
+    exited: { opacity: 0, visibility: 'hidden' },
 };
 
 export class Fade extends PureComponent {

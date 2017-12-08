@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
+import { Fade } from './transitions';
+
 export default class Tile extends PureComponent {
     static propTypes = {
         enabled: PropTypes.bool,
@@ -54,9 +56,9 @@ export default class Tile extends PureComponent {
 
         return (
             <div className={tileClass} style={style} onClick={this.handleClick}>
-                {showNumbers && (
+                <Fade in={showNumbers}>
                     <span className="puzzle-tile-value">{tileValue}</span>
-                )}
+                </Fade>
             </div>
         );
     }

@@ -9,6 +9,8 @@ import { ShowWhenOnline } from '../src/components/detectOffline';
 import Grid from '../src/components/Grid';
 import Page from '../src/components/Page';
 import Section from '../src/components/Section';
+import Switch from '../src/components/Switch';
+
 import withLoader from '../src/components/withLoader';
 
 import { choiceInArray } from '../src/core/helper';
@@ -38,6 +40,12 @@ export const title = (isLoading, isVictory, turn) => {
     return `${turn} moves`;
 };
 
+const labels = {
+    off: 'Hide',
+    on: 'Show',
+    title: 'Display the numbers',
+};
+
 export default class Game extends Component {
     state = {
         currentGrid: [],
@@ -46,6 +54,7 @@ export default class Game extends Component {
         isVictory: false,
         loadingAdvice: false,
         resolvedGrid: [],
+        showTileNumbers: false,
         suggestedTile: 0,
         turn: -1,
     };
@@ -103,6 +112,12 @@ export default class Game extends Component {
         this.requestSuggest();
     };
 
+    handleOnToggle = toggleState => {
+        this.setState({
+            showTileNumbers: toggleState,
+        });
+    };
+
     buildGame = async () => {
         const { size } = this.props;
 
@@ -138,6 +153,7 @@ export default class Game extends Component {
             isVictory,
             loadingAdvice,
             resolvedGrid,
+            showTileNumbers,
             suggestedTile,
             turn,
         } = this.state;
@@ -157,8 +173,13 @@ export default class Game extends Component {
                                 resolvedGrid={resolvedGrid}
                                 readOnly={isVictory}
                                 tileToHighlight={suggestedTile}
+                                showNumbers={showTileNumbers}
                             />
                         )}
+                        <Switch
+                            labels={labels}
+                            onToggle={this.handleOnToggle}
+                        />
                         {!isVictory && (
                             <div className="center">
                                 <ShowWhenOnline>
