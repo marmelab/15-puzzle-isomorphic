@@ -45,3 +45,7 @@ a.btn {
 .fixed-action-btn ul {
     visibility: visible !important;
 }
+
+.switch {
+    margin: 10px;
+}
