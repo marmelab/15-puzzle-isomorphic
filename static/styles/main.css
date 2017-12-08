@@ -2,6 +2,12 @@ a.btn {
     margin: 0 5px;
 }
 
+@media screen and (max-width: 992px) {
+    a.btn {
+        margin: 5px 0;
+    }
+}
+
 .image-wrapper {
     align-items: center;
     background-color: #000;
@@ -25,32 +31,17 @@ a.btn {
     width: 100%;
 }
 
-@media screen and (max-width: 992px) {
-    a.btn {
-        margin: 5px 0;
-    }
+
+.showElem {
+    opacity: 1;
+    visibility: visible;
 }
 
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    50% { opacity: .5; }
-    100% { opacity: 1; }
+.hideElem {
+    opacity: 0;
+    visibility: hidden;
 }
 
-@keyframes fadeOut {
-    100% { opacity: 1; }
-    50% { opacity: .5; }
-    0% { opacity: 0; }
-}
-
-.show {
-    animation: .3s ease 0s normal forwards 1 fadeIn;
-    opacity: 1 !important;
+.fixed-action-btn ul {
     visibility: visible !important;
-}
-
-.hide {
-    animation: .3s ease 0s normal forwards 1 fadeOut;
-    opacity: 0 !important;
-    visibility: hidden !important;
 }

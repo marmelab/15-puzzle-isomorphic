@@ -4,6 +4,8 @@ import ClassNames from 'classnames';
 
 import withHover from './withHover';
 
+import { Fade } from './transitions';
+
 class FloatingButton extends PureComponent {
     static propTypes = {
         children: PropTypes.arrayOf(PropTypes.element).isRequired,
@@ -30,8 +32,8 @@ class FloatingButton extends PureComponent {
         });
 
         const floatingBtnClass = ClassNames({
-            show: hover,
-            hide: !hover,
+            showElem: hover,
+            hideElem: !hover,
         });
 
         return (
@@ -39,13 +41,14 @@ class FloatingButton extends PureComponent {
                 <a className={mainBtnClass}>
                     <i className="large material-icons">{icon}</i>
                 </a>
-                <ul className={floatingBtnClass}>
-                    {children.map((child, key) =>
-                        React.cloneElement(child, {
-                            key,
-                            className: `${floatingBtnClass}`,
-                        }),
-                    )}
+                <ul>
+                    {children.map((child, key) => (
+                        <Fade in={hover} key={key}>
+                            {React.cloneElement(child, {
+                                className: `${floatingBtnClass}`,
+                            })}
+                        </Fade>
+                    ))}
                 </ul>
             </div>
         );

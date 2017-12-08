@@ -6,20 +6,20 @@ import { ShowWhenOnline } from './detectOffline';
 class FloatingButtonFab extends PureComponent {
     static propTypes = {
         children: PropTypes.element.isRequired,
-        className: PropTypes.string,
         showOnlyIfOnline: PropTypes.bool,
+        style: PropTypes.object,
     };
 
     static defaultProps = {
-        className: '',
         showOnlyIfOnline: false,
     };
 
     render() {
-        const { children, className, showOnlyIfOnline } = this.props;
+        const { children, showOnlyIfOnline, style } = this.props;
 
         const clonedElement = React.cloneElement(children, {
-            className: `${children.props.className} ${className}`,
+            className: `${children.props.className}`,
+            style,
         });
         if (showOnlyIfOnline) {
             return (
