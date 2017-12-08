@@ -9,6 +9,7 @@ import { associateTileToBackground } from '../core/helper';
 
 const Grid = ({
     grid,
+    imageUrl,
     onClick,
     resolvedGrid,
     readOnly,
@@ -35,7 +36,7 @@ const Grid = ({
                             <Tile
                                 key={tileValue}
                                 enabled={!readOnly}
-                                tileImage={defaultImageUrl}
+                                tileImage={imageUrl}
                                 tileImageCoords={tileToBg[tileValue]}
                                 onClick={onClick}
                                 showNumbers={showNumbers}
@@ -61,6 +62,7 @@ const Grid = ({
 
 Grid.propTypes = {
     grid: PropTypes.array.isRequired,
+    imageUrl: PropTypes.string,
     onClick: PropTypes.func.isRequired,
     readOnly: PropTypes.bool,
     resolvedGrid: PropTypes.array,
@@ -69,6 +71,7 @@ Grid.propTypes = {
 };
 
 Grid.defaultProps = {
+    imageUrl: defaultImageUrl,
     readOnly: true,
     showNumbers: true,
 };

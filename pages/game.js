@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import config from '../src/config';
+import { defaultImageUrl, defaultPuzzleSize, imageUrls } from '../src/config';
 
 import Block from '../src/components/Block';
 import Button from '../src/components/Button';
@@ -10,6 +10,8 @@ import Grid from '../src/components/Grid';
 import Page from '../src/components/Page';
 import Section from '../src/components/Section';
 import withLoader from '../src/components/withLoader';
+
+import { choiceInArray } from '../src/core/helper';
 
 import {
     areGridsEquals,
@@ -39,6 +41,7 @@ export const title = (isLoading, isVictory, turn) => {
 export default class Game extends Component {
     state = {
         currentGrid: [],
+        imageUrl: defaultImageUrl,
         isLoading: true,
         isVictory: false,
         loadingAdvice: false,
@@ -48,7 +51,7 @@ export default class Game extends Component {
     };
 
     static getInitialProps = ({ query }) => ({
-        size: query.size || config.defaultPuzzleSize,
+        size: query.size || defaultPuzzleSize,
     });
 
     static propTypes = {
@@ -116,12 +119,21 @@ export default class Game extends Component {
     };
 
     componentWillMount() {
+        try {
+            let imageUrl = choiceInArray(imageUrls);
+            this.setState({
+                imageUrl,
+            });
+        } catch (error) {
+            console.error(error);
+        }
         this.buildGame();
     }
 
     render() {
         const {
             currentGrid,
+            imageUrl,
             isLoading,
             isVictory,
             loadingAdvice,
@@ -141,6 +153,7 @@ export default class Game extends Component {
                             <Grid
                                 onClick={this.handleClickTile}
                                 grid={currentGrid}
+                                imageUrl={imageUrl}
                                 resolvedGrid={resolvedGrid}
                                 readOnly={isVictory}
                                 tileToHighlight={suggestedTile}
