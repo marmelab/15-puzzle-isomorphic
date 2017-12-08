@@ -100,9 +100,9 @@ describe('Game', () => {
         test('should throw an error if the tile is not in the grid', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
 
-            expect(() => {
-                Game.findTileByValue(grid, 18);
-            }).toThrow(`The tile with value 18 doesn't exist.`);
+            expect(() => Game.findTileByValue(grid, 18)).toThrow(
+                `The tile with value 18 doesn't exist.`,
+            );
         });
     });
 
@@ -120,9 +120,9 @@ describe('Game', () => {
         test('should throw an error if there is not empty tile', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
-            expect(() => {
-                Game.findEmptyTile(grid);
-            }).toThrow();
+            expect(() => Game.findEmptyTile(grid)).toThrow(
+                `The tile with value 0 doesn't exist.`,
+            );
         });
     });
 
@@ -130,9 +130,9 @@ describe('Game', () => {
         test('should throw an error if there is not empty tile', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
-            expect(() => {
-                Game.listCoordsMovableTiles(grid);
-            }).toThrow();
+            expect(() => Game.listCoordsMovableTiles(grid)).toThrow(
+                `The tile with value 0 doesn't exist.`,
+            );
         });
 
         test('should return the movable tiles', () => {
@@ -149,14 +149,6 @@ describe('Game', () => {
 
             expect(movableTiles[1].y).toEqual(expectedMovableTile2.y);
             expect(movableTiles[1].x).toEqual(expectedMovableTile2.x);
-        });
-
-        test('should throw an error if there is not empty tile', () => {
-            const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
-
-            expect(() => {
-                Game.listCoordsMovableTiles(grid);
-            }).toThrow();
         });
     });
 
@@ -203,9 +195,9 @@ describe('Game', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const tileToMove = { y: 0, x: 0 };
 
-            expect(() => {
-                Game.move(grid, tileToMove);
-            }).toThrow(`The tile at coords (0, 0) is not movable.`);
+            expect(() => Game.move(grid, tileToMove)).toThrow(
+                `The tile at coords (0, 0) is not movable.`,
+            );
         });
     });
 });
