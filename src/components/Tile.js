@@ -10,6 +10,7 @@ export default class Tile extends PureComponent {
         onClick: PropTypes.func.isRequired,
         pulse: PropTypes.bool,
         showNumbers: PropTypes.bool,
+        style: PropTypes.object,
         tileImage: PropTypes.string,
         tileImageCoords: PropTypes.string,
         tileValue: PropTypes.number.isRequired,
@@ -37,25 +38,32 @@ export default class Tile extends PureComponent {
             tileImage,
             tileImageCoords,
             tileValue,
+            style,
         } = this.props;
 
-        const tileClass = ClassNames({
+        const tileClass = ClassNames('puzzle-tile', {
             pulse: pulse,
-            'puzzle-tile': true,
             'puzzle-tile-hover': enabled,
             'z-depth-3': enabled,
         });
 
-        const style =
+        const tileStyle =
             tileImage && tileImageCoords
                 ? {
                       backgroundImage: `url(${tileImage})`,
                       backgroundPosition: tileImageCoords,
+                      ...style,
                   }
-                : {};
+                : {
+                      ...style,
+                  };
 
         return (
-            <div className={tileClass} style={style} onClick={this.handleClick}>
+            <div
+                className={tileClass}
+                style={tileStyle}
+                onClick={this.handleClick}
+            >
                 <Fade in={showNumbers}>
                     <span className="puzzle-tile-value">{tileValue}</span>
                 </Fade>

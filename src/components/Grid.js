@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { defaultImageUrl } from '../config';
 
 import Tile from './Tile';
+import ChangeMargin from './ChangeMargin';
 
 import { associateTileToBackground } from '../core/helper';
 
@@ -27,31 +28,37 @@ const Grid = ({
                     {row.map(tileValue => {
                         const pulse = tileValue === tileToHighlight;
 
-                        return tileValue === 0 ? (
-                            <div
+                        return (
+                            <ChangeMargin
                                 key={tileValue}
-                                className="puzzle-tile-empty"
-                            />
-                        ) : tileToBg ? (
-                            <Tile
-                                key={tileValue}
-                                enabled={!readOnly}
-                                tileImage={imageUrl}
-                                tileImageCoords={tileToBg[tileValue]}
-                                onClick={onClick}
-                                showNumbers={showNumbers}
-                                tileValue={tileValue}
-                                pulse={pulse}
-                            />
-                        ) : (
-                            <Tile
-                                key={tileValue}
-                                enabled={!readOnly}
-                                onClick={onClick}
-                                showNumbers={showNumbers}
-                                tileValue={tileValue}
-                                pulse={pulse}
-                            />
+                                in={readOnly}
+                                margin={{
+                                    start: '0.25em',
+                                    end: 0,
+                                }}
+                            >
+                                {tileValue === 0 ? (
+                                    <div className="puzzle-tile-empty" />
+                                ) : tileToBg ? (
+                                    <Tile
+                                        enabled={!readOnly}
+                                        tileImage={imageUrl}
+                                        tileImageCoords={tileToBg[tileValue]}
+                                        onClick={onClick}
+                                        showNumbers={showNumbers}
+                                        tileValue={tileValue}
+                                        pulse={pulse}
+                                    />
+                                ) : (
+                                    <Tile
+                                        enabled={!readOnly}
+                                        onClick={onClick}
+                                        showNumbers={showNumbers}
+                                        tileValue={tileValue}
+                                        pulse={pulse}
+                                    />
+                                )}
+                            </ChangeMargin>
                         );
                     })}
                 </div>
