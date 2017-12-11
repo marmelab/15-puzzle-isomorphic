@@ -14,9 +14,9 @@ export const choiceInArray = (list, rand = Math.random()) => {
     if (!Array.isArray(list)) {
         throw Error('The list should be an array');
     }
-    if (rand < 0 && rand >= 1) {
+    if (rand < 0 || rand >= 1) {
         throw Error(
-            `The value ${rand} should be a number between 0 and 1, 1 excluded`,
+            `The value random number should be a number (0 <= rand < 1)`,
         );
     }
 

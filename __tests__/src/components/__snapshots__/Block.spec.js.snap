@@ -11,6 +11,5 @@ exports[`Block should render the Block correctly 1`] = `
       Hello
     </div>
   </div>
-  
 </div>
 `;

@@ -57,10 +57,10 @@ describe('Helper', () => {
             spy.mockRestore();
         });
 
-        test('should throw an error if ', () => {
+        test('should throw an error if the rand number is not between 0 and 1', () => {
             const list = ['a', 'b', 'c'];
             expect(() => Helper.choiceInArray(list, 2)).toThrow(
-                `The value 2 should be a number between 0 and 1, 1 excluded`,
+                `The value random number should be a number (0 <= rand < 1)`,
             );
         });
 

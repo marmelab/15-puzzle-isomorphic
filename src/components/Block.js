@@ -23,7 +23,7 @@ Block.propTypes = {
 };
 
 Block.defaultProps = {
-    title: '',
+    title: null,
 };
 
 export default withLoader(Block);

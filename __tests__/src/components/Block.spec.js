@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 
 import Block from '../../../src/components/Block';
@@ -24,7 +24,7 @@ describe('Block', () => {
     });
 
     test('should render the title prop if passed', () => {
-        const app = shallow(
+        const app = mount(
             <Block title="title">
                 <div>Hello</div>
             </Block>,
@@ -33,7 +33,7 @@ describe('Block', () => {
     });
 
     test('should display a loader', () => {
-        const app = shallow(
+        const app = mount(
             <Block title="title" isLoading={true}>
                 <div>Hello</div>
             </Block>,

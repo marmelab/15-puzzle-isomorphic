@@ -8,7 +8,7 @@ const Row = ({ children }) => (
         {React.Children.count(children) === 1 ? (
             <Col>{children}</Col>
         ) : (
-            children.map((child, key) => <Col key={key}>{child}</Col>)
+            children.map((child, key) => child && <Col key={key}>{child}</Col>)
         )}
     </div>
 );
