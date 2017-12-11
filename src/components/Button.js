@@ -5,15 +5,7 @@ import ClassNames from 'classnames';
 import { Link } from '../routes';
 
 const Button = ({ className, color, icon, label, onClick, route, style }) => {
-    const buttonClass = ClassNames(
-        {
-            btn: true,
-            [color]: color,
-            'waves-effect': true,
-            'waves-light': true,
-        },
-        className,
-    );
+    const buttonClass = ClassNames('btn', color ? color : '', className);
 
     if (route) {
         return (

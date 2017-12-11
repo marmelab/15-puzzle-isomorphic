@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
-export default function withHover(WrappedComponent) {
-    return class HoverHOC extends Component {
+export default WrappedComponent =>
+    class HoverHOC extends Component {
         state = {
             hover: false,
         };
 
         handleOnTouchStart = () => {
-            const { hover } = this.state;
-            this.setState({ hover: !hover });
+            this.setState({ hover: !this.state });
         };
 
         handleOnMouseEnter = () => {
@@ -20,16 +19,14 @@ export default function withHover(WrappedComponent) {
         };
 
         render() {
-            const { hover } = this.state;
             return (
                 <div
                     onTouchStart={this.handleOnTouchStart}
                     onMouseEnter={this.handleOnMouseEnter}
                     onMouseLeave={this.handleOnMouseLeave}
                 >
-                    <WrappedComponent hover={hover} {...this.props} />
+                    <WrappedComponent hover={this.state} {...this.props} />
                 </div>
             );
         }
     };
-}

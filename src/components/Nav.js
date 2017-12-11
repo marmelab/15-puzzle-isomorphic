@@ -5,12 +5,7 @@ import ClassNames from 'classnames';
 import { Link, Router } from '../routes';
 
 const Nav = ({ colors, title }) => {
-    const navClass = ClassNames(
-        colors.reduce((acc, cur) => {
-            acc[cur] = cur;
-            return acc;
-        }, {}),
-    );
+    const navClass = ClassNames(colors);
 
     return (
         <nav className={navClass} role="navigation">
