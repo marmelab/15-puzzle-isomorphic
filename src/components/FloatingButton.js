@@ -24,12 +24,12 @@ class FloatingButton extends PureComponent {
     render() {
         const { children, color, hover, icon, pulse } = this.props;
 
-        const mainBtnClass = ClassNames({
-            'btn-floating': true,
-            'btn-large': true,
-            [color]: true,
+        const mainBtnClass = ClassNames(
+            'btn-floating',
+            'btn-large',
+            color,
             pulse,
-        });
+        );
 
         const floatingBtnClass = ClassNames({
             showElem: hover,

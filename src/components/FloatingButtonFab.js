@@ -21,6 +21,7 @@ class FloatingButtonFab extends PureComponent {
             className: `${children.props.className}`,
             style,
         });
+
         if (showOnlyIfOnline) {
             return (
                 <ShowWhenOnline>
