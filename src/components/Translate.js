@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
 const DURATION = 375;
-const BASE_TRANSITION = `${DURATION}ms ease-in-out`;
+const BASE_TRANSITION = `${DURATION}ms ease-out`;
 
 const translateDefaultStyle = {
     transform: 'translate(0, 0)',
     transition: `transform ${BASE_TRANSITION}`,
 };
 
-const translateTransitionStyles = (x = 0, y = 0) => ({
-    entering: { transform: 'translate(0)' },
-    entered: { transform: `translate(${x}, ${y})` },
+const translateTransitionStyles = (x = 0, y = 0, unit = 'em') => ({
+    entering: { transform: 'translate(0, 0)' },
+    entered: { transform: `translate(${x}${unit}, ${y}${unit})` },
 });
 
 export default class Translate extends PureComponent {
@@ -36,6 +36,7 @@ export default class Translate extends PureComponent {
                     return React.cloneElement(children, {
                         ...children.props,
                         style: {
+                            ...props.style,
                             ...children.props.style,
                             ...translateDefaultStyle,
                             ...translateTransitionStyles(dir.x, dir.y)[state],
