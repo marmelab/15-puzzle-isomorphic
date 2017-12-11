@@ -17,6 +17,7 @@
     align-items: center;
     display: flex;
     background-color: #d32f2f;
+    background-size: 25em;
     height: 5em;
     justify-content: center;
     margin: 0.25em;
