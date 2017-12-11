@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
-import { Fade } from './transitions';
+import Fade from './Fade';
 
 export default class Tile extends PureComponent {
     static propTypes = {

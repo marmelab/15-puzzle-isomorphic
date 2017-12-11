@@ -25,7 +25,10 @@ export default WrappedComponent =>
                     onMouseEnter={this.handleOnMouseEnter}
                     onMouseLeave={this.handleOnMouseLeave}
                 >
-                    <WrappedComponent hover={this.state} {...this.props} />
+                    <WrappedComponent
+                        hover={this.state.hover}
+                        {...this.props}
+                    />
                 </div>
             );
         }

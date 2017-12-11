@@ -4,7 +4,7 @@ import ClassNames from 'classnames';
 
 import withHover from './withHover';
 
-import { Fade } from './transitions';
+import Fade from './Fade';
 
 class FloatingButton extends PureComponent {
     static propTypes = {
