@@ -7,7 +7,9 @@ export default WrappedComponent =>
         };
 
         handleOnTouchStart = () => {
-            this.setState({ hover: !this.state });
+            if (!this.state.hover) {
+                this.setState({ hover: !this.state.hover });
+            }
         };
 
         handleOnMouseEnter = () => {
