@@ -36,6 +36,8 @@ export default class ChangeMargin extends PureComponent {
                 {state =>
                     React.cloneElement(children, {
                         style: {
+                            ...props.style,
+                            ...children.props.style,
                             ...changeMarginDefaultStyle(margin.start),
                             ...changeMarginTransitionStyles(
                                 margin.start,

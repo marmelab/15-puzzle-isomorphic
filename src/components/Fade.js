@@ -36,6 +36,8 @@ export default class Fade extends PureComponent {
                 {state =>
                     React.cloneElement(children, {
                         style: {
+                            ...props.style,
+                            ...children.props.style,
                             ...fadeDefaultStyle,
                             ...fadeTransitionStyles[state],
                         },
