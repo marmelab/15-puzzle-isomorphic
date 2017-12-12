@@ -41,14 +41,14 @@ export default class Switch extends Component {
                 {labels.title && <p>{labels.title}</p>}
                 <div className="switch">
                     <label>
-                        {labels.off && <span>labels.off</span>}
+                        {labels.off && <span>{labels.off}</span>}
                         <input
                             type="checkbox"
                             checked={on}
                             onChange={this.handleOnChange}
                         />
                         <span className="lever" />
-                        {labels.on && <span>labels.on</span>}
+                        {labels.on && <span>{labels.on}</span>}
                     </label>
                 </div>
             </div>

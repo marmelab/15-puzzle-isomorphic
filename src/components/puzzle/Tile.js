@@ -41,10 +41,9 @@ export default class Tile extends PureComponent {
             style,
         } = this.props;
 
-        const tileClass = ClassNames('puzzle-tile', {
+        const tileClass = ClassNames('puzzle-tile', 'z-depth-3', {
             pulse: pulse,
             'puzzle-tile-hover': enabled,
-            'z-depth-3': enabled,
         });
 
         const tileStyle =

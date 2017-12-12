@@ -16,7 +16,7 @@ export const buildTranslateStyle = (translate, translatingDir) => {
               transform: `translate(${translatingDir.x}em, ${
                   translatingDir.y
               }em)`,
-              transition: `transform ${DURATION_TRANSLATE} ease-out`,
+              transition: `transform ${DURATION_TRANSLATE}ms ease-out`,
           }
         : {
               transform: 'translate(0,0)',
@@ -56,7 +56,7 @@ class Grid extends Component {
         setTimeout(() => {
             this.props.onClick(this.state.translatingTile);
             this.setState({ translating: false });
-        }, 200);
+        }, DURATION_TRANSLATE);
     };
 
     render() {
@@ -94,6 +94,7 @@ class Grid extends Component {
                                 translate,
                                 translatingDir,
                             );
+
                             return (
                                 <Tile
                                     enabled={enabled}
