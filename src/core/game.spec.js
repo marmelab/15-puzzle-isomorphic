@@ -1,4 +1,5 @@
 import * as Game from './game';
+import { dirFromMove } from './game';
 
 describe('Game', () => {
     describe('buildGrid', () => {
@@ -198,6 +199,47 @@ describe('Game', () => {
             expect(() => Game.move(grid, tileToMove)).toThrow(
                 `The tile at coords (0, 0) is not movable.`,
             );
+        });
+    });
+
+    describe('dirFromMove', () => {
+        test('should return the coords of a top move', () => {
+            const grid = [[1, 2, 3], [4, 0, 6], [7, 5, 8]];
+            const expectedDir = {
+                y: 1,
+                x: 0,
+            };
+            const dir = dirFromMove(grid, 2);
+            expect(dir).toEqual(expectedDir);
+        });
+        test('should return the coords of a right move', () => {
+            const grid = [[1, 2, 3], [4, 0, 6], [7, 5, 8]];
+            const expectedDir = {
+                y: 0,
+                x: -1,
+            };
+            const dir = dirFromMove(grid, 6);
+            expect(dir).toEqual(expectedDir);
+        });
+
+        test('should return the coords of a bottom move', () => {
+            const grid = [[1, 2, 3], [4, 0, 6], [7, 5, 8]];
+            const expectedDir = {
+                y: -1,
+                x: 0,
+            };
+            const dir = dirFromMove(grid, 5);
+            expect(dir).toEqual(expectedDir);
+        });
+
+        test('should return the coords of a left move', () => {
+            const grid = [[1, 2, 3], [4, 0, 6], [7, 5, 8]];
+            const expectedDir = {
+                y: 0,
+                x: 1,
+            };
+            const dir = dirFromMove(grid, 4);
+            expect(dir).toEqual(expectedDir);
         });
     });
 });

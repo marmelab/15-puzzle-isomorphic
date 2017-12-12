@@ -69,13 +69,19 @@ export const listCoordsMovableTiles = grid => {
     ].filter(x => x);
 };
 
-export const isTileInMovableTiles = (grid, coordsTileToMove) =>
+export const isCoordsTileInMovableTiles = (grid, coordsTileToMove) =>
     listCoordsMovableTiles(grid).some(coords =>
         areCoordsEquals(coords, coordsTileToMove),
     );
 
+export const listMovableTiles = grid =>
+    listCoordsMovableTiles(grid).map(coords => grid[coords.y][coords.x]);
+
+export const isTileInMovableTiles = (grid, tileToMove) =>
+    listMovableTiles.some(tile => tile === tileToMove);
+
 export const move = (grid, coordsTileToMove) => {
-    if (!isTileInMovableTiles(grid, coordsTileToMove)) {
+    if (!isCoordsTileInMovableTiles(grid, coordsTileToMove)) {
         throw `The tile at coords (${coordsTileToMove.y}, ${
             coordsTileToMove.x
         }) is not movable.`;
@@ -93,4 +99,14 @@ export const move = (grid, coordsTileToMove) => {
     newGrid[newCoords.y][newCoords.x] =
         grid[emptyTileCoords.y][emptyTileCoords.x];
     return newGrid;
+};
+
+export const dirFromMove = (grid, tile) => {
+    const coords = findTileByValue(grid, tile);
+    const coordsEmptyTile = findEmptyTile(grid);
+
+    return {
+        y: coordsEmptyTile.y - coords.y,
+        x: coordsEmptyTile.x - coords.x,
+    };
 };

@@ -4,6 +4,7 @@ import {
     findTileByValue,
     move,
     DEFAULT_SIZE,
+    dirFromMove,
 } from './game';
 import { shuffle } from './shuffler';
 import { associateTileToBackground, choiceInArray } from './helper';
@@ -30,6 +31,14 @@ export const moveTile = ({ currentGrid, resolvedGrid, turn }, tile) => {
         resolvedGrid,
         isVictory,
         turn: turn + 1,
+    };
+};
+
+export const translateTile = (grid, tile, tileSize) => {
+    const dir = dirFromMove(grid, tile);
+    return {
+        y: dir.y * tileSize,
+        x: dir.x * tileSize,
     };
 };
 
