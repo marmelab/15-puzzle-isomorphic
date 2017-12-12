@@ -13,7 +13,7 @@ import Block from '../src/components/layout/Block';
 import Page from '../src/components/layout/Page';
 import Section from '../src/components/layout/Section';
 
-import Grid from '../src/components/puzzle/Grid';
+import Game from '../src/components/puzzle/Game';
 
 import {
     gameFactory,
@@ -51,16 +51,16 @@ export const title = (
 
 export default class MultiplayerGame extends Component {
     state = {
-        isLoading: true,
-        isWaitingPlayer: false,
-        id: -1,
-        otherPlayerId: -1,
-        isMultiplayer: false,
-        token: '',
         currentGrid: [],
+        id: -1,
+        isLoading: true,
+        isMultiplayer: false,
+        isVictory: false,
+        isWaitingPlayer: false,
+        otherPlayerId: -1,
         resolvedGrid: [],
+        token: '',
         turn: -1,
-        winnerId: -1,
     };
 
     static propTypes = {
@@ -129,16 +129,22 @@ export default class MultiplayerGame extends Component {
 
     requestMove = async tile => {
         try {
-            const { id, token } = this.state;
+            const { id, token, playerId } = this.state;
             const { currentPlayer, winner } = await moveFactory()(
                 id,
                 token,
                 tile,
             );
+
+            const winnerId = winner !== null ? winner.id : -1;
+            const isWinner = winnerId !== -1;
+            const isVictory = isWinner && winnerId === playerId;
+
             this.setState({
                 currentGrid: currentPlayer.currentGrid,
                 turn: currentPlayer.turn,
-                winnerId: winner !== null ? winner.id : -1,
+                isWinner,
+                isVictory,
             });
         } catch (error) {
             console.error(error);
@@ -156,7 +162,7 @@ export default class MultiplayerGame extends Component {
         }
     };
 
-    handleClick = tile => {
+    handleClickTile = tile => {
         this.requestMove(tile);
     };
 
@@ -179,13 +185,11 @@ export default class MultiplayerGame extends Component {
             id,
             isLoading,
             isWaitingPlayer,
-            playerId,
+            isVictory,
             resolvedGrid,
             turn,
-            winnerId,
+            isWinner,
         } = this.state;
-        const isWinner = winnerId !== -1;
-        const isVictory = isWinner && winnerId === playerId;
 
         return (
             <Page navTitle="Multiplayer" title="Multiplayer | 15 puzzle">
@@ -209,14 +213,12 @@ export default class MultiplayerGame extends Component {
                             )}
                             isLoading={isLoading}
                         >
-                            {currentGrid && (
-                                <Grid
-                                    onClick={this.handleClick}
-                                    grid={currentGrid}
-                                    readOnly={isVictory}
-                                    resolvedGrid={resolvedGrid}
-                                />
-                            )}
+                            <Game
+                                currentGrid={currentGrid}
+                                isVictory={isVictory}
+                                onClickTile={this.handleClickTile}
+                                resolvedGrid={resolvedGrid}
+                            />
                         </Block>
                     </Section>
                 </ShowWhenOnline>
