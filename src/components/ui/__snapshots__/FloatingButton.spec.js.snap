@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FloatingButton should render the FloatingButton correctly 1`] = `
+<div
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onTouchStart={[Function]}
+>
+  <div
+    className="fixed-action-btn"
+  >
+    <a
+      className="btn-floating btn-large red"
+    >
+      <i
+        className="large material-icons"
+      >
+        add
+      </i>
+    </a>
+    <ul>
+      <p
+        className="hideElem"
+        style={
+          Object {
+            "opacity": 0,
+            "transition": "opacity 375ms ease-in-out",
+            "visibility": "hidden",
+          }
+        }
+      >
+        Child 1
+      </p>
+      <p
+        className="hideElem"
+        style={
+          Object {
+            "opacity": 0,
+            "transition": "opacity 375ms ease-in-out",
+            "visibility": "hidden",
+          }
+        }
+      >
+        Child 2
+      </p>
+    </ul>
+  </div>
+</div>
+`;

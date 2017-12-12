@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-import Button from '../src/components/Button';
-import FloatingButton from '../src/components/FloatingButton';
-import FloatingButtonFab from '../src/components/FloatingButtonFab';
-import Image from '../src/components/Image';
-import Page from '../src/components/Page';
-import Row from '../src/components/Row';
-import Section from '../src/components/Section';
+import Page from '../src/components/layout/Page';
+import Row from '../src/components/layout/Row';
+import Section from '../src/components/layout/Section';
+
+import Button from '../src/components/ui/Button';
+import FloatingButton from '../src/components/ui/FloatingButton';
+import FloatingButtonFab from '../src/components/ui/FloatingButtonFab';
+import Image from '../src/components/ui/Image';
 
 export default class Index extends Component {
     render() {

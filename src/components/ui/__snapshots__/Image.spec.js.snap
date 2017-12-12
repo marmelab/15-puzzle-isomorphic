@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image should render the Image correctly 1`] = `
+<div
+  className="image-wrapper"
+>
+  <img
+    alt={undefined}
+    className="responsive-img"
+    src="path/to/image"
+  />
+</div>
+`;

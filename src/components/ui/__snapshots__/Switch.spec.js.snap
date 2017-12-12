@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch should render the Switch correctly 1`] = `
+<div>
+  <div
+    className="switch"
+  >
+    <label>
+      <input
+        checked={false}
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="lever"
+      />
+    </label>
+  </div>
+</div>
+`;
