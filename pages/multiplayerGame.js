@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import config from '../src/config';
+import { refreshDuration } from '../src/config';
 import { Router } from '../src/routes';
 
 import {
@@ -58,6 +58,7 @@ export default class MultiplayerGame extends Component {
         isMultiplayer: false,
         token: '',
         currentGrid: [],
+        resolvedGrid: [],
         turn: -1,
         winnerId: -1,
     };
@@ -81,7 +82,7 @@ export default class MultiplayerGame extends Component {
         }
 
         await new Promise(resolve => {
-            setTimeout(resolve, config.refreshDuration);
+            setTimeout(resolve, refreshDuration);
         });
 
         return this.waitForOtherPlayer(id, token);
@@ -90,9 +91,10 @@ export default class MultiplayerGame extends Component {
     requestGame = async (id, token) => {
         try {
             let {
-                isMultiplayer,
                 currentPlayer,
+                isMultiplayer,
                 otherPlayer,
+                resolvedGrid,
                 winner,
             } = await gameFactory()(id, token);
 
@@ -103,12 +105,13 @@ export default class MultiplayerGame extends Component {
             }
 
             let newState = {
-                isLoading: false,
-                id,
-                token,
-                playerId: currentPlayer.id,
-                isMultiplayer,
                 currentGrid: currentPlayer.currentGrid,
+                id,
+                isLoading: false,
+                isMultiplayer,
+                playerId: currentPlayer.id,
+                resolvedGrid,
+                token,
                 turn: currentPlayer.turn,
                 winnerId: winner !== null ? winner.id : -1,
             };
@@ -172,11 +175,12 @@ export default class MultiplayerGame extends Component {
 
     render() {
         const {
-            id,
             currentGrid,
+            id,
             isLoading,
             isWaitingPlayer,
             playerId,
+            resolvedGrid,
             turn,
             winnerId,
         } = this.state;
@@ -205,11 +209,14 @@ export default class MultiplayerGame extends Component {
                             )}
                             isLoading={isLoading}
                         >
-                            <Grid
-                                onClick={this.handleClick}
-                                grid={currentGrid}
-                                readOnly={isVictory}
-                            />
+                            {currentGrid && (
+                                <Grid
+                                    onClick={this.handleClick}
+                                    grid={currentGrid}
+                                    readOnly={isVictory}
+                                    resolvedGrid={resolvedGrid}
+                                />
+                            )}
                         </Block>
                     </Section>
                 </ShowWhenOnline>

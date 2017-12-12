@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultImageUrl, defaultPuzzleSize, imageUrls } from '../src/config';
+import { defaultPuzzleSize } from '../src/config';
 
 import { ShowWhenOnline } from '../src/components/detectOffline';
 import withLoader from '../src/components/withLoader';
@@ -15,14 +15,7 @@ import Switch from '../src/components/ui/Switch';
 
 import Grid from '../src/components/puzzle/Grid';
 
-import { choiceInArray } from '../src/core/helper';
-import {
-    areGridsEquals,
-    buildGrid,
-    findTileByValue,
-    move,
-} from '../src/core/game';
-import { shuffle } from '../src/core/shuffler';
+import { initGame, moveTile } from '../src/core/main';
 
 import { suggestFactory } from '../src/services/suggestMoveService';
 
@@ -50,7 +43,6 @@ const labels = {
 export default class Game extends Component {
     state = {
         currentGrid: [],
-        imageUrl: defaultImageUrl,
         isLoading: true,
         isVictory: false,
         loadingAdvice: false,
@@ -72,18 +64,14 @@ export default class Game extends Component {
         const { currentGrid, resolvedGrid, turn } = this.state;
 
         try {
-            const coordsTileToMove = findTileByValue(currentGrid, tile);
-            const newCurrentGrid = move(currentGrid, coordsTileToMove);
-            const isVictory = areGridsEquals(newCurrentGrid, resolvedGrid);
+            const move = moveTile({ currentGrid, resolvedGrid, turn }, tile);
 
-            const newState = {
-                currentGrid: newCurrentGrid,
-                isVictory,
+            this.setState({
+                currentGrid: move.currentGrid,
+                isVictory: move.isVictory,
                 suggestedTile: 0,
-                turn: turn + 1,
-            };
-
-            this.setState(newState);
+                turn: move.turn,
+            });
         } catch (error) {
             console.error(error);
             // TODO : catch the findTileByValue and the move errors in order to display them to the user.
@@ -120,36 +108,25 @@ export default class Game extends Component {
     };
 
     buildGame = async () => {
-        const { size } = this.props;
-
-        let resolvedGrid = buildGrid(size);
-        let currentGrid = await shuffle(resolvedGrid);
-
+        const { currentGrid, resolvedGrid, turn } = await initGame(
+            this.props.size,
+        );
         this.setState({
-            isLoading: false,
             currentGrid,
-            resolvedGrid,
-            turn: 0,
+            isLoading: false,
             isVictory: false,
+            resolvedGrid,
+            turn,
         });
     };
 
     componentWillMount() {
-        try {
-            let imageUrl = choiceInArray(imageUrls);
-            this.setState({
-                imageUrl,
-            });
-        } catch (error) {
-            console.error(error);
-        }
         this.buildGame();
     }
 
     render() {
         const {
             currentGrid,
-            imageUrl,
             isLoading,
             isVictory,
             loadingAdvice,
@@ -170,7 +147,6 @@ export default class Game extends Component {
                             <Grid
                                 onClick={this.handleClickTile}
                                 grid={currentGrid}
-                                imageUrl={imageUrl}
                                 resolvedGrid={resolvedGrid}
                                 readOnly={isVictory}
                                 tileToHighlight={suggestedTile}
