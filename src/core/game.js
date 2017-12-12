@@ -78,7 +78,7 @@ export const listMovableTiles = grid =>
     listCoordsMovableTiles(grid).map(coords => grid[coords.y][coords.x]);
 
 export const isTileInMovableTiles = (grid, tileToMove) =>
-    listMovableTiles.some(tile => tile === tileToMove);
+    listMovableTiles(grid).some(tile => tile === tileToMove);
 
 export const move = (grid, coordsTileToMove) => {
     if (!isCoordsTileInMovableTiles(grid, coordsTileToMove)) {

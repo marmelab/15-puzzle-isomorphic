@@ -1,5 +1,4 @@
 import * as Game from './game';
-import { dirFromMove } from './game';
 
 describe('Game', () => {
     describe('buildGrid', () => {
@@ -153,11 +152,14 @@ describe('Game', () => {
         });
     });
 
-    describe('isTileInMovableTiles', () => {
+    describe('isCoordsTileInMovableTiles', () => {
         test('should return true if a tile is in movable tiles', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const coords = { y: 1, x: 2 };
-            const isInMovableTiles = Game.isTileInMovableTiles(grid, coords);
+            const isInMovableTiles = Game.isCoordsTileInMovableTiles(
+                grid,
+                coords,
+            );
 
             expect(isInMovableTiles).toBe(true);
         });
@@ -165,7 +167,54 @@ describe('Game', () => {
         test('should return false if a tile is in not movable tiles', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
             const coords = { y: 1, x: 0 };
-            const isInMovableTiles = Game.isTileInMovableTiles(grid, coords);
+            const isInMovableTiles = Game.isCoordsTileInMovableTiles(
+                grid,
+                coords,
+            );
+
+            expect(isInMovableTiles).toBe(false);
+        });
+    });
+
+    describe('listMovableTiles', () => {
+        test('should throw an error if there is not empty tile', () => {
+            const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+
+            expect(() => Game.listCoordsMovableTiles(grid)).toThrow(
+                `The tile with value 0 doesn't exist.`,
+            );
+        });
+
+        test('should return the movable tiles', () => {
+            const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
+            const expectedMovableTile1 = 6;
+            const expectedMovableTile2 = 8;
+
+            const movableTiles = Game.listMovableTiles(grid);
+
+            expect(movableTiles.length).toEqual(2);
+
+            expect(movableTiles[0]).toEqual(expectedMovableTile1);
+            expect(movableTiles[1]).toEqual(expectedMovableTile2);
+        });
+    });
+
+    describe('isTileInMovableTiles', () => {
+        test('should return true if a tile is in movable tiles', () => {
+            const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
+            const tile = 8;
+            const isInMovableTiles = Game.isTileInMovableTiles(grid, tile);
+
+            expect(isInMovableTiles).toBe(true);
+        });
+
+        test('should return false if a tile is in not movable tiles', () => {
+            const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
+            const tile = 2;
+            const isInMovableTiles = Game.isCoordsTileInMovableTiles(
+                grid,
+                tile,
+            );
 
             expect(isInMovableTiles).toBe(false);
         });
@@ -209,7 +258,7 @@ describe('Game', () => {
                 y: 1,
                 x: 0,
             };
-            const dir = dirFromMove(grid, 2);
+            const dir = Game.dirFromMove(grid, 2);
             expect(dir).toEqual(expectedDir);
         });
         test('should return the coords of a right move', () => {
@@ -218,7 +267,7 @@ describe('Game', () => {
                 y: 0,
                 x: -1,
             };
-            const dir = dirFromMove(grid, 6);
+            const dir = Game.dirFromMove(grid, 6);
             expect(dir).toEqual(expectedDir);
         });
 
@@ -228,7 +277,7 @@ describe('Game', () => {
                 y: -1,
                 x: 0,
             };
-            const dir = dirFromMove(grid, 5);
+            const dir = Game.dirFromMove(grid, 5);
             expect(dir).toEqual(expectedDir);
         });
 
@@ -238,7 +287,7 @@ describe('Game', () => {
                 y: 0,
                 x: 1,
             };
-            const dir = dirFromMove(grid, 4);
+            const dir = Game.dirFromMove(grid, 4);
             expect(dir).toEqual(expectedDir);
         });
     });
