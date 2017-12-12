@@ -1,6 +1,7 @@
 export const EMPTY_VALUE = 0;
+export const DEFAULT_SIZE = 4;
 
-export const buildGrid = (size = 4) => {
+export const buildGrid = (size = DEFAULT_SIZE) => {
     return Array(size)
         .fill(1)
         .map((val, y) =>
