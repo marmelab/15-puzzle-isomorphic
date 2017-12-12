@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page should render the Page correctly 1`] = `
+<div>
+  <p>
+    loading...
+  </p>
+  <p>
+    loading...
+  </p>
+  <section
+    className="container"
+  />
+</div>
+`;

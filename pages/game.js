@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 
 import { defaultImageUrl, defaultPuzzleSize, imageUrls } from '../src/config';
 
-import Block from '../src/components/Block';
-import Button from '../src/components/Button';
 import { ShowWhenOnline } from '../src/components/detectOffline';
-import Grid from '../src/components/Grid';
-import Page from '../src/components/Page';
-import Section from '../src/components/Section';
-import Switch from '../src/components/Switch';
-
 import withLoader from '../src/components/withLoader';
 
-import { choiceInArray } from '../src/core/helper';
+import Block from '../src/components/layout/Block';
+import Page from '../src/components/layout/Page';
+import Section from '../src/components/layout/Section';
 
+import Button from '../src/components/ui/Button';
+import Switch from '../src/components/ui/Switch';
+
+import Grid from '../src/components/puzzle/Grid';
+
+import { choiceInArray } from '../src/core/helper';
 import {
     areGridsEquals,
     buildGrid,

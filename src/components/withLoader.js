@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import ActivityIndicator from './ActivityIndicator';
+import ActivityIndicator from './ui/ActivityIndicator';
 
 export default WrappedComponent =>
     class LoaderHOC extends PureComponent {

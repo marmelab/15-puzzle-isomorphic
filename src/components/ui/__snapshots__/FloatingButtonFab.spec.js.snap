@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FloatingButtonFab should render the FloatingButtonFab correctly 1`] = `
+<li>
+  <p
+    className="undefined"
+    style={undefined}
+  >
+    Child
+  </p>
+</li>
+`;

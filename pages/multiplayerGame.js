@@ -4,14 +4,16 @@ import PropTypes from 'prop-types';
 import config from '../src/config';
 import { Router } from '../src/routes';
 
-import Block from '../src/components/Block';
-import Grid from '../src/components/Grid';
-import Page from '../src/components/Page';
-import Section from '../src/components/Section';
 import {
     ShowWhenOnline,
     ShowWhenOffline,
 } from '../src/components/detectOffline';
+
+import Block from '../src/components/layout/Block';
+import Page from '../src/components/layout/Page';
+import Section from '../src/components/layout/Section';
+
+import Grid from '../src/components/puzzle/Grid';
 
 import {
     gameFactory,

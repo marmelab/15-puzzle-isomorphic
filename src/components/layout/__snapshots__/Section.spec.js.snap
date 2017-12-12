@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section should render the Section correctly 1`] = `
+<div
+  className="section center"
+/>
+`;
