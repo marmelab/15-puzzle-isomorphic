@@ -1,43 +1,46 @@
 import React, { Component } from 'react';
 
-import Bloc from '../src/components/bloc';
-import Button from '../src/components/button';
-import { ShowWhenOnline } from '../src/components/detectOffline';
-import Image from '../src/components/image';
-import Page from '../src/components/page';
-import Row from '../src/components/row';
-import Section from '../src/components/section';
+import Button from '../src/components/Button';
+import FloatingButton from '../src/components/FloatingButton';
+import FloatingButtonFab from '../src/components/FloatingButtonFab';
+import Image from '../src/components/Image';
+import Page from '../src/components/Page';
+import Row from '../src/components/Row';
+import Section from '../src/components/Section';
 
 export default class Index extends Component {
     render() {
         return (
             <Page>
                 <Section>
-                    <Bloc title="Welcome to the 15 puzzle game!">
+                    <Row>
                         <Image
+                            className="center"
                             src="/static/images/banner.jpg"
                             alt="15 puzzle picture"
                         />
-                    </Bloc>
-                    <Row>
-                        <div className="buttons-wrapper">
-                            <Button
-                                color="green"
-                                icon="play_circle_outline"
-                                label="Single game"
-                                route="game"
-                            />
-                            <ShowWhenOnline>
-                                <Button
-                                    color="blue"
-                                    icon="play_circle_outline"
-                                    label="Multiplayer mode"
-                                    route="multiplayer_games"
-                                />
-                            </ShowWhenOnline>
-                        </div>
                     </Row>
                 </Section>
+                <FloatingButton icon="play_circle_outline">
+                    <FloatingButtonFab>
+                        <Button
+                            className="btn-floating"
+                            color="green"
+                            icon="person"
+                            label="Single game"
+                            route="game"
+                        />
+                    </FloatingButtonFab>
+                    <FloatingButtonFab showOnlyIfOnline={true}>
+                        <Button
+                            className="btn-floating"
+                            color="blue"
+                            icon="people"
+                            label="Multiplayer mode"
+                            route="multiplayer_games"
+                        />
+                    </FloatingButtonFab>
+                </FloatingButton>
             </Page>
         );
     }

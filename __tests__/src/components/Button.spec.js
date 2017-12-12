@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Button from '../../../src/components/button';
+import Button from '../../../src/components/Button';
 
 describe('Button', () => {
     test('should render the Button without error', () => {
@@ -41,5 +41,10 @@ describe('Button', () => {
             <Button icon="icon" label="label" onClick={() => {}} />,
         );
         expect(app.find('i').text()).toEqual('icon');
+    });
+
+    test('should set a title', () => {
+        const app = shallow(<Button icon="icon" label="label" route="path" />);
+        expect(app.find('a').prop('title')).toEqual('label');
     });
 });

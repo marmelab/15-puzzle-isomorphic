@@ -19,8 +19,13 @@ xdescribe('Game', () => {
 
 describe('title', () => {
     test('should render a turn', () => {
-        const expectedTitle = 'Turn 12';
+        const expectedTitle = '12 moves';
         expect(title(false, false, 12)).toEqual(expectedTitle);
+    });
+
+    test('should render the starting message', () => {
+        const expectedTitle = 'Start the game by moving a tile';
+        expect(title(false, false, 0)).toEqual(expectedTitle);
     });
 
     test('should render a victory', () => {

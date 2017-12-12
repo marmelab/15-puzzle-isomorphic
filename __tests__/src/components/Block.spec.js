@@ -1,44 +1,44 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Bloc from '../../../src/components/bloc';
+import Block from '../../../src/components/Block';
 
-describe('Bloc', () => {
-    test('should render Bloc without error', () => {
+describe('Block', () => {
+    test('should render Block without error', () => {
         renderer.create(
-            <Bloc>
+            <Block>
                 <div>Hello</div>
-            </Bloc>,
+            </Block>,
         );
     });
 
-    test('should render the Bloc correctly', () => {
+    test('should render the Block correctly', () => {
         const component = renderer.create(
-            <Bloc>
+            <Block>
                 <div>Hello</div>
-            </Bloc>,
+            </Block>,
         );
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     test('should render the title prop if passed', () => {
-        const app = shallow(
-            <Bloc title="title">
+        const app = mount(
+            <Block title="title">
                 <div>Hello</div>
-            </Bloc>,
+            </Block>,
         );
         expect(app.find('h5').text()).toEqual('title');
     });
 
     test('should display a loader', () => {
-        const app = shallow(
-            <Bloc title="title" isLoading={true}>
+        const app = mount(
+            <Block title="title" isLoading={true}>
                 <div>Hello</div>
-            </Bloc>,
+            </Block>,
         );
 
-        expect(app.find('.activity-indicator-wrapper').length).toEqual(1);
+        expect(app.find('.preloader-wrapper').length).toEqual(1);
     });
 });

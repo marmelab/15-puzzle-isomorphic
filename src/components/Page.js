@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import CustomHead from './customHead';
+import CustomHead from './CustomHead';
 import { ShowWhenOnline, ShowWhenOffline } from './detectOffline';
-import Nav from './nav';
+import Nav from './Nav';
 
 import config from '../config';
 
@@ -13,6 +13,13 @@ export default class Page extends PureComponent {
             PropTypes.element,
             PropTypes.arrayOf(PropTypes.element),
         ]).isRequired,
+        navTitle: PropTypes.string,
+        title: PropTypes.string,
+    };
+
+    static defaultProps = {
+        navTitle: '15 Puzzle',
+        title: '15 Puzzle',
     };
 
     componentDidMount() {
@@ -33,19 +40,16 @@ export default class Page extends PureComponent {
     }
 
     render() {
-        const { children } = this.props;
+        const { children, navTitle, title } = this.props;
 
         return (
             <div>
-                <CustomHead />
+                <CustomHead title={title} />
                 <ShowWhenOnline>
-                    <Nav />
+                    <Nav title={navTitle} />
                 </ShowWhenOnline>
                 <ShowWhenOffline>
-                    <Nav
-                        title="15 Puzzle Isomorphic - Offline mode"
-                        colors={['grey', 'lighten-1']}
-                    />
+                    <Nav title={title} colors={['grey', 'lighten-1']} />
                 </ShowWhenOffline>
                 <section className="container">{children}</section>
             </div>

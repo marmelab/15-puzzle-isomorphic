@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Section = ({ children }) => <div className="section">{children}</div>;
+const Col = ({ children }) => <div className="col s12">{children}</div>;
 
-Section.propTypes = {
+Col.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.element,
         PropTypes.arrayOf(PropTypes.element),
     ]).isRequired,
 };
 
-export default Section;
+export default Col;

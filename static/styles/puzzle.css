@@ -3,8 +3,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px;
-    width: 100%;
+    padding: 1em;
 }
 
 .puzzle-row {
@@ -18,10 +17,11 @@
     align-items: center;
     display: flex;
     background-color: #d32f2f;
-    height: 100px;
+    background-size: 25em;
+    height: 5em;
     justify-content: center;
-    margin: 4px;
-    width: 100px;
+    margin: 0.25em;
+    width: 5em;
 }
 
 .puzzle-tile-hover:hover {
@@ -29,14 +29,23 @@
     cursor: pointer;
 }
 
+.pulse, .pulse:hover {
+    background-color: #42a5f580;
+    z-index: 1;
+}
+
 .puzzle-tile-empty {
-    height: 100px;
-    margin: 4px;
-    width: 100px;
+    height: 5em;
+    margin: 0.25em;
+    width: 5em;
 }
 
 .puzzle-tile-value {
     color: white;
-    font-size: 20px;
     text-align: center;
 }
+
+@-webkit-keyframes pulse-tile {to {box-shadow: 0 0 0 35px #42a5f59e}}
+@-moz-keyframes pulse-tile {to {box-shadow: 0 0 0 35px #42a5f59e}}
+@-ms-keyframes pulse-tile {to {box-shadow: 0 0 0 35px #42a5f59e}}
+@keyframes pulse-tile {to {box-shadow: 0 0 0 35px #42a5f59e}}

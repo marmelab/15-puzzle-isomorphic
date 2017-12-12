@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 import config from '../src/config';
 import { Router } from '../src/routes';
 
-import Bloc from '../src/components/bloc';
-import Button from '../src/components/button';
+import Block from '../src/components/Block';
+import Grid from '../src/components/Grid';
+import Page from '../src/components/Page';
+import Section from '../src/components/Section';
 import {
     ShowWhenOnline,
     ShowWhenOffline,
 } from '../src/components/detectOffline';
-import Grid from '../src/components/grid';
-import Page from '../src/components/page';
-import Row from '../src/components/row';
-import Section from '../src/components/section';
 
 import {
     gameFactory,
@@ -43,7 +41,10 @@ export const title = (
         }
         return `Sorry, you opponent solved the puzzle in ${turn} turns!`;
     }
-    return `Turn ${turn}`;
+    if (turn === 0) {
+        return 'Start the game by moving a tile';
+    }
+    return `${turn} moves`;
 };
 
 export default class MultiplayerGame extends Component {
@@ -181,29 +182,17 @@ export default class MultiplayerGame extends Component {
         const isVictory = isWinner && winnerId === playerId;
 
         return (
-            <Page>
+            <Page navTitle="Multiplayer" title="Multiplayer | 15 puzzle">
                 <ShowWhenOffline>
                     <Section>
-                        <Bloc title="Waiting for connection" isLoading="true">
+                        <Block title="Waiting for connection" isLoading={true}>
                             <p>This page is only accessile online.</p>
-                        </Bloc>
-                    </Section>
-                    <Section>
-                        <Row>
-                            <div className="buttons-wrapper">
-                                <Button
-                                    icon="keyboard_return"
-                                    color="red"
-                                    label="Back to home"
-                                    route="index"
-                                />
-                            </div>
-                        </Row>
+                        </Block>
                     </Section>
                 </ShowWhenOffline>
                 <ShowWhenOnline>
                     <Section>
-                        <Bloc
+                        <Block
                             title={title(
                                 id,
                                 isLoading,
@@ -219,19 +208,7 @@ export default class MultiplayerGame extends Component {
                                 grid={currentGrid}
                                 readOnly={isVictory}
                             />
-                        </Bloc>
-                    </Section>
-                    <Section>
-                        <Row>
-                            <div className="buttons-wrapper">
-                                <Button
-                                    icon="keyboard_return"
-                                    color="red"
-                                    label="Back to home"
-                                    route="multiplayer_games"
-                                />
-                            </div>
-                        </Row>
+                        </Block>
                     </Section>
                 </ShowWhenOnline>
             </Page>

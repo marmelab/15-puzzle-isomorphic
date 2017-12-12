@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import List from './list';
-import ItemGames from './itemGames';
+import List from './List';
+import ItemGames from './ItemGames';
 
 const ListGames = ({ games, onGameSelected }) => {
     return games && games.length > 0 ? (

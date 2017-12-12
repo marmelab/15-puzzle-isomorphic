@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const ActivityIndicator = () => (
-    <div className="preloader-wrapper big active">
+const ActivityIndicator = ({ size }) => (
+    <div className={`preloader-wrapper ${size} active`}>
         <div className="spinner-layer spinner-blue">
             <div className="circle-clipper left">
                 <div className="circle" />
@@ -51,5 +52,13 @@ const ActivityIndicator = () => (
         </div>
     </div>
 );
+
+ActivityIndicator.propTypes = {
+    size: PropTypes.string,
+};
+
+ActivityIndicator.defaultProps = {
+    size: 'big',
+};
 
 export default ActivityIndicator;

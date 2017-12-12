@@ -2,10 +2,15 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
+import Fade from './Fade';
+
 export default class Tile extends PureComponent {
     static propTypes = {
         enabled: PropTypes.bool,
         onClick: PropTypes.func.isRequired,
+        pulse: PropTypes.bool,
+        showNumbers: PropTypes.bool,
+        style: PropTypes.object,
         tileImage: PropTypes.string,
         tileImageCoords: PropTypes.string,
         tileValue: PropTypes.number.isRequired,
@@ -13,6 +18,8 @@ export default class Tile extends PureComponent {
 
     static defaultProps = {
         enabled: true,
+        pulse: false,
+        showNumbers: true,
     };
 
     handleClick = () => {
@@ -24,24 +31,42 @@ export default class Tile extends PureComponent {
     };
 
     render() {
-        const { enabled, tileImage, tileImageCoords, tileValue } = this.props;
-        const tileClass = ClassNames({
-            'puzzle-tile': true,
+        const {
+            enabled,
+            pulse,
+            showNumbers,
+            tileImage,
+            tileImageCoords,
+            tileValue,
+            style,
+        } = this.props;
+
+        const tileClass = ClassNames('puzzle-tile', {
+            pulse: pulse,
             'puzzle-tile-hover': enabled,
             'z-depth-3': enabled,
         });
 
-        const style =
+        const tileStyle =
             tileImage && tileImageCoords
                 ? {
                       backgroundImage: `url(${tileImage})`,
                       backgroundPosition: tileImageCoords,
+                      ...style,
                   }
-                : {};
+                : {
+                      ...style,
+                  };
 
         return (
-            <div className={tileClass} style={style} onClick={this.handleClick}>
-                <span className="puzzle-tile-value">{tileValue}</span>
+            <div
+                className={tileClass}
+                style={tileStyle}
+                onClick={this.handleClick}
+            >
+                <Fade in={showNumbers}>
+                    <span className="puzzle-tile-value">{tileValue}</span>
+                </Fade>
             </div>
         );
     }

@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 
 import { Router } from '../src/routes';
 
-import Bloc from '../src/components/bloc';
-import Button from '../src/components/button';
+import Block from '../src/components/Block';
+import Button from '../src/components/Button';
+import FloatingButton from '../src/components/FloatingButton';
+import FloatingButtonFab from '../src/components/FloatingButtonFab';
+import ListGames from '../src/components/ListGames';
+import Page from '../src/components/Page';
+import Section from '../src/components/Section';
 import {
     ShowWhenOnline,
     ShowWhenOffline,
 } from '../src/components/detectOffline';
-import ListGames from '../src/components/listGames';
-import Image from '../src/components/image';
-import Page from '../src/components/page';
-import Row from '../src/components/row';
-import Section from '../src/components/section';
 
 import {
     gamesFactory,
@@ -85,63 +85,43 @@ export default class MultiplayerGames extends Component {
         const { isLoading, openMultiplayerGames } = this.state;
 
         return (
-            <Page>
+            <Page navTitle="Open games" title="Multiplayer games | 15 puzzle">
                 <ShowWhenOffline>
                     <Section>
-                        <Bloc title="Waiting for connection" isLoading="true">
+                        <Block title="Waiting for connection" isLoading={true}>
                             <p>This page is only accessile online.</p>
-                        </Bloc>
-                    </Section>
-                    <Section>
-                        <Row>
-                            <div className="buttons-wrapper">
-                                <Button
-                                    icon="keyboard_return"
-                                    color="red"
-                                    label="Back to home"
-                                    route="index"
-                                />
-                            </div>
-                        </Row>
+                        </Block>
                     </Section>
                 </ShowWhenOffline>
                 <ShowWhenOnline>
                     <Section>
-                        <Bloc title="Welcome to the multiplayer 15 puzzle game!">
-                            <Image
-                                src="/static/images/banner.jpg"
-                                alt="15 puzzle picture"
-                            />
-                        </Bloc>
-                        <Row>
-                            <div className="buttons-wrapper">
-                                <Button
-                                    color="red"
-                                    icon="keyboard_return"
-                                    label="Back to home"
-                                    route="index"
-                                />
-                                <Button
-                                    color="blue"
-                                    icon="refresh"
-                                    label="Refresh"
-                                    onClick={this.handleRefreshGames}
-                                />
-                                <Button
-                                    color="green"
-                                    icon="play_circle_outline"
-                                    label="New multiplayer game"
-                                    onClick={this.handleClickMultiplayerGame}
-                                />
-                            </div>
-                        </Row>
-                        <Bloc title="Join an open game" isLoading={isLoading}>
+                        <Block isLoading={isLoading}>
                             <ListGames
                                 games={openMultiplayerGames}
                                 onGameSelected={this.handleOnGameSelected}
                             />
-                        </Bloc>
+                        </Block>
                     </Section>
+                    <FloatingButton icon="add">
+                        <FloatingButtonFab>
+                            <Button
+                                className="btn-floating"
+                                color="green"
+                                icon="play_circle_outline"
+                                label="New multiplayer game"
+                                onClick={this.handleClickMultiplayerGame}
+                            />
+                        </FloatingButtonFab>
+                        <FloatingButtonFab>
+                            <Button
+                                className="btn-floating"
+                                color="blue"
+                                icon="refresh"
+                                label="Refresh"
+                                onClick={this.handleRefreshGames}
+                            />
+                        </FloatingButtonFab>
+                    </FloatingButton>
                 </ShowWhenOnline>
             </Page>
         );

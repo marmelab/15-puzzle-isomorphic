@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import config from '../src/config';
+import { defaultImageUrl, defaultPuzzleSize, imageUrls } from '../src/config';
 
-import Bloc from '../src/components/bloc';
-import Button from '../src/components/button';
+import Block from '../src/components/Block';
+import Button from '../src/components/Button';
 import { ShowWhenOnline } from '../src/components/detectOffline';
-import Grid from '../src/components/grid';
-import Page from '../src/components/page';
-import Row from '../src/components/row';
-import Section from '../src/components/section';
+import Grid from '../src/components/Grid';
+import Page from '../src/components/Page';
+import Section from '../src/components/Section';
+import Switch from '../src/components/Switch';
+
+import withLoader from '../src/components/withLoader';
+
+import { choiceInArray } from '../src/core/helper';
 
 import {
     areGridsEquals,
@@ -21,6 +25,8 @@ import { shuffle } from '../src/core/shuffler';
 
 import { suggestFactory } from '../src/services/suggestMoveService';
 
+const LoaderButton = withLoader(Button);
+
 export const title = (isLoading, isVictory, turn) => {
     if (isLoading) {
         return 'Building a new game';
@@ -28,22 +34,33 @@ export const title = (isLoading, isVictory, turn) => {
     if (isVictory) {
         return `Congratulations, you have solved the puzzle in ${turn} turns!`;
     }
-    return `Turn ${turn}`;
+    if (turn === 0) {
+        return 'Start the game by moving a tile';
+    }
+    return `${turn} moves`;
+};
+
+const labels = {
+    off: 'Hide',
+    on: 'Show',
+    title: 'Display the numbers',
 };
 
 export default class Game extends Component {
     state = {
         currentGrid: [],
+        imageUrl: defaultImageUrl,
         isLoading: true,
         isVictory: false,
         loadingAdvice: false,
         resolvedGrid: [],
+        showTileNumbers: false,
         suggestedTile: 0,
         turn: -1,
     };
 
     static getInitialProps = ({ query }) => ({
-        size: query.size || config.defaultPuzzleSize,
+        size: query.size || defaultPuzzleSize,
     });
 
     static propTypes = {
@@ -95,6 +112,12 @@ export default class Game extends Component {
         this.requestSuggest();
     };
 
+    handleOnToggle = toggleState => {
+        this.setState({
+            showTileNumbers: toggleState,
+        });
+    };
+
     buildGame = async () => {
         const { size } = this.props;
 
@@ -111,63 +134,66 @@ export default class Game extends Component {
     };
 
     componentWillMount() {
+        try {
+            let imageUrl = choiceInArray(imageUrls);
+            this.setState({
+                imageUrl,
+            });
+        } catch (error) {
+            console.error(error);
+        }
         this.buildGame();
     }
 
     render() {
         const {
             currentGrid,
+            imageUrl,
             isLoading,
             isVictory,
             loadingAdvice,
             resolvedGrid,
+            showTileNumbers,
             suggestedTile,
             turn,
         } = this.state;
 
         return (
-            <Page>
+            <Page navTitle="Singleplayer" title="Singleplayer | 15 puzzle">
                 <Section>
-                    <Bloc
-                        title={title(isLoading, isVictory, turn)}
+                    <Block
                         isLoading={isLoading}
+                        title={title(isLoading, isVictory, turn)}
                     >
                         {currentGrid && (
                             <Grid
                                 onClick={this.handleClickTile}
                                 grid={currentGrid}
+                                imageUrl={imageUrl}
                                 resolvedGrid={resolvedGrid}
                                 readOnly={isVictory}
+                                tileToHighlight={suggestedTile}
+                                showNumbers={showTileNumbers}
                             />
                         )}
-                        {loadingAdvice && <p>Looking for an advice...</p>}
-                        {!loadingAdvice &&
-                            suggestedTile !== 0 && (
-                                <p>You could move the tile {suggestedTile}</p>
-                            )}
-                    </Bloc>
-                </Section>
-                <Section>
-                    <Row>
-                        <div className="buttons-wrapper">
-                            <Button
-                                icon="keyboard_return"
-                                color="red"
-                                label="Back to home"
-                                route="index"
-                            />
-                            {!isLoading &&
-                                !isVictory && (
-                                    <ShowWhenOnline>
-                                        <Button
-                                            icon="help_outline"
-                                            label="Ask for help"
-                                            onClick={this.handleClickSuggest}
-                                        />
-                                    </ShowWhenOnline>
-                                )}
-                        </div>
-                    </Row>
+                        <Switch
+                            labels={labels}
+                            onToggle={this.handleOnToggle}
+                        />
+                        {!isVictory && (
+                            <div className="center">
+                                <ShowWhenOnline>
+                                    <LoaderButton
+                                        isLoading={loadingAdvice}
+                                        size="small"
+                                        icon="help_outline"
+                                        label="Ask for help"
+                                        onClick={this.handleClickSuggest}
+                                    />
+                                </ShowWhenOnline>
+                            </div>
+                        )}
+                    </Block>
                 </Section>
             </Page>
         );

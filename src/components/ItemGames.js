@@ -16,7 +16,7 @@ export default class ItemGames extends PureComponent {
         const { value } = this.props;
 
         return (
-            <div>
+            <div className="left-align">
                 Game #{value}
                 <span
                     onClick={this.handleClick}
