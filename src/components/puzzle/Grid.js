@@ -5,6 +5,7 @@ import Tile from './Tile';
 import { translateTile } from '../../core/main';
 
 import withImage from './withImage';
+import { isTileInMovableTiles } from '../../core/game';
 
 const DURATION_TRANSLATE = 200;
 const SIZE_TILE = 5.5;
@@ -75,25 +76,35 @@ class Grid extends Component {
                 {grid.map((row, rowKey) => (
                     <div className="puzzle-row" key={rowKey}>
                         {row.map(tileValue => {
+                            if (tileValue === 0) {
+                                return (
+                                    <div
+                                        key={tileValue}
+                                        className="puzzle-tile-empty"
+                                    />
+                                );
+                            }
                             const pulse = tileValue === tileToHighlight;
                             const translate =
                                 translating && translatingTile === tileValue;
-
-                            return tileValue === 0 ? (
-                                <div className="puzzle-tile-empty" />
-                            ) : (
+                            const enabled =
+                                !readOnly &&
+                                isTileInMovableTiles(grid, tileValue);
+                            const style = buildTranslateStyle(
+                                translate,
+                                translatingDir,
+                            );
+                            return (
                                 <Tile
-                                    style={buildTranslateStyle(
-                                        translate,
-                                        translatingDir,
-                                    )}
-                                    enabled={!readOnly}
+                                    enabled={enabled}
+                                    key={tileValue}
+                                    onClick={this.handleClickTile}
+                                    pulse={pulse}
+                                    showNumbers={showNumbers}
+                                    style={style}
                                     tileImage={imageUrl}
                                     tileImageCoords={imageCoords[tileValue]}
-                                    onClick={this.handleClickTile}
-                                    showNumbers={showNumbers}
                                     tileValue={tileValue}
-                                    pulse={pulse}
                                 />
                             );
                         })}
