@@ -32,8 +32,8 @@ const Nav = ({ colors, title }) => {
 };
 
 Nav.propTypes = {
-    colors: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired,
+    colors: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
+    title: PropTypes.string,
 };
 
 Nav.defaultProps = {
