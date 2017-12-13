@@ -11,6 +11,7 @@ exports[`FloatingButton should render the FloatingButton correctly 1`] = `
   >
     <a
       className="btn-floating btn-large red"
+      onClick={[Function]}
     >
       <i
         className="large material-icons"
