@@ -1,3 +1,5 @@
+import { shuffle } from './shuffler';
+
 export const EMPTY_VALUE = 0;
 export const DEFAULT_SIZE = 4;
 
@@ -12,6 +14,18 @@ export const buildGrid = (size = DEFAULT_SIZE) => {
                     return value === size * size ? EMPTY_VALUE : value;
                 }),
         );
+};
+
+export const initGame = async (size = DEFAULT_SIZE) => {
+    let resolvedGrid = buildGrid(size);
+    let currentGrid = await shuffle(resolvedGrid);
+
+    return {
+        currentGrid,
+        isVictory: false,
+        resolvedGrid,
+        turn: 0,
+    };
 };
 
 export const deepCopyGrid = grid => grid.map(row => [...row]);
@@ -99,6 +113,19 @@ export const move = (grid, coordsTileToMove) => {
     newGrid[newCoords.y][newCoords.x] =
         grid[emptyTileCoords.y][emptyTileCoords.x];
     return newGrid;
+};
+
+export const moveTile = ({ currentGrid, resolvedGrid, turn }, tile) => {
+    const coordsTileToMove = findTileByValue(currentGrid, tile);
+    const newCurrentGrid = move(currentGrid, coordsTileToMove);
+    const isVictory = areGridsEquals(newCurrentGrid, resolvedGrid);
+
+    return {
+        currentGrid: newCurrentGrid,
+        resolvedGrid,
+        isVictory,
+        turn: turn + 1,
+    };
 };
 
 export const dirFromMove = (grid, tile) => {
