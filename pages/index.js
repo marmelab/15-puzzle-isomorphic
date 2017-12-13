@@ -22,7 +22,7 @@ export default class Index extends Component {
                         />
                     </Row>
                 </Section>
-                <FloatingButton icon="play_circle_outline">
+                <FloatingButton icon="add">
                     <FloatingButtonFab>
                         <Button
                             className="btn-floating"

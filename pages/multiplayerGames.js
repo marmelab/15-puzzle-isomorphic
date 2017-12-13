@@ -11,11 +11,11 @@ import Block from '../src/components/layout/Block';
 import Page from '../src/components/layout/Page';
 import Section from '../src/components/layout/Section';
 
+import ListGames from '../src/components/puzzle/ListGames';
+
 import Button from '../src/components/ui/Button';
 import FloatingButton from '../src/components/ui/FloatingButton';
 import FloatingButtonFab from '../src/components/ui/FloatingButtonFab';
-
-import ListGames from '../src/components/puzzle/ListGames';
 
 import {
     gamesFactory,
