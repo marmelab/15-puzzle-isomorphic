@@ -9,7 +9,10 @@ import { dirFromMove, isTileInMovableTiles } from '../../core/game';
 import { associateTileToBackground, choiceInArray } from '../../core/helper';
 
 const DURATION_TRANSLATE = 200;
-const SIZE_TILE = 5.5;
+
+const SIZE_TILE_IMAGE = 5;
+const SIZE_TILE_MARGIN = 0.25;
+const SIZE_TILE = SIZE_TILE_IMAGE + SIZE_TILE_MARGIN * 2;
 
 const buildTranslateStyle = (translate, translatingDir) => {
     return translate
@@ -72,10 +75,14 @@ class Grid extends Component {
         const imageUrl = choiceInArray(
             imageUrls.length > 0 ? imageUrls : [defaultImageUrl],
         );
+        const size = this.props.resolvedGrid.length;
+
+        const imageSize = SIZE_TILE_IMAGE + size * SIZE_TILE_IMAGE;
 
         this.setState({
             imageCoords,
             imageUrl,
+            imageSize,
         });
     }
 
@@ -85,6 +92,7 @@ class Grid extends Component {
         const {
             imageCoords,
             imageUrl,
+            imageSize,
             translating,
             translatingDir,
             translatingTile,
@@ -121,6 +129,7 @@ class Grid extends Component {
                                         )}
                                         tileImage={imageUrl}
                                         tileImageCoords={imageCoords[tileValue]}
+                                        tileImageSize={imageSize}
                                         tileValue={tileValue}
                                     />
                                 ),

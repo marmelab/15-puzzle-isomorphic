@@ -13,6 +13,7 @@ export default class Tile extends PureComponent {
         style: PropTypes.object,
         tileImage: PropTypes.string,
         tileImageCoords: PropTypes.string,
+        tileImageSize: PropTypes.number,
         tileValue: PropTypes.number.isRequired,
     };
 
@@ -37,6 +38,7 @@ export default class Tile extends PureComponent {
             showNumbers,
             tileImage,
             tileImageCoords,
+            tileImageSize,
             tileValue,
             style,
         } = this.props;
@@ -51,6 +53,7 @@ export default class Tile extends PureComponent {
                 ? {
                       backgroundImage: `url(${tileImage})`,
                       backgroundPosition: tileImageCoords,
+                      backgroundSize: `${tileImageSize}em`,
                       ...style,
                   }
                 : {
