@@ -9,7 +9,7 @@ import Section from '../src/components/layout/Section';
 
 import Game from '../src/components/puzzle/Game';
 
-import { initGame, moveTile } from '../src/core/main';
+import { initGame, moveTile } from '../src/core/game';
 
 export const title = (isLoading, isVictory, turn) => {
     if (isLoading) {
