@@ -11,7 +11,9 @@ export default class Page extends PureComponent {
     static propTypes = {
         children: PropTypes.oneOfType([
             PropTypes.element,
+            PropTypes.node,
             PropTypes.arrayOf(PropTypes.element),
+            PropTypes.arrayOf(PropTypes.node),
         ]).isRequired,
         navTitle: PropTypes.string,
         title: PropTypes.string,
