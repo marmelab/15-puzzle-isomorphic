@@ -15,7 +15,7 @@ exports[`List should render the List correctly with a title and items 1`] = `
     className="collection-item"
   >
     <div
-      onClick={undefined}
+      onClick={[Function]}
       value={1}
     >
       Children
@@ -25,7 +25,7 @@ exports[`List should render the List correctly with a title and items 1`] = `
     className="collection-item"
   >
     <div
-      onClick={undefined}
+      onClick={[Function]}
       value={2}
     >
       Children
@@ -35,7 +35,7 @@ exports[`List should render the List correctly with a title and items 1`] = `
     className="collection-item"
   >
     <div
-      onClick={undefined}
+      onClick={[Function]}
       value={3}
     >
       Children
