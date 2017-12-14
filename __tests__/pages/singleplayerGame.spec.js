@@ -1,17 +1,17 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Game, { title } from '../../pages/game';
+import SingleplayerGame, { title } from '../../pages/singleplayerGame';
 
 // FIXME: this page is using a component dynamically loaded using the next/dynamic module. This bug will make the tests fail.
 // You can find the related issue here : https://github.com/zeit/next.js/issues/3345
-xdescribe('Game', () => {
-    test('should render Game without error', () => {
-        renderer.create(<Game />);
+xdescribe('SingleplayerGame', () => {
+    test('should render SingleplayerGame without error', () => {
+        renderer.create(<SingleplayerGame />);
     });
 
     test('should render the Game correctly', () => {
-        const component = renderer.create(<Game />);
+        const component = renderer.create(<SingleplayerGame />);
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });

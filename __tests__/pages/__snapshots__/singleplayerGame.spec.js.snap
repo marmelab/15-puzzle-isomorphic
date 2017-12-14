@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleplayerGame should render the Game correctly 1`] = `
+<div>
+  <p>
+    loading...
+  </p>
+  <p>
+    loading...
+  </p>
+  <section
+    className="container"
+  >
+    <div
+      className="section center"
+    >
+      <div
+        className="preloader-wrapper small active"
+      >
+        <div
+          className="spinner-layer spinner-blue"
+        >
+          <div
+            className="circle-clipper left"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+          <div
+            className="gap-patch"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+          <div
+            className="circle-clipper right"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+        </div>
+        <div
+          className="spinner-layer spinner-red"
+        >
+          <div
+            className="circle-clipper left"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+          <div
+            className="gap-patch"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+          <div
+            className="circle-clipper right"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+        </div>
+        <div
+          className="spinner-layer spinner-yellow"
+        >
+          <div
+            className="circle-clipper left"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+          <div
+            className="gap-patch"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+          <div
+            className="circle-clipper right"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+        </div>
+        <div
+          className="spinner-layer spinner-green"
+        >
+          <div
+            className="circle-clipper left"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+          <div
+            className="gap-patch"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+          <div
+            className="circle-clipper right"
+          >
+            <div
+              className="circle"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;

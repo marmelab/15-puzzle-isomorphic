@@ -1,6 +1,9 @@
-export const EMPTY_VALUE = 0;
+import { shuffle } from './shuffler';
 
-export const buildGrid = (size = 4) => {
+export const EMPTY_VALUE = 0;
+export const DEFAULT_SIZE = 4;
+
+export const buildGrid = (size = DEFAULT_SIZE) => {
     return Array(size)
         .fill(1)
         .map((val, y) =>
@@ -11,6 +14,18 @@ export const buildGrid = (size = 4) => {
                     return value === size * size ? EMPTY_VALUE : value;
                 }),
         );
+};
+
+export const initGame = async (size = DEFAULT_SIZE) => {
+    let resolvedGrid = buildGrid(size);
+    let currentGrid = await shuffle(resolvedGrid);
+
+    return {
+        currentGrid,
+        isVictory: false,
+        resolvedGrid,
+        turn: 0,
+    };
 };
 
 export const deepCopyGrid = grid => grid.map(row => [...row]);
@@ -68,13 +83,19 @@ export const listCoordsMovableTiles = grid => {
     ].filter(x => x);
 };
 
-export const isTileInMovableTiles = (grid, coordsTileToMove) =>
+export const isCoordsTileInMovableTiles = (grid, coordsTileToMove) =>
     listCoordsMovableTiles(grid).some(coords =>
         areCoordsEquals(coords, coordsTileToMove),
     );
 
+export const listMovableTiles = grid =>
+    listCoordsMovableTiles(grid).map(coords => grid[coords.y][coords.x]);
+
+export const isTileInMovableTiles = (grid, tileToMove) =>
+    listMovableTiles(grid).some(tile => tile === tileToMove);
+
 export const move = (grid, coordsTileToMove) => {
-    if (!isTileInMovableTiles(grid, coordsTileToMove)) {
+    if (!isCoordsTileInMovableTiles(grid, coordsTileToMove)) {
         throw `The tile at coords (${coordsTileToMove.y}, ${
             coordsTileToMove.x
         }) is not movable.`;
@@ -92,4 +113,27 @@ export const move = (grid, coordsTileToMove) => {
     newGrid[newCoords.y][newCoords.x] =
         grid[emptyTileCoords.y][emptyTileCoords.x];
     return newGrid;
+};
+
+export const moveTile = ({ currentGrid, resolvedGrid, turn }, tile) => {
+    const coordsTileToMove = findTileByValue(currentGrid, tile);
+    const newCurrentGrid = move(currentGrid, coordsTileToMove);
+    const isVictory = areGridsEquals(newCurrentGrid, resolvedGrid);
+
+    return {
+        currentGrid: newCurrentGrid,
+        resolvedGrid,
+        isVictory,
+        turn: turn + 1,
+    };
+};
+
+export const dirFromMove = (grid, tile) => {
+    const coords = findTileByValue(grid, tile);
+    const coordsEmptyTile = findEmptyTile(grid);
+
+    return {
+        y: coordsEmptyTile.y - coords.y,
+        x: coordsEmptyTile.x - coords.x,
+    };
 };
