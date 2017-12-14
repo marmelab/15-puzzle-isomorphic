@@ -35,14 +35,11 @@ export default class SinglePlayerGame extends Component {
 
     handleClickTile = tile => {
         const { currentGrid, resolvedGrid, turn } = this.state;
-
         try {
             const move = moveTile({ currentGrid, resolvedGrid, turn }, tile);
-
             this.setState({
                 currentGrid: move.currentGrid,
                 isVictory: move.isVictory,
-                suggestedTile: 0,
                 turn: move.turn,
             });
         } catch (error) {
@@ -82,7 +79,6 @@ export default class SinglePlayerGame extends Component {
             isLoading,
             isVictory,
             resolvedGrid,
-            suggestedTile,
             turn,
         } = this.state;
 
@@ -98,7 +94,6 @@ export default class SinglePlayerGame extends Component {
                             isVictory={isVictory}
                             onClickTile={this.handleClickTile}
                             resolvedGrid={resolvedGrid}
-                            suggestedTile={suggestedTile}
                         />
                     </Block>
                     {turn <= 0 && (

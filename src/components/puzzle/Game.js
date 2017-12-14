@@ -35,6 +35,13 @@ export default class Game extends Component {
         showTileNumbers: false,
     };
 
+    handleOnClickTile = tile => {
+        this.setState({
+            suggestedTile: 0,
+        });
+        this.props.onClickTile(tile);
+    };
+
     handleOnToggle = toggleState => {
         this.setState({
             showTileNumbers: toggleState,
@@ -65,26 +72,19 @@ export default class Game extends Component {
     };
 
     render() {
-        const {
-            currentGrid,
-            isVictory,
-            onClickTile,
-            resolvedGrid,
-        } = this.props;
+        const { currentGrid, isVictory, resolvedGrid } = this.props;
         const { showTileNumbers, suggestedTile, loadingAdvice } = this.state;
 
         return (
             <div>
-                {currentGrid && (
-                    <Grid
-                        onClick={onClickTile}
-                        grid={currentGrid}
-                        readOnly={isVictory}
-                        resolvedGrid={resolvedGrid}
-                        showNumbers={showTileNumbers}
-                        tileToHighLight={suggestedTile}
-                    />
-                )}
+                <Grid
+                    onClick={this.handleOnClickTile}
+                    grid={currentGrid}
+                    readOnly={isVictory}
+                    resolvedGrid={resolvedGrid}
+                    showNumbers={showTileNumbers}
+                    tileToHighlight={suggestedTile}
+                />
                 <Switch labels={labels} onToggle={this.handleOnToggle} />
                 {!isVictory && (
                     <div className="center">

@@ -15,6 +15,7 @@
 
 .puzzle-tile {
     align-items: center;
+    cursor: pointer;
     display: flex;
     background-color: #d32f2f;
     justify-content: center;
@@ -22,7 +23,6 @@
 
 .puzzle-tile-hover:hover {
     background-color: #f44336;
-    cursor: pointer;
 }
 
 .pulse, .pulse:hover {
