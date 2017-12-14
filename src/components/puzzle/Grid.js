@@ -10,16 +10,18 @@ import { associateTileToBackground, choiceInArray } from '../../core/helper';
 
 const DURATION_TRANSLATE = 200;
 
-const SIZE_TILE_IMAGE = 5;
-const SIZE_TILE_MARGIN = 0.25;
-const SIZE_TILE = SIZE_TILE_IMAGE + SIZE_TILE_MARGIN * 2;
+const TILE_IMAGE_SIZE = 100;
+const TILE_MARGIN = 2;
+
+const buildTileSize = (imageSize, nbOfTiles) =>
+    `${imageSize / (nbOfTiles + 1)}vw`;
 
 const buildTranslateStyle = (translate, translatingDir) => {
     return translate
         ? {
-              transform: `translate(${translatingDir.x}em, ${
+              transform: `translate(calc(${translatingDir.x}), calc(${
                   translatingDir.y
-              }em)`,
+              }))`,
               transition: `transform ${DURATION_TRANSLATE}ms ease-out`,
           }
         : {
@@ -27,11 +29,11 @@ const buildTranslateStyle = (translate, translatingDir) => {
           };
 };
 
-const translateTile = (grid, tile, tileSize) => {
-    const dir = dirFromMove(grid, tile);
+const translateTile = (grid, tileValue, tileSize, tileMargin) => {
+    const dir = dirFromMove(grid, tileValue);
     return {
-        y: dir.y * tileSize,
-        x: dir.x * tileSize,
+        y: `${dir.y} * (${tileSize} + ${tileMargin})`,
+        x: `${dir.x} * (${tileSize} + ${tileMargin})`,
     };
 };
 
@@ -57,32 +59,46 @@ class Grid extends Component {
     };
 
     handleClickTile = tile => {
-        const dir = translateTile(this.props.grid, tile, SIZE_TILE);
-        this.setState({
-            translating: true,
-            translatingDir: dir,
-            translatingTile: tile,
-        });
+        const { tileSize, tileMargin, translatingTile } = this.state;
+        const { grid, onClick } = this.props;
 
-        setTimeout(() => {
-            this.props.onClick(this.state.translatingTile);
-            this.setState({ translating: false });
-        }, DURATION_TRANSLATE);
+        this.setState(
+            {
+                translating: true,
+                translatingDir: translateTile(grid, tile, tileSize, tileMargin),
+                translatingTile: tile,
+            },
+            () => {
+                setTimeout(() => {
+                    this.setState({ translating: false }, () =>
+                        onClick(translatingTile),
+                    );
+                }, DURATION_TRANSLATE);
+            },
+        );
     };
 
     componentWillMount() {
-        const imageCoords = associateTileToBackground(this.props.resolvedGrid);
+        const { resolvedGrid } = this.props;
+
+        const imageCoords = associateTileToBackground(resolvedGrid);
         const imageUrl = choiceInArray(
             imageUrls.length > 0 ? imageUrls : [defaultImageUrl],
         );
-        const size = this.props.resolvedGrid.length;
 
-        const imageSize = SIZE_TILE_IMAGE + size * SIZE_TILE_IMAGE;
+        const imageSize = `${TILE_IMAGE_SIZE}vw`;
+        const tileMargin = `${TILE_MARGIN}px`;
+        const tileSize = `${buildTileSize(
+            TILE_IMAGE_SIZE,
+            resolvedGrid.length,
+        )}`;
 
         this.setState({
             imageCoords,
             imageUrl,
             imageSize,
+            tileMargin,
+            tileSize,
         });
     }
 
@@ -93,6 +109,7 @@ class Grid extends Component {
             imageCoords,
             imageUrl,
             imageSize,
+            tileSize,
             translating,
             translatingDir,
             translatingTile,
@@ -108,6 +125,11 @@ class Grid extends Component {
                                     <div
                                         key={tileValue}
                                         className="puzzle-tile-empty"
+                                        style={{
+                                            height: `${tileSize}`,
+                                            margin: `${TILE_MARGIN}px`,
+                                            width: `${tileSize}`,
+                                        }}
                                     />
                                 ) : (
                                     <Tile
@@ -127,9 +149,11 @@ class Grid extends Component {
                                                 translatingTile === tileValue,
                                             translatingDir,
                                         )}
-                                        tileImage={imageUrl}
                                         tileImageCoords={imageCoords[tileValue]}
                                         tileImageSize={imageSize}
+                                        tileImageUrl={imageUrl}
+                                        tileMargin={`${TILE_MARGIN}px`}
+                                        tileSize={`calc(${tileSize})`}
                                         tileValue={tileValue}
                                     />
                                 ),

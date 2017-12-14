@@ -11,9 +11,11 @@ export default class Tile extends PureComponent {
         pulse: PropTypes.bool,
         showNumbers: PropTypes.bool,
         style: PropTypes.object,
-        tileImage: PropTypes.string,
         tileImageCoords: PropTypes.string,
-        tileImageSize: PropTypes.number,
+        tileImageSize: PropTypes.string,
+        tileImageUrl: PropTypes.string,
+        tileMargin: PropTypes.string,
+        tileSize: PropTypes.string,
         tileValue: PropTypes.number.isRequired,
     };
 
@@ -36,9 +38,11 @@ export default class Tile extends PureComponent {
             enabled,
             pulse,
             showNumbers,
-            tileImage,
             tileImageCoords,
+            tileImageUrl,
             tileImageSize,
+            tileMargin,
+            tileSize,
             tileValue,
             style,
         } = this.props;
@@ -49,11 +53,14 @@ export default class Tile extends PureComponent {
         });
 
         const tileStyle =
-            tileImage && tileImageCoords
+            tileImageUrl && tileImageCoords
                 ? {
-                      backgroundImage: `url(${tileImage})`,
+                      backgroundImage: `url(${tileImageUrl})`,
                       backgroundPosition: tileImageCoords,
-                      backgroundSize: `${tileImageSize}em`,
+                      backgroundSize: `${tileImageSize}`,
+                      height: `${tileSize}`,
+                      margin: `${tileMargin}`,
+                      width: `${tileSize}`,
                       ...style,
                   }
                 : {
