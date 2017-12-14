@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ClassNames from 'classnames';
 
-const List = ({ children, items, onClickItem, title }) => (
+const List = ({ children, items, onClickItem, selectedItem, title }) => (
     <ul className="collection with-header">
         {title && (
             <li className="collection-header">
@@ -9,10 +10,18 @@ const List = ({ children, items, onClickItem, title }) => (
             </li>
         )}
         {items.map((item, key) => (
-            <li className="collection-item" key={key}>
+            <li
+                className={ClassNames('collection-item', {
+                    active: selectedItem && selectedItem.value === item.value,
+                    'collection-item-hover': !children.props.icon,
+                })}
+                key={key}
+            >
                 {React.cloneElement(children, {
+                    label: item.label,
                     onClick: onClickItem,
-                    value: item,
+                    value: item.value,
+                    ...children.props,
                 })}
             </li>
         ))}
@@ -23,6 +32,7 @@ List.propTypes = {
     children: PropTypes.element.isRequired,
     items: PropTypes.array.isRequired,
     onClickItem: PropTypes.func.isRequired,
+    selectedItem: PropTypes.object,
     title: PropTypes.string,
 };
 

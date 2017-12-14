@@ -23,8 +23,9 @@ describe('List', () => {
     });
 
     test('should render the List correctly with a title and items', () => {
+        const items = [{ value: 1 }, { value: 2 }, { value: 3 }];
         const component = renderer.create(
-            <List items={[1, 2, 3]} title="Title" onClickItem={() => {}}>
+            <List items={items} title="Title" onClickItem={() => {}}>
                 <div>Children</div>
             </List>,
         );

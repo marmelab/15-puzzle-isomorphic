@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class ItemGames extends PureComponent {
+export default class Item extends PureComponent {
     static propTypes = {
+        className: PropTypes.string,
+        icon: PropTypes.string,
+        label: PropTypes.string,
         onClick: PropTypes.func,
         value: PropTypes.number,
     };
@@ -13,17 +16,21 @@ export default class ItemGames extends PureComponent {
     };
 
     render() {
-        const { value } = this.props;
+        const { icon, label } = this.props;
 
-        return (
+        return icon ? (
             <div className="left-align">
-                Game #{value}
+                {label}
                 <span
                     onClick={this.handleClick}
                     className="secondary-content clickable"
                 >
-                    <i className="material-icons">add_circle_outline</i>
+                    <i className="material-icons">{icon}</i>
                 </span>
+            </div>
+        ) : (
+            <div className="left-align" onClick={this.handleClick}>
+                {label}
             </div>
         );
     }

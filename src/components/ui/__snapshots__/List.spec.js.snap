@@ -12,9 +12,10 @@ exports[`List should render the List correctly with a title and items 1`] = `
     </h4>
   </li>
   <li
-    className="collection-item"
+    className="collection-item collection-item-hover"
   >
     <div
+      label={undefined}
       onClick={[Function]}
       value={1}
     >
@@ -22,9 +23,10 @@ exports[`List should render the List correctly with a title and items 1`] = `
     </div>
   </li>
   <li
-    className="collection-item"
+    className="collection-item collection-item-hover"
   >
     <div
+      label={undefined}
       onClick={[Function]}
       value={2}
     >
@@ -32,9 +34,10 @@ exports[`List should render the List correctly with a title and items 1`] = `
     </div>
   </li>
   <li
-    className="collection-item"
+    className="collection-item collection-item-hover"
   >
     <div
+      label={undefined}
       onClick={[Function]}
       value={3}
     >

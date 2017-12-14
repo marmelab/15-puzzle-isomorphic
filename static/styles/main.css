@@ -67,3 +67,11 @@ a.btn {
     width: 100%;
     text-align: right;
 }
+
+.collection-item-hover {
+    cursor: pointer;
+}
+
+.collection-item-hover:hover {
+    background-color: #ddd;
+}

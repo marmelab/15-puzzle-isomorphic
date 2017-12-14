@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
+import { puzzleSize } from '../../config';
 import FloatingButton from '../ui/FloatingButton';
+import Item from '../ui/Item';
+import List from '../ui/List';
 
 const style = {
     overlay: {
@@ -22,50 +25,59 @@ const style = {
         left: 0,
         margin: 'auto',
         maxHeight: '70%',
+        maxWidth: '900px',
         overflowY: 'auto',
         padding: 0,
         position: 'fixed',
         right: 0,
         top: '10%',
-        width: '55%',
+        width: '90%',
     },
 };
 
 export default class ChangeSizeModal extends Component {
     static propTypes = {
         onClose: PropTypes.func.isRequired,
-        initialSize: PropTypes.number,
+        size: PropTypes.number.isRequired,
     };
 
     state = {
         isOpen: false,
-        size: 4,
     };
 
     openModal = () => {
         this.setState({ isOpen: true });
     };
 
-    handleOnClickAccept = () => {
-        this.props.onClose(this.state.size);
+    closeModal = () => {
         this.setState({ isOpen: false });
     };
 
     handleOnClickCancel = () => {
+        this.closeModal();
         this.props.onClose();
-        this.setState({ isOpen: false });
     };
 
-    handleOnChangeSize = event => {
-        this.setState({ size: parseInt(event.target.value, 10) });
+    handleOnClickItem = value => {
+        this.closeModal();
+        this.props.onClose(parseInt(value, 10));
     };
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({ size: nextProps.initialSize });
+    componentWillMount() {
+        const items = [];
+        for (let i = puzzleSize.min; i <= puzzleSize.max; i++) {
+            items.push({
+                label: `${i}x${i}`,
+                value: i,
+            });
+        }
+        this.setState({ items });
     }
 
     render() {
-        const { isOpen } = this.state;
+        const { items, isOpen } = this.state;
+        const { size } = this.props;
+
         return (
             <span>
                 <FloatingButton
@@ -76,29 +88,19 @@ export default class ChangeSizeModal extends Component {
                 <Modal ariaHideApp={false} isOpen={isOpen} style={style}>
                     <div className="modal-content">
                         <div>
-                            <h4 id="heading">Edit the content</h4>
-                            <p id="full_description">Choose the grid size</p>
+                            <h4 id="heading">Choose the grid size</h4>
                             <div className="input-field col s12">
-                                <input
-                                    type="number"
-                                    name="Size"
-                                    autoFocus
-                                    min={0}
-                                    max={8}
-                                    step={1}
-                                    value={this.state.size}
-                                    onChange={this.handleOnChangeSize}
-                                />
+                                <List
+                                    items={items}
+                                    onClickItem={this.handleOnClickItem}
+                                    selectedItem={{ value: size }}
+                                >
+                                    <Item />
+                                </List>
                             </div>
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <a
-                            onClick={this.handleOnClickAccept}
-                            className="modal-action modal-close btn-flat"
-                        >
-                            Accept
-                        </a>
                         <a
                             onClick={this.handleOnClickCancel}
                             className="modal-action modal-close btn-flat"
