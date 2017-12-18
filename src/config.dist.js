@@ -4,6 +4,7 @@ module.exports = {
         suggest: 'http://your.suggest.api',
     },
     defaultImageUrl: '/static/images/puzzle-default.jpg',
+    durationTranslate: 200,
     imageUrls: ['/static/images/img1.jpg', '/static/images/img2.jpg'],
     puzzleSize: {
         default: 4,
