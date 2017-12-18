@@ -81,7 +81,7 @@ export default class ChangeSizeModal extends Component {
         return (
             <span>
                 <FloatingButton
-                    icon="edit"
+                    icon="grid_on"
                     color="blue"
                     onClick={this.openModal}
                 />
