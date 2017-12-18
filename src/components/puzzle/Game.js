@@ -26,13 +26,10 @@ export default class Game extends Component {
         resolvedGrid: PropTypes.array.isRequired,
     };
 
-    static defaultProps = {
-        suggestedTile: 0,
-    };
-
     state = {
         loadingAdvice: false,
         showTileNumbers: false,
+        suggestedTile: 0,
     };
 
     handleOnClickTile = tile => {
@@ -51,6 +48,7 @@ export default class Game extends Component {
     requestSuggest = async () => {
         const { currentGrid, resolvedGrid } = this.props;
         this.setState({ loadingAdvice: true });
+
         try {
             const { Tile } = await suggestFactory()(currentGrid, resolvedGrid);
             this.setState({
