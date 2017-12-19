@@ -1,0 +1,43 @@
+{
+  "name": "15-puzzle-isomorphic",
+  "version": "1.0.0",
+  "description": "A react app to play the 15 puzzle game.",
+  "dependencies": {
+    "classnames": "2.2.5",
+    "isomorphic-fetch": "2.2.1",
+    "next": "4.1.4",
+    "next-routes": "1.1.0",
+    "qs": "6.5.1",
+    "react": "16.1.1",
+    "react-detect-offline": "1.0.5",
+    "react-dom": "16.1.1",
+    "react-media": "1.6.1",
+    "react-modal": "3.1.8",
+    "react-transition-group": "2.2.1",
+    "sw-precache-webpack-plugin": "0.11.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "~8.0.2",
+    "babel-jest": "~21.2.0",
+    "babel-preset-es2015": "^6.24.1",
+    "enzyme": "~3.2.0",
+    "enzyme-adapter-react-16": "~1.1.0",
+    "eslint": "~4.11.0",
+    "eslint-config-prettier": "~2.8.0",
+    "eslint-plugin-import": "~2.8.0",
+    "eslint-plugin-jest": "~21.3.2",
+    "eslint-plugin-prettier": "~2.3.1",
+    "eslint-plugin-react": "~7.5.1",
+    "jest": "~21.2.1",
+    "prettier": "~1.8.2",
+    "react-test-renderer": "~16.1.1"
+  },
+  "scripts": {
+    "build": "next build",
+    "dev": "node server.js --port=$PORT",
+    "start": "NODE_ENV=production node server.js --port=$PORT"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/jest.js"
+  }
+}
