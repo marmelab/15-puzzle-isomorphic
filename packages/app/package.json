@@ -1,9 +1,10 @@
 {
-  "name": "15-puzzle-isomorphic",
+  "name": "app",
   "version": "1.0.0",
   "description": "A react app to play the 15 puzzle game.",
   "dependencies": {
     "classnames": "2.2.5",
+    "core": "^1.0.0",
     "isomorphic-fetch": "2.2.1",
     "next": "4.1.4",
     "next-routes": "1.1.0",

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { defaultPuzzleSize } from '../src/config';
 
-import { initGame, moveTile } from '../src/core/game';
+import { initGame, moveTile } from 'core';
 
 import Block from '../src/components/layout/Block';
 import Page from '../src/components/layout/Page';

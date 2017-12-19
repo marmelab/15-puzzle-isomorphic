@@ -15,6 +15,7 @@ export const shuffle = async (grid, shuffleDuration = SHUFFLE_DURATION) => {
     const startShuffling = async () => {
         while (!stopShuffling) {
             const coords = listCoordsMovableTiles(shuffledGrid);
+
             shuffledGrid = move(shuffledGrid, chooseCoords(coords));
             await sleep(SLEEP_DURATION);
         }
