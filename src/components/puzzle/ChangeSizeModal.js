@@ -94,9 +94,7 @@ export default class ChangeSizeModal extends Component {
                                     items={items}
                                     onClickItem={this.handleOnClickItem}
                                     selectedItem={{ value: size }}
-                                >
-                                    <Item />
-                                </List>
+                                />
                             </div>
                         </div>
                     </div>

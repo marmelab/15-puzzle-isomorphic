@@ -4,7 +4,7 @@ import ClassNames from 'classnames';
 
 import Item from './Item';
 
-const List = ({ children, items, icon, onClickItem, selectedItem, title }) => (
+const List = ({ items, icon, onClickItem, selectedItem, title }) => (
     <ul className="collection with-header">
         {title && (
             <li className="collection-header">
@@ -15,7 +15,7 @@ const List = ({ children, items, icon, onClickItem, selectedItem, title }) => (
             <li
                 className={ClassNames('collection-item', {
                     active: selectedItem && selectedItem.value === item.value,
-                    'collection-item-hover': !children.props.icon,
+                    'collection-item-hover': !icon,
                 })}
                 key={key}
             >
@@ -31,7 +31,6 @@ const List = ({ children, items, icon, onClickItem, selectedItem, title }) => (
 );
 
 List.propTypes = {
-    children: PropTypes.element.isRequired,
     icon: PropTypes.string,
     items: PropTypes.array.isRequired,
     onClickItem: PropTypes.func.isRequired,
