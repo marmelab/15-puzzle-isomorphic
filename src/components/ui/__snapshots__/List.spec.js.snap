@@ -15,34 +15,25 @@ exports[`List should render the List correctly with a title and items 1`] = `
     className="collection-item collection-item-hover"
   >
     <div
-      label={undefined}
+      className="left-align"
       onClick={[Function]}
-      value={1}
-    >
-      Children
-    </div>
+    />
   </li>
   <li
     className="collection-item collection-item-hover"
   >
     <div
-      label={undefined}
+      className="left-align"
       onClick={[Function]}
-      value={2}
-    >
-      Children
-    </div>
+    />
   </li>
   <li
     className="collection-item collection-item-hover"
   >
     <div
-      label={undefined}
+      className="left-align"
       onClick={[Function]}
-      value={3}
-    >
-      Children
-    </div>
+    />
   </li>
 </ul>
 `;

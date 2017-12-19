@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
-const List = ({ children, items, onClickItem, selectedItem, title }) => (
+import Item from './Item';
+
+const List = ({ children, items, icon, onClickItem, selectedItem, title }) => (
     <ul className="collection with-header">
         {title && (
             <li className="collection-header">
@@ -17,12 +19,12 @@ const List = ({ children, items, onClickItem, selectedItem, title }) => (
                 })}
                 key={key}
             >
-                {React.cloneElement(children, {
-                    label: item.label,
-                    onClick: onClickItem,
-                    value: item.value,
-                    ...children.props,
-                })}
+                <Item
+                    icon={icon}
+                    label={item.label}
+                    onClick={onClickItem}
+                    value={item.value}
+                />
             </li>
         ))}
     </ul>
@@ -30,6 +32,7 @@ const List = ({ children, items, onClickItem, selectedItem, title }) => (
 
 List.propTypes = {
     children: PropTypes.element.isRequired,
+    icon: PropTypes.string,
     items: PropTypes.array.isRequired,
     onClickItem: PropTypes.func.isRequired,
     selectedItem: PropTypes.object,
