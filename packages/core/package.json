@@ -1,7 +1,7 @@
 {
   "name": "core",
   "version": "1.0.0",
-  "description": "A library to play the 15 puzzle game",
+  "description": "A library containing the core functions to play the 15 puzzle game",
   "main": "build/core.js",
   "scripts": {
     "build": "webpack --env dev && webpack --env build"

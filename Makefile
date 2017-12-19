@@ -7,7 +7,7 @@ help: ## Print all commands (default)
 
 ####### BUILD #######
 
-install: ## Install dependencies of each package
+install: ## Install all the dependencies
 	$(LERNA) bootstrap
 
 build: install ## Build each package
