@@ -1,4 +1,4 @@
-import { durationTranslate } from './config';
+import { translateDuration } from './config';
 import { dirFromMove } from './core/game';
 
 export const TILE_MARGIN = 2;
@@ -34,7 +34,7 @@ export const buildTranslateStyle = (dir, tileSize, tileValue, unit) => {
         x: `${dir.x} * (${tileSize}${unit} + ${TILE_MARGIN}px)`,
     };
     return {
-        transition: `transform ${durationTranslate}ms ease-out`,
+        transition: `transform ${translateDuration}ms ease-out`,
         transform: `translate(calc(${translatingDir.x}), calc(${
             translatingDir.y
         }))`,

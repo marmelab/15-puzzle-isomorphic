@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Media from 'react-media';
 
-import { defaultImageUrl, durationTranslate, imageUrls } from '../../config';
+import { defaultImageUrl, imageUrls, translateDuration } from '../../config';
 import * as GridStyle from '../../gridStyleCalculator';
 
 import Tile from './Tile';
@@ -40,7 +40,7 @@ export default class Grid extends Component {
                 tileTranslating: 0,
             });
             this.props.onClick(tile);
-        }, durationTranslate);
+        }, translateDuration);
     };
 
     componentWillMount() {
