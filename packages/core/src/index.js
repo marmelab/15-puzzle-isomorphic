@@ -1,5 +1,3 @@
-import * as Game from './game.js';
-import * as Helper from './helper.js';
-import * as Shuffler from './shuffler.js';
-
-export { Game, Helper, Shuffler };
+export * from './game';
+export * from './helper.js';
+export * from './shuffler.js';

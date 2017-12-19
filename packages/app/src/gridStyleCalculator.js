@@ -1,5 +1,5 @@
 import { translateDuration } from './config';
-import { dirFromMove } from './core/game';
+import { dirFromMove } from 'core';
 
 export const TILE_MARGIN = 2;
 export const MAX_TILE_SIZE = 100;

@@ -301,25 +301,42 @@ var shuffle = exports.shuffle = async function shuffle(grid) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Shuffler = exports.Helper = exports.Game = undefined;
 
 var _game = __webpack_require__(0);
 
-var Game = _interopRequireWildcard(_game);
+Object.keys(_game).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _game[key];
+    }
+  });
+});
 
 var _helper = __webpack_require__(3);
 
-var Helper = _interopRequireWildcard(_helper);
+Object.keys(_helper).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _helper[key];
+    }
+  });
+});
 
 var _shuffler = __webpack_require__(1);
 
-var Shuffler = _interopRequireWildcard(_shuffler);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-exports.Game = Game;
-exports.Helper = Helper;
-exports.Shuffler = Shuffler;
+Object.keys(_shuffler).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _shuffler[key];
+    }
+  });
+});
 
 /***/ }),
 /* 3 */
