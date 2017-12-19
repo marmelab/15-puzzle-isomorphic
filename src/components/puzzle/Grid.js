@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Media from 'react-media';
 
 import { defaultImageUrl, durationTranslate, imageUrls } from '../../config';
+import * as GridStyle from '../../gridStyleCalculator';
 
 import Tile from './Tile';
 import TileEmpty from './TileEmpty';
 
 import { isTileInMovableTiles } from '../../core/game';
 import { associateTileToBackground, choiceInArray } from '../../core/helper';
-
-const TILE_MARGIN = 2;
-const TILE_IMAGE_SIZE = 100;
-
-const buildTileStyle = (tileImageUrl, tileImageCoords, tileImageSize) => {
-    return {
-        backgroundImage: `url(${tileImageUrl})`,
-        backgroundPosition: tileImageCoords,
-        backgroundSize: `${tileImageSize}`,
-    };
-};
-
-const buildTileSize = (imageSize, nbOfTiles) => imageSize / (nbOfTiles + 1);
 
 export default class Grid extends Component {
     static propTypes = {
@@ -61,76 +50,95 @@ export default class Grid extends Component {
         const imageUrl = choiceInArray(
             imageUrls.length > 0 ? imageUrls : [defaultImageUrl],
         );
-        const imageSize = `${TILE_IMAGE_SIZE}vw`;
-        const tileMargin = TILE_MARGIN;
-        const tileSize = buildTileSize(TILE_IMAGE_SIZE, resolvedGrid.length);
-
         this.setState({
             imageCoords,
             imageUrl,
-            imageSize,
-            tileMargin,
-            tileSize,
         });
     }
 
     render() {
         const { grid, readOnly, showNumbers, tileToHighlight } = this.props;
-
-        const {
-            imageCoords,
-            imageSize,
-            imageUrl,
-            tileMargin,
-            tileSize,
-            tileTranslating,
-        } = this.state;
+        const { imageCoords, imageUrl, tileTranslating } = this.state;
 
         return (
-            <div className="puzzle-column flow-text">
-                {grid.map((row, rowKey) => (
-                    <div className="puzzle-row" key={rowKey}>
-                        {row.map(
-                            tileValue =>
-                                tileValue === 0 ? (
-                                    <TileEmpty
-                                        key={0}
-                                        tileMargin={tileMargin}
-                                        tileSize={tileSize}
-                                        tileValue={tileValue}
-                                    />
-                                ) : (
-                                    <Tile
-                                        enabled={
+            <Media query="(max-width: 800px)">
+                {matches => {
+                    const {
+                        dimensionStyle,
+                        tileSize,
+                    } = GridStyle.buildResponsiveDimension(
+                        matches,
+                        grid.length,
+                    );
+                    return (
+                        <div className="puzzle-column flow-text">
+                            {grid.map((row, rowKey) => (
+                                <div className="puzzle-row" key={rowKey}>
+                                    {row.map(tileValue => {
+                                        const backgroundStyle = GridStyle.buildResponsiveBackground(
+                                            matches,
+                                            grid.length,
+                                            imageUrl,
+                                            imageCoords[tileValue],
+                                            tileSize,
+                                        );
+                                        let enabled = false;
+                                        let translate = false;
+                                        let translateStyle = {};
+                                        if (
                                             !readOnly &&
                                             isTileInMovableTiles(
                                                 grid,
                                                 tileValue,
                                             )
+                                        ) {
+                                            enabled = true;
+                                            translate =
+                                                tileTranslating === tileValue;
+                                            translateStyle = GridStyle.buildResponsiveTranslate(
+                                                matches,
+                                                grid,
+                                                tileSize,
+                                                tileValue,
+                                            );
                                         }
-                                        grid={grid}
-                                        key={tileValue}
-                                        nbOfTiles={grid.length}
-                                        onClick={this.handleOnClick}
-                                        pulse={tileValue === tileToHighlight}
-                                        showNumbers={showNumbers}
-                                        shouldTranslate={
-                                            tileValue === tileTranslating
-                                        }
-                                        style={buildTileStyle(
-                                            imageUrl,
-                                            imageCoords[tileValue],
-                                            imageSize,
-                                        )}
-                                        tileMargin={tileMargin}
-                                        tileSize={tileSize}
-                                        tileValue={tileValue}
-                                    />
-                                ),
-                        )}
-                    </div>
-                ))}
-            </div>
+                                        return tileValue === 0 ? (
+                                            <TileEmpty
+                                                dimensionStyle={dimensionStyle}
+                                                key={0}
+                                            />
+                                        ) : (
+                                            <Tile
+                                                backgroundStyle={
+                                                    backgroundStyle
+                                                }
+                                                dimensionStyle={dimensionStyle}
+                                                enabled={enabled}
+                                                imageCoords={
+                                                    imageCoords[tileValue]
+                                                }
+                                                imageUrl={imageUrl}
+                                                key={tileValue}
+                                                nbTiles={grid.length}
+                                                onClick={this.handleOnClick}
+                                                pulse={
+                                                    tileValue ===
+                                                    tileToHighlight
+                                                }
+                                                showNumbers={showNumbers}
+                                                translate={translate}
+                                                translateStyle={translateStyle}
+                                                tileSize={tileSize}
+                                                tileValue={tileValue}
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            ))}
+                        </div>
+                    );
+                }}
+            </Media>
         );
     }
 }
