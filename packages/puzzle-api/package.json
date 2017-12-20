@@ -1,5 +1,5 @@
 {
-  "name": "puzzle-server",
+  "name": "puzzle-api",
   "version": "1.0.0",
   "description": "An api to play the 15 puzzle in multiplayer",
   "main": "index.js",
