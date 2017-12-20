@@ -9,6 +9,7 @@ help: ## Print all commands (default)
 
 install: ## Install all the dependencies
 	$(LERNA) bootstrap
+	$(LERNA) exec -- make install
 
 build: install ## Build each package
 	$(LERNA) exec -- make build
