@@ -1,13 +1,13 @@
 {
-  "name": "app",
+  "name": "puzzle-app",
   "version": "1.0.0",
   "description": "A react isomorphic app to play the 15 puzzle game.",
   "dependencies": {
     "classnames": "2.2.5",
-    "core": "^1.0.0",
     "isomorphic-fetch": "2.2.1",
     "next": "4.1.4",
     "next-routes": "1.1.0",
+    "puzzle-core": "^0.0.1",
     "qs": "6.5.1",
     "react": "16.1.1",
     "react-detect-offline": "1.0.5",
