@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "An api to play the 15 puzzle in multiplayer",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "~2.172.0",
+    "core": "~1.0.0",
+    "serverless-dynamodb-local": "~0.2.18",
+    "serverless-offline": "~3.16.0",
+    "uuid": "~3.1.0"
+  },
+  "devDependencies": {
+    "eslint": "~4.13.0",
+    "eslint-config-prettier": "~2.9.0",
+    "eslint-plugin-import": "~2.8.0",
+    "eslint-plugin-prettier": "~2.4.0",
+    "prettier": "~1.9.2"
+  },
+  "scripts": {
+    "build": "yarn && serverless dynamodb install && serverless dynamodb migrate",
+    "dev": "serverless offline start"
+  }
+}
