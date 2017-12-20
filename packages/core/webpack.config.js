@@ -11,7 +11,20 @@ let plugins = [],
     outputFile;
 
 if (env === 'build') {
-    plugins.push(new UglifyJsPlugin({ minimize: true }));
+    const options = {
+        parallel: true,
+        uglifyOptions: {
+            ie8: false,
+            ecma: 6,
+            warnings: true,
+            mangle: true,
+            output: {
+                comments: false,
+                beautify: false,
+            },
+        },
+    };
+    plugins.push(new UglifyJsPlugin(options));
     outputFile = libraryName + '.min.js';
 } else {
     outputFile = libraryName + '.js';
