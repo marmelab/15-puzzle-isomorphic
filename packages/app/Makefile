@@ -11,16 +11,16 @@ help: ## Print all commands (default)
 copy-config: ## Create the config file based on the config example
 	cp -n ./src/config.dist.js ./src/config.js
 
-install: copy-config ## Install dependencies
-	npm i
+install: ## Install dependencies
+	yarn
 
 build: ## Build the project
-	npm run build
+	yarn build
 
 ####### RUN #######
 
 run: build ## Run the 15-puzzle isomorphic app
-	PORT=$(PORT) npm run start
+	PORT=$(PORT) yarn start
 
 start: ## Run the 15-puzzle isomorphic app (alias for `run`)
 	$(MAKE) run
