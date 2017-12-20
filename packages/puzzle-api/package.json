@@ -19,7 +19,7 @@
     "prettier": "~1.9.2"
   },
   "scripts": {
-    "build": "yarn && serverless dynamodb install && serverless dynamodb migrate",
+    "build": "serverless dynamodb install && serverless dynamodb migrate",
     "dev": "serverless offline start"
   }
 }

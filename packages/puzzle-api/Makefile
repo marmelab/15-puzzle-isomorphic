@@ -8,7 +8,7 @@ help: ## Print all commands (default)
 install: ## Install dependencies
 	yarn
 
-build: ## Build the project
+build: install ## Build the project
 	yarn build
 
 ####### DEV #######
