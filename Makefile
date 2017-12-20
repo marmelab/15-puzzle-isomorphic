@@ -8,8 +8,9 @@ help: ## Print all commands (default)
 ####### BUILD #######
 
 install: ## Install all the dependencies
-	$(LERNA) bootstrap
 	$(LERNA) exec -- make install
+	$(LERNA) link --force-local
+	$(LERNA) bootstrap
 
 build: install ## Build each package
 	$(LERNA) exec -- make build
