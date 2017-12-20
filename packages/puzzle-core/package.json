@@ -4,6 +4,7 @@
   "description": "A library containing the core functions to play the 15 puzzle game",
   "main": "build/core.js",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "webpack --env dev && webpack --env build"
   },
   "devDependencies": {
@@ -13,6 +14,7 @@
     "babel-jest": "~22.0.3",
     "babel-loader": "~7.1.2",
     "babel-plugin-add-module-exports": "~0.2.1",
+    "babel-plugin-transform-regenerator": "~6.26.0",
     "babel-preset-env": "~1.6.1",
     "eslint": "~4.13.0",
     "eslint-config-prettier": "~2.9.0",
@@ -26,6 +28,6 @@
     "yargs": "~10.0.3"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0"
+    "babel-polyfill": "6.26.0"
   }
 }

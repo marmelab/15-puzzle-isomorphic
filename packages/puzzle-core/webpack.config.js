@@ -7,8 +7,8 @@ const env = require('yargs').argv.env; // use --env with webpack 2
 
 let libraryName = 'core';
 
-let plugins = [],
-    outputFile;
+let plugins = [];
+let outputFile;
 
 if (env === 'build') {
     const options = {
@@ -31,7 +31,7 @@ if (env === 'build') {
 }
 
 const config = {
-    entry: __dirname + '/src/index.js',
+    entry: ['babel-polyfill', __dirname + '/src/index.js'],
     devtool: 'source-map',
     output: {
         path: __dirname + '/build',
@@ -55,7 +55,11 @@ const config = {
         ],
     },
     resolve: {
-        modules: [path.resolve('./node_modules'), path.resolve('./src')],
+        modules: [
+            path.resolve('../../node_modules'),
+            path.resolve('./node_modules'),
+            path.resolve('./src'),
+        ],
         extensions: ['.json', '.js'],
     },
     plugins: plugins,

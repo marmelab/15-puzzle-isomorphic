@@ -18,7 +18,7 @@ build: install ## Build each package
 ####### RUN #######
 
 run: build ## Run all
-	$(LERNA) exec -- make run
+	cd packages/puzzle-app && make run
 
 start: ## Run all (alias for `run`)
 	$(MAKE) run

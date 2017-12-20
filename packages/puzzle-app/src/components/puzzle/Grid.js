@@ -12,7 +12,7 @@ import {
     associateTileToBackground,
     choiceInArray,
     isTileInMovableTiles,
-} from 'core';
+} from 'puzzle-core';
 
 export default class Grid extends Component {
     static propTypes = {
