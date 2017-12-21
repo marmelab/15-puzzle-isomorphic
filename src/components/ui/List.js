@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ClassNames from 'classnames';
 
-const List = ({ children, items, onClickItem, title }) => (
+import Item from './Item';
+
+const List = ({ items, icon, onClickItem, selectedItem, title }) => (
     <ul className="collection with-header">
         {title && (
             <li className="collection-header">
@@ -9,20 +12,29 @@ const List = ({ children, items, onClickItem, title }) => (
             </li>
         )}
         {items.map((item, key) => (
-            <li className="collection-item" key={key}>
-                {React.cloneElement(children, {
-                    onClick: onClickItem,
-                    value: item,
+            <li
+                className={ClassNames('collection-item', {
+                    active: selectedItem && selectedItem.value === item.value,
+                    'collection-item-hover': !icon,
                 })}
+                key={key}
+            >
+                <Item
+                    icon={icon}
+                    label={item.label}
+                    onClick={onClickItem}
+                    value={item.value}
+                />
             </li>
         ))}
     </ul>
 );
 
 List.propTypes = {
-    children: PropTypes.element.isRequired,
+    icon: PropTypes.string,
     items: PropTypes.array.isRequired,
     onClickItem: PropTypes.func.isRequired,
+    selectedItem: PropTypes.object,
     title: PropTypes.string,
 };
 

@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import List from '../ui/List';
-import ItemGames from './ItemGames';
 
 const ListGames = ({ games, onGameSelected }) => {
     return games && games.length > 0 ? (
-        <List items={games} onClickItem={onGameSelected}>
-            <ItemGames />
-        </List>
+        <List
+            icon="add_circle_outline"
+            items={games.map(game => ({
+                label: `Game #${game}`,
+                value: game,
+            }))}
+            onClickItem={onGameSelected}
+        />
     ) : (
         <p>There is no open multiplayer games.</p>
     );

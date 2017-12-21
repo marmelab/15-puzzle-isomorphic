@@ -1,38 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Media from 'react-media';
 
-import { defaultImageUrl, imageUrls } from '../../config';
+import { defaultImageUrl, imageUrls, translateDuration } from '../../config';
+import * as GridStyle from '../../gridStyleCalculator';
 
 import Tile from './Tile';
+import TileEmpty from './TileEmpty';
 
-import { dirFromMove, isTileInMovableTiles } from '../../core/game';
+import { isTileInMovableTiles } from '../../core/game';
 import { associateTileToBackground, choiceInArray } from '../../core/helper';
 
-const DURATION_TRANSLATE = 200;
-const SIZE_TILE = 5.5;
-
-const buildTranslateStyle = (translate, translatingDir) => {
-    return translate
-        ? {
-              transform: `translate(${translatingDir.x}em, ${
-                  translatingDir.y
-              }em)`,
-              transition: `transform ${DURATION_TRANSLATE}ms ease-out`,
-          }
-        : {
-              transform: 'translate(0,0)',
-          };
-};
-
-const translateTile = (grid, tile, tileSize) => {
-    const dir = dirFromMove(grid, tile);
-    return {
-        y: dir.y * tileSize,
-        x: dir.x * tileSize,
-    };
-};
-
-class Grid extends Component {
+export default class Grid extends Component {
     static propTypes = {
         grid: PropTypes.array.isRequired,
         onClick: PropTypes.func.isRequired,
@@ -48,31 +27,29 @@ class Grid extends Component {
     };
 
     state = {
-        translating: false,
-        translatingDir: { y: 0, x: 0 },
-        translatingTile: 0,
+        tileTranslating: 0,
     };
 
-    handleClickTile = tile => {
-        const dir = translateTile(this.props.grid, tile, SIZE_TILE);
+    handleOnClick = tile => {
         this.setState({
-            translating: true,
-            translatingDir: dir,
-            translatingTile: tile,
+            tileTranslating: tile,
         });
 
         setTimeout(() => {
-            this.props.onClick(this.state.translatingTile);
-            this.setState({ translating: false });
-        }, DURATION_TRANSLATE);
+            this.setState({
+                tileTranslating: 0,
+            });
+            this.props.onClick(tile);
+        }, translateDuration);
     };
 
     componentWillMount() {
-        const imageCoords = associateTileToBackground(this.props.resolvedGrid);
+        const { resolvedGrid } = this.props;
+
+        const imageCoords = associateTileToBackground(resolvedGrid);
         const imageUrl = choiceInArray(
             imageUrls.length > 0 ? imageUrls : [defaultImageUrl],
         );
-
         this.setState({
             imageCoords,
             imageUrl,
@@ -81,55 +58,87 @@ class Grid extends Component {
 
     render() {
         const { grid, readOnly, showNumbers, tileToHighlight } = this.props;
-
-        const {
-            imageCoords,
-            imageUrl,
-            translating,
-            translatingDir,
-            translatingTile,
-        } = this.state;
+        const { imageCoords, imageUrl, tileTranslating } = this.state;
 
         return (
-            <div className="puzzle-column flow-text">
-                {grid.map((row, rowKey) => (
-                    <div className="puzzle-row" key={rowKey}>
-                        {row.map(
-                            tileValue =>
-                                tileValue === 0 ? (
-                                    <div
-                                        key={tileValue}
-                                        className="puzzle-tile-empty"
-                                    />
-                                ) : (
-                                    <Tile
-                                        enabled={
+            <Media query="(max-width: 800px)">
+                {matches => {
+                    const {
+                        dimensionStyle,
+                        tileSize,
+                    } = GridStyle.buildResponsiveDimension(
+                        matches,
+                        grid.length,
+                    );
+                    return (
+                        <div className="puzzle-column flow-text">
+                            {grid.map((row, rowKey) => (
+                                <div className="puzzle-row" key={rowKey}>
+                                    {row.map(tileValue => {
+                                        const backgroundStyle = GridStyle.buildResponsiveBackground(
+                                            matches,
+                                            grid.length,
+                                            imageUrl,
+                                            imageCoords[tileValue],
+                                            tileSize,
+                                        );
+                                        let enabled = false;
+                                        let translate = false;
+                                        let translateStyle = {};
+                                        if (
                                             !readOnly &&
                                             isTileInMovableTiles(
                                                 grid,
                                                 tileValue,
                                             )
+                                        ) {
+                                            enabled = true;
+                                            translate =
+                                                tileTranslating === tileValue;
+                                            translateStyle = GridStyle.buildResponsiveTranslate(
+                                                matches,
+                                                grid,
+                                                tileSize,
+                                                tileValue,
+                                            );
                                         }
-                                        key={tileValue}
-                                        onClick={this.handleClickTile}
-                                        pulse={tileValue === tileToHighlight}
-                                        showNumbers={showNumbers}
-                                        style={buildTranslateStyle(
-                                            translating &&
-                                                translatingTile === tileValue,
-                                            translatingDir,
-                                        )}
-                                        tileImage={imageUrl}
-                                        tileImageCoords={imageCoords[tileValue]}
-                                        tileValue={tileValue}
-                                    />
-                                ),
-                        )}
-                    </div>
-                ))}
-            </div>
+                                        return tileValue === 0 ? (
+                                            <TileEmpty
+                                                dimensionStyle={dimensionStyle}
+                                                key={0}
+                                            />
+                                        ) : (
+                                            <Tile
+                                                backgroundStyle={
+                                                    backgroundStyle
+                                                }
+                                                dimensionStyle={dimensionStyle}
+                                                enabled={enabled}
+                                                imageCoords={
+                                                    imageCoords[tileValue]
+                                                }
+                                                imageUrl={imageUrl}
+                                                key={tileValue}
+                                                nbTiles={grid.length}
+                                                onClick={this.handleOnClick}
+                                                pulse={
+                                                    tileValue ===
+                                                    tileToHighlight
+                                                }
+                                                showNumbers={showNumbers}
+                                                translate={translate}
+                                                translateStyle={translateStyle}
+                                                tileSize={tileSize}
+                                                tileValue={tileValue}
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            ))}
+                        </div>
+                    );
+                }}
+            </Media>
         );
     }
 }
-
-export default Grid;

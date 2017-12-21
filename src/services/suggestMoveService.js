@@ -13,7 +13,6 @@ export const suggestFactory = (baseUrl = DEFAULT_BASE_URL) => (
         grid: JSON.stringify(grid),
         initial_grid: JSON.stringify(resolvedGrid),
     });
-
     return fetch(url, {
         method: 'GET',
     })

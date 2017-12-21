@@ -6,7 +6,7 @@ import List from './List';
 describe('List', () => {
     test('should render List without error', () => {
         renderer.create(
-            <List items={[]}>
+            <List items={[]} onClickItem={() => {}}>
                 <div>Children</div>
             </List>,
         );
@@ -14,7 +14,7 @@ describe('List', () => {
 
     test('should render the List correctly without a title', () => {
         const component = renderer.create(
-            <List items={[]}>
+            <List items={[]} onClickItem={() => {}}>
                 <div>Children</div>
             </List>,
         );
@@ -23,8 +23,9 @@ describe('List', () => {
     });
 
     test('should render the List correctly with a title and items', () => {
+        const items = [{ value: 1 }, { value: 2 }, { value: 3 }];
         const component = renderer.create(
-            <List items={[1, 2, 3]} title="Title">
+            <List items={items} title="Title" onClickItem={() => {}}>
                 <div>Children</div>
             </List>,
         );

@@ -4,8 +4,13 @@ module.exports = {
         suggest: 'http://your.suggest.api',
     },
     defaultImageUrl: '/static/images/puzzle-default.jpg',
-    defaultPuzzleSize: 4,
     imageUrls: ['/static/images/img1.jpg', '/static/images/img2.jpg'],
+    puzzleSize: {
+        default: 4,
+        max: 7,
+        min: 3,
+    },
     refreshDuration: 3000,
+    translateDuration: 200,
     useCache: true,
 };

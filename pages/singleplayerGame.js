@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { defaultPuzzleSize } from '../src/config';
+
+import { initGame, moveTile } from '../src/core/game';
 
 import Block from '../src/components/layout/Block';
 import Page from '../src/components/layout/Page';
 import Section from '../src/components/layout/Section';
-
 import Game from '../src/components/puzzle/Game';
 
-import { initGame, moveTile } from '../src/core/game';
+import ChangeSizeModal from '../src/components/puzzle/ChangeSizeModal';
 
 export const title = (isLoading, isVictory, turn) => {
     if (isLoading) {
@@ -33,24 +33,13 @@ export default class SinglePlayerGame extends Component {
         turn: -1,
     };
 
-    static getInitialProps = ({ query }) => ({
-        size: query.size || defaultPuzzleSize,
-    });
-
-    static propTypes = {
-        size: PropTypes.number.isRequired,
-    };
-
     handleClickTile = tile => {
         const { currentGrid, resolvedGrid, turn } = this.state;
-
         try {
             const move = moveTile({ currentGrid, resolvedGrid, turn }, tile);
-
             this.setState({
                 currentGrid: move.currentGrid,
                 isVictory: move.isVictory,
-                suggestedTile: 0,
                 turn: move.turn,
             });
         } catch (error) {
@@ -59,10 +48,11 @@ export default class SinglePlayerGame extends Component {
         }
     };
 
-    buildGame = async () => {
-        const { currentGrid, resolvedGrid, turn } = await initGame(
-            this.props.size,
-        );
+    buildGame = async size => {
+        this.setState({
+            isLoading: true,
+        });
+        const { currentGrid, resolvedGrid, turn } = await initGame(size);
         this.setState({
             currentGrid,
             isLoading: false,
@@ -72,8 +62,15 @@ export default class SinglePlayerGame extends Component {
         });
     };
 
+    handleOnCloseModal = newSize => {
+        if (!Number.isInteger(newSize)) {
+            return;
+        }
+        this.buildGame(newSize);
+    };
+
     componentWillMount() {
-        this.buildGame();
+        this.buildGame(defaultPuzzleSize);
     }
 
     render() {
@@ -82,7 +79,6 @@ export default class SinglePlayerGame extends Component {
             isLoading,
             isVictory,
             resolvedGrid,
-            suggestedTile,
             turn,
         } = this.state;
 
@@ -98,9 +94,14 @@ export default class SinglePlayerGame extends Component {
                             isVictory={isVictory}
                             onClickTile={this.handleClickTile}
                             resolvedGrid={resolvedGrid}
-                            suggestedTile={suggestedTile}
                         />
                     </Block>
+                    {turn <= 0 && (
+                        <ChangeSizeModal
+                            onClose={this.handleOnCloseModal}
+                            size={resolvedGrid.length}
+                        />
+                    )}
                 </Section>
             </Page>
         );

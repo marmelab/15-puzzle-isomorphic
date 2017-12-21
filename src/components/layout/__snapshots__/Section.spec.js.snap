@@ -3,5 +3,9 @@
 exports[`Section should render the Section correctly 1`] = `
 <div
   className="section center"
-/>
+>
+  <p>
+    Child
+  </p>
+</div>
 `;

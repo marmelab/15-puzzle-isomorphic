@@ -1,18 +1,20 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
 import Fade from '../transitions/Fade';
 
-export default class Tile extends PureComponent {
+export default class Tile extends Component {
     static propTypes = {
+        backgroundStyle: PropTypes.object.isRequired,
+        dimensionStyle: PropTypes.object.isRequired,
         enabled: PropTypes.bool,
         onClick: PropTypes.func.isRequired,
         pulse: PropTypes.bool,
         showNumbers: PropTypes.bool,
-        style: PropTypes.object,
-        tileImage: PropTypes.string,
-        tileImageCoords: PropTypes.string,
+        translate: PropTypes.bool,
+        translateStyle: PropTypes.object,
+        tileSize: PropTypes.number.isRequired,
         tileValue: PropTypes.number.isRequired,
     };
 
@@ -30,15 +32,28 @@ export default class Tile extends PureComponent {
         }
     };
 
+    shouldComponentUpdate = nextProps => {
+        const { enabled, pulse, showNumbers, tileSize, translate } = this.props;
+
+        return (
+            nextProps.enabled !== enabled ||
+            nextProps.pulse !== pulse ||
+            nextProps.showNumbers !== showNumbers ||
+            nextProps.tileSize !== tileSize ||
+            nextProps.translate !== translate
+        );
+    };
+
     render() {
         const {
             enabled,
+            dimensionStyle,
+            backgroundStyle,
             pulse,
             showNumbers,
-            tileImage,
-            tileImageCoords,
+            translate,
+            translateStyle,
             tileValue,
-            style,
         } = this.props;
 
         const tileClass = ClassNames('puzzle-tile', 'z-depth-3', {
@@ -46,23 +61,14 @@ export default class Tile extends PureComponent {
             'puzzle-tile-hover': enabled,
         });
 
-        const tileStyle =
-            tileImage && tileImageCoords
-                ? {
-                      backgroundImage: `url(${tileImage})`,
-                      backgroundPosition: tileImageCoords,
-                      ...style,
-                  }
-                : {
-                      ...style,
-                  };
+        const style = {
+            ...backgroundStyle,
+            ...dimensionStyle,
+        };
+        Object.assign(style, translate ? translateStyle : {});
 
         return (
-            <div
-                className={tileClass}
-                style={tileStyle}
-                onClick={this.handleClick}
-            >
+            <div className={tileClass} style={style} onClick={this.handleClick}>
                 <Fade in={showNumbers}>
                     <span className="puzzle-tile-value">{tileValue}</span>
                 </Fade>

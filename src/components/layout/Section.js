@@ -8,7 +8,9 @@ const Section = ({ children }) => (
 Section.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.element,
+        PropTypes.node,
         PropTypes.arrayOf(PropTypes.element),
+        PropTypes.arrayOf(PropTypes.node),
     ]).isRequired,
 };
 

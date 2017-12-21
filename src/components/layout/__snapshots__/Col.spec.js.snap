@@ -3,5 +3,9 @@
 exports[`Col should render the Col correctly 1`] = `
 <div
   className="col s12"
-/>
+>
+  <p>
+    Child
+  </p>
+</div>
 `;

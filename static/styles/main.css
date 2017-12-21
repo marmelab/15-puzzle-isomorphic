@@ -1,3 +1,8 @@
+/* Remove scroll on the body when react-modal is open */
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+
 a.btn {
     margin: 0 5px;
 }
@@ -48,4 +53,25 @@ a.btn {
 
 .switch {
     margin: 10px;
+}
+
+.modal-content {
+    padding: 24px;
+}
+
+.modal-footer {
+    border-radius: 0 0 2px 2px;
+    background-color: #fafafa;
+    padding: 4px 6px;
+    height: 56px;
+    width: 100%;
+    text-align: right;
+}
+
+.collection-item-hover {
+    cursor: pointer;
+}
+
+.collection-item-hover:hover {
+    background-color: #ddd;
 }

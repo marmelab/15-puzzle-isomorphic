@@ -24,16 +24,19 @@ export default class Game extends Component {
         isVictory: PropTypes.bool,
         onClickTile: PropTypes.func.isRequired,
         resolvedGrid: PropTypes.array.isRequired,
-        suggestedTile: PropTypes.number,
-    };
-
-    static defaultProps = {
-        suggestedTile: 0,
     };
 
     state = {
         loadingAdvice: false,
         showTileNumbers: false,
+        suggestedTile: 0,
+    };
+
+    handleOnClickTile = tile => {
+        this.setState({
+            suggestedTile: 0,
+        });
+        this.props.onClickTile(tile);
     };
 
     handleOnToggle = toggleState => {
@@ -43,8 +46,9 @@ export default class Game extends Component {
     };
 
     requestSuggest = async () => {
-        const { currentGrid, resolvedGrid } = this.state;
+        const { currentGrid, resolvedGrid } = this.props;
         this.setState({ loadingAdvice: true });
+
         try {
             const { Tile } = await suggestFactory()(currentGrid, resolvedGrid);
             this.setState({
@@ -66,27 +70,19 @@ export default class Game extends Component {
     };
 
     render() {
-        const {
-            currentGrid,
-            isVictory,
-            onClickTile,
-            resolvedGrid,
-            suggestedTile,
-        } = this.props;
-        const { showTileNumbers, loadingAdvice } = this.state;
+        const { currentGrid, isVictory, resolvedGrid } = this.props;
+        const { showTileNumbers, suggestedTile, loadingAdvice } = this.state;
 
         return (
             <div>
-                {currentGrid && (
-                    <Grid
-                        onClick={onClickTile}
-                        grid={currentGrid}
-                        readOnly={isVictory}
-                        resolvedGrid={resolvedGrid}
-                        showNumbers={showTileNumbers}
-                        tileToHighLight={suggestedTile}
-                    />
-                )}
+                <Grid
+                    onClick={this.handleOnClickTile}
+                    grid={currentGrid}
+                    readOnly={isVictory}
+                    resolvedGrid={resolvedGrid}
+                    showNumbers={showTileNumbers}
+                    tileToHighlight={suggestedTile}
+                />
                 <Switch labels={labels} onToggle={this.handleOnToggle} />
                 {!isVictory && (
                     <div className="center">
