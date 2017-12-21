@@ -5,13 +5,6 @@ plugins:
   - serverless-offline # needs to be last in the list
 
 custom:
-  dynamodb:
-    start:
-      port: 8001
-      inMemory: true
-      migrate: true
-    migration:
-      dir: migrations
   serverless-offline:
     port: 3001
 
@@ -32,8 +25,53 @@ provider:
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
-  hello:
+  puzzle_api_hello:
     handler: handler.hello
+    events:
+      - http:
+            path: /api/hello
+            method: GET
+            cors: true
+
+  puzzle_api_new:
+    handler: handler.new
+    events:
+      - http:
+            path: /api/game
+            method: POST
+            cors: true
+
+  puzzle_api_game:
+    handler: handler.game
+    events:
+      - http:
+            path: /api/game/{id}
+            method: GET
+            cors: true
+
+  puzzle_api_game_join:
+    handler: handler.join
+    events:
+      - http:
+            path: /api/game/{id}/join
+            method: DELETE
+            cors: true
+
+  puzzle_api_game_move:
+    handler: handler.move
+    events:
+      - http:
+            path: /api/game/{id}/move/{tile}
+            method: PUT
+            cors: true
+
+  puzzle_api_games:
+    handler: handler.games
+    events:
+      - http:
+            path: /api/games/open
+            method: GET
+            cors: true
 
 resources:
   Resources:
