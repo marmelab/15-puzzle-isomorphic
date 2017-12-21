@@ -8,8 +8,11 @@ import * as GridStyle from '../../gridStyleCalculator';
 import Tile from './Tile';
 import TileEmpty from './TileEmpty';
 
-import { isTileInMovableTiles } from '../../core/game';
-import { associateTileToBackground, choiceInArray } from '../../core/helper';
+import {
+    associateTileToBackground,
+    choiceInArray,
+    isTileInMovableTiles,
+} from 'puzzle-core';
 
 export default class Grid extends Component {
     static propTypes = {

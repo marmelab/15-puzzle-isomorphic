@@ -1,14 +1,12 @@
-# 15-puzzle-isomorphic
+# 15-puzzle
 
-A react app to play the 15 puzzle game.
+Play the 15 puzzle game in single and multiplayer
 
 ## Requirements
 
-Make sure to have `npm` installed.
+Make sure to have `npm` and `yarn` installed.
 
-## Contributing
-
-### Help
+## Help
 
 Print all available commands
 
@@ -16,46 +14,14 @@ Print all available commands
 make
 ```
 
-### Test
+## Run
 
-Launch the unit and integration tests
+### Start the game
 
-``` bash
-make test
-```
-
-Note:
-
-- you can update the snapshots by using the `UPDATE` env variable.
-
-``` bash
-UPDATE=true make test
-```
-
-### Linter
-
-Launch eslint
-
-``` bash
-make lint
-```
-
-## Run the project
-
-### Start the app
-
-Run the 15-puzzle game on port 3000
+Run the 15-puzzle game
 
 ``` bash
 make run
-```
-
-Note:
-
-- change the default port by using the `PORT` env variable.
-
-``` bash
-PORT=3001 make run
 ```
 
 You can use the `start` alias aswell.
@@ -64,8 +30,32 @@ You can use the `start` alias aswell.
 make start
 ```
 
-### Start the app in livereload mode
+## Contributing
+
+### Install the dependencies of all packages
 
 ``` bash
-make dev
+make install
+```
+
+## Build each package
+
+``` bash
+make build
+```
+
+### Test
+
+Launch all the unit and integration tests
+
+``` bash
+make test
+```
+
+### Linter
+
+Launch the specific linter of each package. It could be for example eslint for the javascript's packages.
+
+``` bash
+make lint
 ```

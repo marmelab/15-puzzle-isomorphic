@@ -11,6 +11,7 @@ export const buildGrid = (size = DEFAULT_SIZE) => {
                 .fill(1)
                 .map((val, x) => {
                     const value = y * size + x + 1;
+
                     return value === size * size ? EMPTY_VALUE : value;
                 }),
         );
@@ -40,11 +41,13 @@ export const areGridsEquals = (grid1, grid2) => {
     }
 
     const sizeY = grid1.length;
+
     for (let y = 0; y < sizeY; y++) {
         if (grid1[y].length !== grid2[y].length) {
             return false;
         }
         const sizeX = grid1[y].length;
+
         for (let x = 0; x < sizeX; x++) {
             if (grid1[y][x] !== grid2[y][x]) {
                 return false;
@@ -63,6 +66,7 @@ export const areCoordsEquals = (coords1, coords2) => {
 export const findTileByValue = (grid, valueToSearch) => {
     for (let y = 0; y < grid.length; y++) {
         let x = grid[y].findIndex(value => value === valueToSearch);
+
         if (x !== -1) {
             return { y, x };
         }
@@ -108,6 +112,7 @@ export const move = (grid, coordsTileToMove) => {
     );
 
     let newGrid = deepCopyGrid(grid);
+
     newGrid[emptyTileCoords.y][emptyTileCoords.x] =
         grid[newCoords.y][newCoords.x];
     newGrid[newCoords.y][newCoords.x] =

@@ -1,44 +1,32 @@
-PORT ?= 3000
-CACHE ?= true
+.PHONY: help install build run start test lint
 
-.PHONY: help copy-config install build run start dev test lint format
+LERNA = node_modules/.bin/lerna
 
 help: ## Print all commands (default)
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 ####### BUILD #######
 
-copy-config: ## Create the config file based on the config example
-	cp -n ./src/config.dist.js ./src/config.js
+install: ## Install all the dependencies
+	$(LERNA) exec -- make install
+	$(LERNA) link --force-local
+	$(LERNA) bootstrap
 
-install: copy-config ## Install dependencies
-	npm i
-
-build: ## Build the project
-	npm run build
+build: install ## Build each package
+	$(LERNA) exec -- make build
 
 ####### RUN #######
 
-run: build ## Run the 15-puzzle isomorphic app
-	PORT=$(PORT) npm run start
+run: build ## Run all
+	cd packages/puzzle-app && make run
 
-start: ## Run the 15-puzzle isomorphic app (alias for `run`)
+start: ## Run all (alias for `run`)
 	$(MAKE) run
 
 ####### DEV #######
 
-dev: ## Run with livereload
-	npm run dev
-
 test: ## Run all tests
-ifeq ($(UPDATE), true)
-	node_modules/.bin/jest --updateSnapshot
-else
-	node_modules/.bin/jest
-endif
+	$(LERNA) exec -- make test
 
-lint: ## Run the linter
-	node_modules/.bin/eslint src/
-
-format: ## Format the source code
-	node_modules/.bin/eslint --fix src/*
+lint: ## Run the linter on each package
+	$(LERNA) exec -- make lint

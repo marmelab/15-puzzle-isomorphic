@@ -1,0 +1,33 @@
+{
+  "name": "puzzle-core",
+  "version": "1.0.0",
+  "description": "A library containing the core functions to play the 15 puzzle game",
+  "main": "build/core.js",
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "webpack --env dev && webpack --env build"
+  },
+  "devDependencies": {
+    "babel-cli": "~6.26.0",
+    "babel-core": "~6.26.0",
+    "babel-eslint": "~8.0.3",
+    "babel-jest": "~22.0.3",
+    "babel-loader": "~7.1.2",
+    "babel-plugin-add-module-exports": "~0.2.1",
+    "babel-plugin-transform-regenerator": "~6.26.0",
+    "babel-preset-env": "~1.6.1",
+    "eslint": "~4.13.0",
+    "eslint-config-prettier": "~2.9.0",
+    "eslint-loader": "~1.9.0",
+    "eslint-plugin-import": "~2.8.0",
+    "eslint-plugin-jest": "~21.5.0",
+    "eslint-plugin-prettier": "~2.4.0",
+    "jest": "~21.2.1",
+    "prettier": "~1.9.2",
+    "webpack": "~3.10.0",
+    "yargs": "~10.0.3"
+  },
+  "dependencies": {
+    "babel-polyfill": "6.26.0"
+  }
+}

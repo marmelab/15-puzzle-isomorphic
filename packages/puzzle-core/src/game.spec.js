@@ -46,6 +46,7 @@ describe('Game', () => {
             const expectedGrid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
 
             const areEquals = Game.areGridsEquals(grid, expectedGrid);
+
             expect(areEquals).toBe(true);
         });
 
@@ -54,6 +55,7 @@ describe('Game', () => {
             const expectedGrid = [[3, 12, 1], [5, 3, 6], [7, 8, 36]];
 
             const areEquals = Game.areGridsEquals(grid, expectedGrid);
+
             expect(areEquals).toBe(false);
         });
 
@@ -62,6 +64,7 @@ describe('Game', () => {
             const grid2 = [[3, 12], [5, 3], [7, 8], [7, 8], [1]];
 
             const areEquals = Game.areGridsEquals(grid, grid2);
+
             expect(areEquals).toBe(false);
         });
     });
@@ -72,6 +75,7 @@ describe('Game', () => {
             const coords2 = { y: 3, x: 4 };
 
             const areEquals = Game.areCoordsEquals(coords1, coords2);
+
             expect(areEquals).toBe(true);
         });
 
@@ -80,6 +84,7 @@ describe('Game', () => {
             const coords2 = { y: 4, x: 6 };
 
             const areEquals = Game.areCoordsEquals(coords1, coords2);
+
             expect(areEquals).toBe(false);
         });
     });
@@ -101,7 +106,7 @@ describe('Game', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
 
             expect(() => Game.findTileByValue(grid, 18)).toThrow(
-                `The tile with value 18 doesn't exist.`,
+                "The tile with value 18 doesn't exist.",
             );
         });
     });
@@ -121,7 +126,7 @@ describe('Game', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
             expect(() => Game.findEmptyTile(grid)).toThrow(
-                `The tile with value 0 doesn't exist.`,
+                "The tile with value 0 doesn't exist.",
             );
         });
     });
@@ -131,7 +136,7 @@ describe('Game', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
             expect(() => Game.listCoordsMovableTiles(grid)).toThrow(
-                `The tile with value 0 doesn't exist.`,
+                "The tile with value 0 doesn't exist.",
             );
         });
 
@@ -181,7 +186,7 @@ describe('Game', () => {
             const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
             expect(() => Game.listCoordsMovableTiles(grid)).toThrow(
-                `The tile with value 0 doesn't exist.`,
+                "The tile with value 0 doesn't exist.",
             );
         });
 
@@ -236,6 +241,7 @@ describe('Game', () => {
             const expectedGrid = [[1, 2, 3], [4, 5, 6], [7, 8, 6]];
 
             const tileToMove = { y: 1, x: 2 };
+
             Game.move(grid, tileToMove);
 
             expect(grid).not.toEqual(expectedGrid);
@@ -246,7 +252,7 @@ describe('Game', () => {
             const tileToMove = { y: 0, x: 0 };
 
             expect(() => Game.move(grid, tileToMove)).toThrow(
-                `The tile at coords (0, 0) is not movable.`,
+                'The tile at coords (0, 0) is not movable.',
             );
         });
     });
@@ -259,6 +265,7 @@ describe('Game', () => {
                 x: 0,
             };
             const dir = Game.dirFromMove(grid, 2);
+
             expect(dir).toEqual(expectedDir);
         });
         test('should return the coords of a right move', () => {
@@ -268,6 +275,7 @@ describe('Game', () => {
                 x: -1,
             };
             const dir = Game.dirFromMove(grid, 6);
+
             expect(dir).toEqual(expectedDir);
         });
 
@@ -278,6 +286,7 @@ describe('Game', () => {
                 x: 0,
             };
             const dir = Game.dirFromMove(grid, 5);
+
             expect(dir).toEqual(expectedDir);
         });
 
@@ -288,6 +297,7 @@ describe('Game', () => {
                 x: 1,
             };
             const dir = Game.dirFromMove(grid, 4);
+
             expect(dir).toEqual(expectedDir);
         });
     });
