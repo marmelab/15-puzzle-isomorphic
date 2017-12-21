@@ -4,7 +4,6 @@ import Modal from 'react-modal';
 
 import { puzzleSize } from '../../config';
 import FloatingButton from '../ui/FloatingButton';
-import Item from '../ui/Item';
 import List from '../ui/List';
 
 const style = {
