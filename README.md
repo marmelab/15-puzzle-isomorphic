@@ -2,33 +2,69 @@
 
 A react app to play the 15 puzzle game.
 
+> See the [related article](https://marmelab.com/blog/2018/02/07/jeu-du-taquin-en-react.html) on the Marmelab blog
+
 ## Requirements
 
-Make sure to have `npm` installed.
+Make sure to have `nodejs`, `npm` and `android` installed.
 
-## Contributing
-
-### Help
+## Help
 
 Print all available commands
 
-``` bash
+```bash
 make
 ```
+
+## Build
+
+Build the docker
+
+```bash
+make install
+```
+
+## Run the game
+
+### Start
+
+Run the 15-puzzle game on port 3000
+
+```bash
+make run
+```
+
+_Note: change the default port by using the `PORT` env variable._
+
+```bash
+PORT=3001 make run
+```
+
+You can use the `start` alias aswell.
+
+```bash
+make start
+```
+
+### Start in livereload mode
+
+```bash
+make dev
+```
+
+## Contributing
 
 ### Test
 
 Launch the unit and integration tests
 
-``` bash
+```bash
 make test
 ```
 
-Note:
+_Note: you can update the snapshots by using the `UPDATE` env variable._
 
-- you can update the snapshots by using the `UPDATE` env variable.
-
-``` bash
+```bash
 UPDATE=true make test
 ```
 
@@ -36,36 +72,12 @@ UPDATE=true make test
 
 Launch eslint
 
-``` bash
+```bash
 make lint
 ```
 
-## Run the project
+Launch autofix
 
-### Start the app
-
-Run the 15-puzzle game on port 3000
-
-``` bash
-make run
-```
-
-Note:
-
-- change the default port by using the `PORT` env variable.
-
-``` bash
-PORT=3001 make run
-```
-
-You can use the `start` alias aswell.
-
-``` bash
-make start
-```
-
-### Start the app in livereload mode
-
-``` bash
-make dev
+```bash
+make format
 ```
